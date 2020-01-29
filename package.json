@@ -1,0 +1,28 @@
+{
+  "name": "spyfall",
+  "version": "1.0.0",
+  "description": "A website for the game spyfall",
+  "main": "index.js",
+  "dependencies": {
+    "bufferutil": "^4.0.1",
+    "express": "^4.17.1",
+    "fs": "0.0.1-security",
+    "http-server": "^0.12.1",
+    "socket.io": "^2.3.0",
+    "utf-8-validate": "^5.0.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DannyOppenheimer/SpyFall.git"
+  },
+  "author": "Danny O.",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DannyOppenheimer/SpyFall/issues"
+  },
+  "homepage": "https://github.com/DannyOppenheimer/SpyFall#readme"
+}
