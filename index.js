@@ -8,7 +8,7 @@ var app = express();
 var server = app.listen(4000, function(){
     console.log('Listening to port 4000');
 });
-app.use(express.static('Public'));
+app.use(express.static('frontend'));
 
 var io = socket(server);
 
@@ -17,7 +17,7 @@ io.on('connection', socket => {
     console.log('New connection from ' + socket.id);
     //console.log(Object.keys(io.sockets.sockets));
 
-/*    
+    /*    
     if(!rooms["hey"]) {
         rooms["hey"] = {}
     }
