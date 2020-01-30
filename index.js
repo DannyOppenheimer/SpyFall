@@ -2,6 +2,13 @@ var express = require('express');
 var socket = require('socket.io');
 var fs = require('fs');
 const rooms = JSON.parse(fs.readFileSync('Storage/rooms.json', 'utf8'));
+if(!rooms["rooms"]) {
+    rooms["rooms"] = {};
+}
+
+fs.writeFile('Storage/rooms.json', JSON.stringify(rooms, null, 4), (err) => {
+    if(err) console.error(err);
+});
 
 var app = express();
 
@@ -13,18 +20,12 @@ app.use(express.static('frontend'));
 var io = socket(server);
 
 io.on('connection', socket => {
-    var address = socket.handshake.address;
     console.log('New connection from ' + socket.id);
-    //console.log(Object.keys(io.sockets.sockets));
 
-      
-    if(!rooms["rooms"]) {
-        rooms["rooms"] = {};
-    }
-
-    fs.writeFile('Storage/rooms.json', JSON.stringify(rooms, null, 4), (err) => {
-        if(err) console.error(err);
+    socket.on('create', data => {
+        io.sockets.emit('create', data);
     });
+
 });
 
 function keyCreator() {
