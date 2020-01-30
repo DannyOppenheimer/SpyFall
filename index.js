@@ -17,16 +17,21 @@ io.on('connection', socket => {
     console.log('New connection from ' + socket.id);
     //console.log(Object.keys(io.sockets.sockets));
 
-    /*    
-    if(!rooms["hey"]) {
-        rooms["hey"] = {}
-    }
-    if(!rooms["hey"]["yo"]) {
-        rooms["hey"]["yo"] = {}
+      
+    if(!rooms["rooms"]) {
+        rooms["rooms"] = {};
     }
 
     fs.writeFile('Storage/rooms.json', JSON.stringify(rooms, null, 4), (err) => {
         if(err) console.error(err);
-    });*/
+    });
 });
+
+function keyCreator() {
+    
+    let alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p",
+    "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+    
+    return alphabet[Math.floor(Math.random() * 25)] + alphabet[Math.floor(Math.random() * 25)] + alphabet[Math.floor(Math.random() * 25)] + alphabet[Math.floor(Math.random() * 25)] + alphabet[Math.floor(Math.random() * 25)];
+}
 
