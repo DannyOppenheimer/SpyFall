@@ -1,0 +1,39 @@
+body {
+    background-color: #0d0d0d;
+}
+
+
+.back {
+    position: sticky;
+    top: 10px;
+    margin-left: 10px;
+    margin-top: 10px;
+    border: none;
+    background-color: #FFFAEA;
+    padding-top: 10px;
+    padding-right: 40px;
+    padding-left: 40px;
+    padding-bottom: 10px;
+    display: block;
+    width: 170px;
+    border-style: none;
+    text-decoration: none;
+    font-family: 'Josefin Sans', sans-serif;
+    border-radius: 2px;
+   
+}
+
+.text {
+    margin-left: 50px;
+    margin-right: 50px;
+    margin-top: 100px;
+    text-align: center;
+    font-size:30px;
+    color: white;
+    font-family: 'Josefin Sans', sans-serif;   
+}
+
+.text h1 {
+    font-size: 100px;
+    text-decoration: none;
+}

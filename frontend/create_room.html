@@ -14,7 +14,7 @@
                 
                 <script src="create_room_manager.js"></script>
 
-                
+                <input id="back" type="button" value="Back" onclick="backToMain()">
                 <div class="title">
                         <h1>Create Room</h1>
                 </div>
@@ -24,9 +24,11 @@
                         <br>
                         <label id="label2">Spyfall 2 Locations</label>
                         <br>
+                        <label>Matchtime Minutes: <input id="matchclock" type="number" min="1" max="15"></label>
                 </div>
                 
-                <button id="create_room_button">Create Room</button>
+                <br>
+                <button id="create_room_button">Create</button>
                 
                 <p id="demo" style="color: white;"></p>
         </body>

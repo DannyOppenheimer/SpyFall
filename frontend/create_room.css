@@ -23,6 +23,7 @@ body {
 
 .checkbox #label1 {
     transition: color .1s linear;
+    user-select: none;
 }
 
 .checkbox #label1:hover {
@@ -31,6 +32,7 @@ body {
 
 .checkbox #label2 {
     transition: color .1s linear;
+    user-select: none;
 }
 
 
@@ -38,6 +40,64 @@ body {
     color: gray;
 }
 
+.checkbox #matchclock {
+    font-size: 20px;
+    margin: 0 auto;
+    border: none;
+ 
+    background-color: #FFFAEA;
+    display: block;
+    width: 75px;
+    border-style: none;
+    text-decoration: none;
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  br {
+    content: "";
+    margin: 2em;
+    display: block;
+    font-size: 24%;
+  }
+
 #create_room_button {
-    font-size: 100px;
+    font-size: 35px;
+    margin: 0 auto;
+    border: none;
+    background-color: #FFFAEA;
+    padding-top: 15px;
+    padding-right: 70px;
+    padding-left: 70px;
+    padding-bottom: 15px;
+    display: block;
+    width: 400px;
+    border-style: none;
+    text-decoration: none;
+    font-family: 'Josefin Sans', sans-serif;
+    border-radius: 2px;
+}
+
+#back {
+    position: sticky;
+    top: 10px;
+    margin-left: 10px;
+    margin-top: 10px;
+    border: none;
+    background-color: #FFFAEA;
+    padding-top: 10px;
+    padding-right: 40px;
+    padding-left: 40px;
+    padding-bottom: 10px;
+    display: block;
+    width: 170px;
+    border-style: none;
+    text-decoration: none;
+    font-family: 'Josefin Sans', sans-serif;
+    border-radius: 2px;
+   
 }
