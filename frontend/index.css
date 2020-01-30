@@ -60,3 +60,20 @@ body {
     font-family: 'Josefin Sans', sans-serif;
     border-radius: 2px;
 }
+
+.button_rules {
+    margin-left: 10px;
+    margin-top: 10px;
+    border: none;
+    background-color: #FFFAEA;
+    padding-top: 10px;
+    padding-right: 40px;
+    padding-left: 40px;
+    padding-bottom: 10px;
+    display: block;
+    width: 170px;
+    border-style: none;
+    text-decoration: none;
+    font-family: 'Josefin Sans', sans-serif;
+    border-radius: 2px;
+}

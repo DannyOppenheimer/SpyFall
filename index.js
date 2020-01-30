@@ -2,8 +2,13 @@ var express = require('express');
 var socket = require('socket.io');
 var fs = require('fs');
 const rooms = JSON.parse(fs.readFileSync('Storage/rooms.json', 'utf8'));
+
 if(!rooms["rooms"]) {
     rooms["rooms"] = {};
+}
+
+if(!rooms["rooms"]["asjen"]) {
+    rooms["rooms"]["asjen"] = {};
 }
 
 fs.writeFile('Storage/rooms.json', JSON.stringify(rooms, null, 4), (err) => {

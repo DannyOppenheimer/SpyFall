@@ -1,0 +1,43 @@
+body {
+    background-color: #0d0d0d;
+}
+
+.title {
+    margin-top: 100px;
+    text-align: center;
+    font-size: 50px;
+    color: white;
+    font-family: 'Josefin Sans', sans-serif;   
+}
+
+.checkbox {
+    
+   color: white;
+   font-family: 'Josefin Sans', sans-serif;   
+   font-size: 50px;
+   margin: 0 auto;
+   width: 100%;
+   text-align: center;
+   
+}
+
+.checkbox #label1 {
+    transition: color .1s linear;
+}
+
+.checkbox #label1:hover {
+    color: gray;
+}
+
+.checkbox #label2 {
+    transition: color .1s linear;
+}
+
+
+.checkbox #label2:hover {
+    color: gray;
+}
+
+#create_room_button {
+    font-size: 100px;
+}
