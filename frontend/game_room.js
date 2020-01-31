@@ -1,5 +1,11 @@
 window.onload = () => {
-    var socket = io.connect('http://localhost:4000');
+    var socket = io.connect('http://108.28.114.48:80/');
 
-    <button id="gamerstyle">Bruh</button>
+    document.getElementById("text").addEventListener('click', () => {
+        socket.emit('setup', {
+
+        });
+    });
+
+
 }

@@ -29,14 +29,13 @@ io.on('connection', socket => {
     console.log('New connection from ' + socket.id);
 
     socket.on('create', data => {
-        io.sockets.emit('create', data);
+        io.sockets.emit('create', {
+            data: data,
+            room_key: keyCreator()
+        });
     });
 
 });
-
-//console.log(keyCreator());
-console.log(keyCreator());
-console.log(roomsArray);
 
 function keyCreator() {
     let alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p",

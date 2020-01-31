@@ -10,6 +10,7 @@ window.onload = () => {
 
     socket.on('create', data => {
         document.getElementById("demo").innerHTML = "JAY IS BUFF";
+        window.location = "game_room.html";
     });
 
     
