@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+            <title>SpyFall</title>
+            <link rel="icon" href="Spy.png" type="image/gif" sizes="16x16">
+            
+            <link href="https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap" rel="stylesheet">
+            <link rel="stylesheet" type="text/css" href="join_room.css">
+            <script src="/socket.io/socket.io.js"></script>
+        </head>
+
+        <body>
+                
+                <script src="join_room.js"></script>
+
+                <input id="back" type="button" value="Back" onclick="backToMain()">
+                <div class="title">
+                        <h1>Join Room</h1>
+                </div>
+
+                <input class="key_enter" type="text" placeholder="Type the 5 letter code.">
+                
+                <br>
+                <button id="join_room_button">Join</button>
+        </body>
+</html>
