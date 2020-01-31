@@ -1,5 +1,5 @@
 window.onload = () => {
-    var socket = io.connect('http://localhost:4000');
+    var socket = io.connect('http://108.28.114.48:80/');
     
     document.getElementById("create_room_button").addEventListener("click", function(){
         socket.emit('create', {
