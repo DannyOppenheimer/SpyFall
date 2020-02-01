@@ -1,53 +1,50 @@
-window.onload = () => {
-    // Connect to the backend server
-    var socket_link = io.connect('http://108.28.114.48:80/');
+// Connect to the backend server
+var socket_link = io.connect('http://108.28.114.48:80/');
+
+
+// When the user clicks the Create buttons, emit their preferences to the backend server
+document.getElementById("create_room_button").addEventListener("click", () => {
     
-   
-    // When the user clicks the Create buttons, emit their preferences to the backend server
-    document.getElementById("create_room_button").addEventListener("click", () => {
-        
-        
-        let match_minutes = getMatchMinutes();
-        
-        socket_link.emit('create', {
-            source_socket: socket_link.id,
-            spyfall1on: playSpyfall1(),
-            spyfall2on: playSpyfall2(),
-            time: match_minutes
-        });   
-    });
-
-    // When the server sends back its response, go to the next page
-    socket_link.on('create', back_data => {
-
-        window.location = "game_room.html?" + back_data.key;
-    });
-
-    // Add a listener to allow crossing off of both the SpyFall 1 and 2 Locations
-    document.getElementById("spyfall1label").addEventListener("click", function(){
-        if(document.getElementById("spyfall1label").innerHTML == "Spyfall 1 Locations") {
-            document.getElementById("spyfall1label").innerHTML =  "<del>Spyfall 1 Locations</del>";
-        } else {
-            document.getElementById("spyfall1label").innerHTML =  "Spyfall 1 Locations";
-        }
-    });
     
-    document.getElementById("spyfall2label").addEventListener("click", function(){
-
-        if(document.getElementById("spyfall2label").innerHTML == "Spyfall 2 Locations") {
-            document.getElementById("spyfall2label").innerHTML =  "<del>Spyfall 2 Locations</del>";
-        } else {
-            document.getElementById("spyfall2label").innerHTML =  "Spyfall 2 Locations";
-        }
-        
-    });
-
-    document.getElementById("back").addEventListener("click", function(){
-
-        window.location = "index.html"
-    });
+    let match_minutes = getMatchMinutes();
     
-}
+    socket_link.emit('create', {
+        source_socket: socket_link.id,
+        spyfall1on: playSpyfall1(),
+        spyfall2on: playSpyfall2(),
+        time: match_minutes
+    });   
+});
+
+// When the server sends back its response, go to the next page
+socket_link.on('create', back_data => {
+    window.location = "game_room.html?" + back_data.key;
+});
+
+// Add a listener to allow crossing off of both the SpyFall 1 and 2 Locations
+document.getElementById("spyfall1label").addEventListener("click", function(){
+    if(document.getElementById("spyfall1label").innerHTML == "Spyfall 1 Locations") {
+        document.getElementById("spyfall1label").innerHTML =  "<del>Spyfall 1 Locations</del>";
+    } else {
+        document.getElementById("spyfall1label").innerHTML =  "Spyfall 1 Locations";
+    }
+});
+
+document.getElementById("spyfall2label").addEventListener("click", function(){
+
+    if(document.getElementById("spyfall2label").innerHTML == "Spyfall 2 Locations") {
+        document.getElementById("spyfall2label").innerHTML =  "<del>Spyfall 2 Locations</del>";
+    } else {
+        document.getElementById("spyfall2label").innerHTML =  "Spyfall 2 Locations";
+    }
+    
+});
+
+document.getElementById("back").addEventListener("click", function(){
+
+    window.location = "index.html"
+});
+
 
 
 function playSpyfall1() {

@@ -22,12 +22,18 @@ io.on('connection', socket => {
     socket.on('create', data => {
 
         let key_to_send = keyCreator();
+        console.log("A: " + rooms_array[[key_to_send]]);
 
+        rooms_array[[key_to_send]].push([data.source_socket, "owner", "nolocation", "norole"]);
+
+        console.log("dOne!")
+        
         console.log(data.source_socket);
         io.to(data.source_socket).emit('create', {
             back_data: data,
             key: key_to_send
         });
+        
     });
 
 });
