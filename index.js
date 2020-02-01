@@ -1,6 +1,7 @@
 var express = require('express');
 var socket = require('socket.io');
 var rooms_array = ["https://i.kym-cdn.com/photos/images/original/001/351/595/e80.jpg"];
+var players_array = [["https://www.youtube.com/watch?v=qFdjqeeD08E"]];
 
 var app = express();
 
@@ -22,13 +23,9 @@ io.on('connection', socket => {
     socket.on('create', data => {
 
         let key_to_send = keyCreator();
-        console.log("A: " + rooms_array[[key_to_send]]);
 
-        rooms_array[[key_to_send]].push([data.source_socket, "owner", "nolocation", "norole"]);
-
-        console.log("dOne!")
+        players_array.push([rooms_array.indexOf(key_to_send), data.source_socket, data.spyfall1on, data.spyfall2on, data.time, "owner"]);
         
-        console.log(data.source_socket);
         io.to(data.source_socket).emit('create', {
             back_data: data,
             key: key_to_send
@@ -46,11 +43,12 @@ function keyCreator() {
     let temp_key = alphabet[Math.floor(Math.random() * 25)] + alphabet[Math.floor(Math.random() * 25)] + alphabet[Math.floor(Math.random() * 25)] + alphabet[Math.floor(Math.random() * 25)] + alphabet[Math.floor(Math.random() * 25)];
 
     for(i=0; i<rooms_array.length; i++) {
+
         if(temp_key == rooms_array[i]) {
             keyCreator(); 
         }
         else {
-            rooms_array.push([temp_key]);
+            rooms_array.push(temp_key);
             return temp_key; 
         }
     }

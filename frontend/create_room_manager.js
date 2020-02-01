@@ -21,7 +21,7 @@ socket_link.on('create', back_data => {
     window.location = "game_room.html?" + back_data.key;
 });
 
-// Add a listener to allow crossing off of both the SpyFall 1 and 2 Locations
+// Add a listener to allow crossing off of both thSTOPe SpyFall 1 and 2 Locations
 document.getElementById("spyfall1label").addEventListener("click", function(){
     if(document.getElementById("spyfall1label").innerHTML == "Spyfall 1 Locations") {
         document.getElementById("spyfall1label").innerHTML =  "<del>Spyfall 1 Locations</del>";
