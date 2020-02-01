@@ -21,22 +21,22 @@ body {
    
 }
 
-.checkbox #label1 {
+#spyfall1label {
     transition: color .1s linear;
     user-select: none;
 }
 
-.checkbox #label1:hover {
+#spyfall1label:hover {
     color: gray;
 }
 
-.checkbox #label2 {
+#spyfall2label {
     transition: color .1s linear;
     user-select: none;
 }
 
 
-.checkbox #label2:hover {
+#spyfall2label:hover {
     color: gray;
 }
 

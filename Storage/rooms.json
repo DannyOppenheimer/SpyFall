@@ -1,5 +1,9 @@
 {
     "rooms": {
-        "asjen": {}
+        "asjen": {
+            "user1": {
+                
+            }
+        }
     }
 }

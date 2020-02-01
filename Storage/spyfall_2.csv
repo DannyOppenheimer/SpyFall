@@ -1,5 +1,6 @@
+location,role1,role2,role3,role4,role5,role6,role7
 amusement park
-art museum
+art museum,art critic,art collector,visitor,security guard,ticket seller,teacher,student,photographer,painter
 candy factory,visitor,taster,supply worker,oompa loompa,inspector,truffle maker,madcap redhed,pastry chef
 cat show
 cemetery
@@ -9,9 +10,9 @@ gaming convention,exhibitor,cosplayer,gamer,blogger,child,collector,shy person,s
 gas station
 harbor docks
 ice hockey stadium
-jail
+jail,visitor,janitor,criminal,guard,wrongly accused man,correctional officer,jailkeeper,lawyer,cctv operator
 jazz club
-library
+library,volunteer,old man,book fanatic,author,loudmouth,know-it-all,student,librarian,journalist
 night club
 race track
 retirement home
