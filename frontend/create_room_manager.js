@@ -1,35 +1,43 @@
 window.onload = () => {
-    var socket = io.connect('http://108.28.114.48:80/');
+    // Connect to the backend server
+    var socket_link = io.connect('http://108.28.114.48:80/');
     
-    document.getElementById("create_room_button").addEventListener("click", function(){
-        socket.emit('create', {
-            message: "hey"
-        });
+   
+    // When the user clicks the Create buttons, emit their preferences to the backend server
+    document.getElementById("create_room_button").addEventListener("click", () => {
         
+        
+        let match_minutes = getMatchMinutes();
+        
+        socket_link.emit('create', {
+            source_socket: socket_link.id,
+            spyfall1on: playSpyfall1(),
+            spyfall2on: playSpyfall2(),
+            time: match_minutes
+        });   
     });
 
-    socket.on('create', data => {
-        document.getElementById("demo").innerHTML = "JAY IS BUFF";
-        window.location = "game_room.html";
+    // When the server sends back its response, go to the next page
+    socket_link.on('create', back_data => {
+
+        window.location = "game_room.html?" + back_data.key;
     });
 
-    
-    document.getElementById("label1").addEventListener("click", function(){
-        if(document.getElementById("label1").innerHTML == "Spyfall 1 Locations") {
-            document.getElementById("label1").innerHTML =  "<del>Spyfall 1 Locations</del>";
+    // Add a listener to allow crossing off of both the SpyFall 1 and 2 Locations
+    document.getElementById("spyfall1label").addEventListener("click", function(){
+        if(document.getElementById("spyfall1label").innerHTML == "Spyfall 1 Locations") {
+            document.getElementById("spyfall1label").innerHTML =  "<del>Spyfall 1 Locations</del>";
         } else {
-            document.getElementById("label1").innerHTML =  "Spyfall 1 Locations";
+            document.getElementById("spyfall1label").innerHTML =  "Spyfall 1 Locations";
         }
-        
-        
     });
     
-    document.getElementById("label2").addEventListener("click", function(){
+    document.getElementById("spyfall2label").addEventListener("click", function(){
 
-        if(document.getElementById("label2").innerHTML == "Spyfall 2 Locations") {
-            document.getElementById("label2").innerHTML =  "<del>Spyfall 2 Locations</del>";
+        if(document.getElementById("spyfall2label").innerHTML == "Spyfall 2 Locations") {
+            document.getElementById("spyfall2label").innerHTML =  "<del>Spyfall 2 Locations</del>";
         } else {
-            document.getElementById("label2").innerHTML =  "Spyfall 2 Locations";
+            document.getElementById("spyfall2label").innerHTML =  "Spyfall 2 Locations";
         }
         
     });
@@ -42,3 +50,22 @@ window.onload = () => {
 }
 
 
+function playSpyfall1() {
+    if(document.getElementById("spyfall1label").innerHTML == "Spyfall 1 Locations") {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function playSpyfall2() {
+    if(document.getElementById("spyfall2label").innerHTML == "Spyfall 2 Locations") {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function getMatchMinutes() {
+    return(document.getElementById("matchclock").value);
+}

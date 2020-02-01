@@ -5,6 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "bufferutil": "^4.0.1",
+    "csv-parse": "^4.8.5",
     "express": "^4.17.1",
     "fs": "0.0.1-security",
     "socket.io": "^2.3.0",
