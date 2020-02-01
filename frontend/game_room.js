@@ -25,3 +25,13 @@ socket_link.on('load_players', back_data => {
     }
     
 });
+
+function game_start()
+{
+    //put shit here to start the game
+}
+
+function game_stop()
+{
+    //put shit here to stop the game 
+}

@@ -1,27 +1,34 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8" lang="en">
-        
-        <title>SpyFall</title>
 
-        <link rel="icon" href="Spy.png" type="image/gif" sizes="16x16" alt="spy_icon">    
-        <link href="https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap" rel="stylesheet">
-        <link rel="stylesheet" type="text/css" href="game_room.css">
-        
-        <script src="/socket.io/socket.io.js"></script>
-    </head>
+<head>
+    <meta charset="utf-8" lang="en">
 
-    <body>
-        <script src="game_room.js" defer></script>
+    <title>SpyFall</title>
 
-        <div id="title"></div>
-        <br>
-        <div id="subtitle">
-            <h1>Current Players: </h1>
-        </div>
-        <br>
-        <table id="players" align="center"></table>
+    <link rel="icon" href="Spy.png" type="image/gif" sizes="16x16" alt="spy_icon">
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="game_room.css">
 
-    </body>
+    <script src="/socket.io/socket.io.js"></script>
+</head>
+
+<body>
+    <script src="game_room.js" defer></script>
+    <div id="title"></div>
+    <br>
+    <div id="subtitle">
+        <h1>Current Players: </h1>
+    </div>
+    <br>
+    <table id="players" align="center"></table>
+    <div id="subtitle">
+        <h1>Locations: </h1>
+    </div>
+    <div class="container">
+        <button class="button" onclick="game_start()">Start Game</button>
+        <button class="button" onclick="game_stop()">End Game</button>
+    </div>
+</body>
+
 </html>

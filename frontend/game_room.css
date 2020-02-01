@@ -32,3 +32,36 @@ body {
     padding-left: 3vw;
     padding-right: 3vw;
 }
+
+#locations {
+
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+  }
+
+.button {
+    border:0.1em solid #FFFFFF;
+    margin:0 0.3em 0.3em 0;
+    border-radius:0.12em;
+    box-sizing: border-box;
+    cursor: pointer;
+    background-color: white;
+    border-color: white;
+    color: white;
+    font-size: 1.25em;
+    background-color: #0d0d0d;
+    padding-top: 1vh;
+    padding-bottom: 1vh;    
+    width: 5vw;
+    font-family: 'Josefin Sans', sans-serif;
+    transition: all 0.2s;
+}
+
+.button:hover {
+    background-color:#FFFFFF;
+    color:#000000;
+ 
+  }
