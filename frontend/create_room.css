@@ -3,18 +3,17 @@ body {
 }
 
 .title {
-    margin-top: 100px;
+    margin-top: 5vh;
     text-align: center;
-    font-size: 50px;
+    font-size: 3em;
     color: white;
     font-family: 'Josefin Sans', sans-serif;   
 }
 
 .checkbox {
-    
    color: white;
    font-family: 'Josefin Sans', sans-serif;   
-   font-size: 50px;
+   font-size: 3em;
    margin: 0 auto;
    width: 100%;
    text-align: center;
@@ -35,21 +34,21 @@ body {
     user-select: none;
 }
 
-
 .checkbox #label2:hover {
     color: gray;
 }
 
+
 .checkbox #matchclock {
-    font-size: 20px;
     margin: 0 auto;
     border: none;
- 
     background-color: #FFFAEA;
+    padding-top: 1.25vh;
+    padding-left: 0.75vw;
+    padding-bottom: 1.25vh;
     display: block;
-    width: 75px;
-    border-style: none;
-    text-decoration: none;
+    width: 1.5vw;
+    border-radius: .125em;
     font-family: 'Josefin Sans', sans-serif;
 }
 
@@ -66,38 +65,37 @@ br {
 }
 
 #create_room_button {
-    font-size: 20px;
+    font-size: 1.25em;
     margin: 0 auto;
     border: none;
     background-color: #FFFAEA;
-    padding-top: 10px;
-    padding-right: 60px;
-    padding-left: 60px;
-    padding-bottom: 10px;
+    padding-top: 1vh;
+    padding-right: 3vw;
+    padding-left: 3vw;
+    padding-bottom: 1vh;
     display: block;
-    width: 300px;
+    width: 15.5vw;
     border-style: none;
     text-decoration: none;
     font-family: 'Josefin Sans', sans-serif;
-    border-radius: 2px;
+    border-radius: 0.125em;
 }
 
 #back {
     position: sticky;
-    top: 10px;
-    margin-left: 10px;
-    margin-top: 10px;
+    top: 0.25vh;
+    margin-left: 0.15vw;
+    margin-top: 0.5vh;
     border: none;
     background-color: #FFFAEA;
-    padding-top: 10px;
-    padding-right: 40px;
-    padding-left: 40px;
-    padding-bottom: 10px;
+    padding-top: 1.25vh;
+    padding-right: 1vw;
+    padding-left: 1vw;
+    padding-bottom: 1.25vh;
     display: block;
-    width: 170px;
+    width: 7vw;
     border-style: none;
     text-decoration: none;
     font-family: 'Josefin Sans', sans-serif;
-    border-radius: 2px;
-   
+    border-radius: .25em; 
 }

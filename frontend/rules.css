@@ -5,35 +5,34 @@ body {
 
 .back {
     position: sticky;
-    top: 10px;
-    margin-left: 10px;
-    margin-top: 10px;
+    top: 0.25vh;
+    margin-left: 0.15vw;
+    margin-top: 0.5vh;
     border: none;
     background-color: #FFFAEA;
-    padding-top: 10px;
-    padding-right: 40px;
-    padding-left: 40px;
-    padding-bottom: 10px;
+    padding-top: 1.25vh;
+    padding-right: 1vw;
+    padding-left: 1vw;
+    padding-bottom: 1.25vh;
     display: block;
-    width: 170px;
+    width: 7vw;
     border-style: none;
     text-decoration: none;
     font-family: 'Josefin Sans', sans-serif;
-    border-radius: 2px;
-   
+    border-radius: .25em; 
 }
 
 .text {
-    margin-left: 50px;
-    margin-right: 50px;
-    margin-top: 100px;
+    margin-left: 2.5vw;
+    margin-right: 2.5vw;
+    margin-top: 9vh;
     text-align: center;
-    font-size:30px;
+    font-size:1.4em;
     color: white;
     font-family: 'Josefin Sans', sans-serif;   
 }
 
 .text h1 {
-    font-size: 100px;
+    font-size: 5em;
     text-decoration: none;
 }
