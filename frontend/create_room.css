@@ -34,6 +34,7 @@ body {
     user-select: none;
 }
 
+
 #spyfall2label:hover {
     color: gray;
 }
@@ -44,12 +45,12 @@ body {
     border: none;
     background-color: #FFFAEA;
     padding-top: 1.25vh;
-    padding-left: 0.75vw;
     padding-bottom: 1.25vh;
     display: block;
-    width: 1.5vw;
+    width: 6vw;
     border-radius: .125em;
     font-family: 'Josefin Sans', sans-serif;
+    text-align: center;
 }
 
 input::-webkit-inner-spin-button {

@@ -3,7 +3,7 @@ body {
 }
 
 
-.back {
+#back {
     position: sticky;
     top: 0.25vh;
     margin-left: 0.15vw;
@@ -22,7 +22,7 @@ body {
     border-radius: .25em; 
 }
 
-.text {
+#text {
     margin-left: 2.5vw;
     margin-right: 2.5vw;
     margin-top: 9vh;
@@ -32,7 +32,7 @@ body {
     font-family: 'Josefin Sans', sans-serif;   
 }
 
-.text h1 {
+#text h1 {
     font-size: 5em;
     text-decoration: none;
 }

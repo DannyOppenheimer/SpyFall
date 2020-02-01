@@ -7,7 +7,7 @@ document.getElementById("create_room_button").addEventListener("click", () => {
     
     
     let match_minutes = getMatchMinutes();
-    
+
     socket_link.emit('create', {
         source_socket: socket_link.id,
         spyfall1on: playSpyfall1(),
@@ -22,7 +22,7 @@ socket_link.on('create', back_data => {
 });
 
 // Add a listener to allow crossing off of both thSTOPe SpyFall 1 and 2 Locations
-document.getElementById("spyfall1label").addEventListener("click", function(){
+document.getElementById("spyfall1label").addEventListener("click", () => {
     if(document.getElementById("spyfall1label").innerHTML == "Spyfall 1 Locations") {
         document.getElementById("spyfall1label").innerHTML =  "<del>Spyfall 1 Locations</del>";
     } else {
@@ -30,7 +30,7 @@ document.getElementById("spyfall1label").addEventListener("click", function(){
     }
 });
 
-document.getElementById("spyfall2label").addEventListener("click", function(){
+document.getElementById("spyfall2label").addEventListener("click", () => {
 
     if(document.getElementById("spyfall2label").innerHTML == "Spyfall 2 Locations") {
         document.getElementById("spyfall2label").innerHTML =  "<del>Spyfall 2 Locations</del>";
@@ -40,7 +40,7 @@ document.getElementById("spyfall2label").addEventListener("click", function(){
     
 });
 
-document.getElementById("back").addEventListener("click", function(){
+document.getElementById("back").addEventListener("click", () => {
 
     window.location = "index.html"
 });

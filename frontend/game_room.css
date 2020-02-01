@@ -10,3 +10,25 @@ body {
     color: white;
     font-family: 'Josefin Sans', sans-serif;   
 }
+
+#subtitle {
+    margin-top: 10px;
+    text-align: center;
+    font-size: 1em;
+    color: white;
+    font-family: 'Josefin Sans', sans-serif;   
+}
+
+#players {
+    text-align: center;
+    margin: 0 auto;
+    border-collapse: collapse;
+
+}
+
+#players td {
+    padding-top: 2vh;
+    padding-bottom: 2vh;
+    padding-left: 3vw;
+    padding-right: 3vw;
+}

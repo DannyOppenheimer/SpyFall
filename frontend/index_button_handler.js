@@ -5,7 +5,7 @@ function createRoom() {
         name_field.color = 0xff0000;
         name_field.placeholder = "You must type in your name!";
     } else {
-        window.location = "create_room.html"
+        window.location = "create_room.html?" + document.querySelector(".name_field").value;
     }
     
 }
@@ -17,7 +17,7 @@ function joinRoom() {
         name_field.color = 0xff0000;
         name_field.placeholder = "You must type in your name!";
     } else {
-        window.location = "join_room.html"
+        window.location = "join_room.html?" + document.querySelector(".name_field").value;
     }
 }
 

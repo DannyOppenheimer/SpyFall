@@ -1,7 +1,6 @@
 var express = require('express');
 var socket = require('socket.io');
-var rooms_array = ["https://i.kym-cdn.com/photos/images/original/001/351/595/e80.jpg"];
-var players_array = [["https://www.youtube.com/watch?v=qFdjqeeD08E"]];
+var rooms = {};
 
 var app = express();
 
@@ -14,26 +13,47 @@ var server = app.listen(80, () => {
 // It will default to using the 'Index.html' as a homepage
 app.use(express.static('frontend'));
 
+
+
 // Adding socket.io to our web server
 var io = socket(server);
-io.on('connection', socket => {
-    console.log('New connection from ' + socket.id);
+io.on('connection', socket => { console.log('New connection from ' + socket.id);
+    
 
     // When a user clicks the 'create' button on the website, this will run
     socket.on('create', data => {
 
         let key_to_send = keyCreator();
 
-        players_array.push([rooms_array.indexOf(key_to_send), data.source_socket, data.spyfall1on, data.spyfall2on, data.time, "owner"]);
-        
+        // rooms_array.indexOf(key_to_send)
+        rooms[key_to_send]["prefs"] = {};
+        rooms[key_to_send]["players"] = {};
+        rooms[key_to_send]["prefs"].spy1on = data.spyfall1on;
+        rooms[key_to_send]["prefs"].spy2on = data.spyfall2on;
+        rooms[key_to_send]["prefs"].matchtime = data.time;
+
         io.to(data.source_socket).emit('create', {
             back_data: data,
             key: key_to_send
         });
-        
     });
 
+
+    socket.on('load_players', data => {
+        rooms[data.key]["players"][data.source_socket] = {};
+        console.log(JSON.stringify(rooms, 4, 4));
+
+        for(i=0; i < Object.keys(rooms[data.key]["players"]).length; i++) {
+            console.log((Object.keys(rooms[data.key]["players"]))[i]);
+            io.to((Object.keys(rooms[data.key]["players"]))[i]).emit('load_players', {
+                player_sockets: Object.keys(rooms[data.key]["players"])
+            });
+        }
+        
+    });
 });
+
+
 
 // Function to create a unique five letter key. Will automatically push it to the rooms_array array
 function keyCreator() {
@@ -41,15 +61,11 @@ function keyCreator() {
     "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
 
     let temp_key = alphabet[Math.floor(Math.random() * 25)] + alphabet[Math.floor(Math.random() * 25)] + alphabet[Math.floor(Math.random() * 25)] + alphabet[Math.floor(Math.random() * 25)] + alphabet[Math.floor(Math.random() * 25)];
-
-    for(i=0; i<rooms_array.length; i++) {
-
-        if(temp_key == rooms_array[i]) {
-            keyCreator(); 
-        }
-        else {
-            rooms_array.push(temp_key);
-            return temp_key; 
-        }
+     
+    if(rooms[temp_key]) {
+        keyCreator();
+    } else {
+        rooms[temp_key] = {};
+        return temp_key;
     }
 }
