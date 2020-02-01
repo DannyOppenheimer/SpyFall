@@ -34,12 +34,7 @@ body {
     user-select: none;
 }
 
-<<<<<<< HEAD
-.checkbox #label2:hover {
-=======
-
 #spyfall2label:hover {
->>>>>>> 0748cfe818fe1df512f80687878192ad92bdb325
     color: gray;
 }
 
