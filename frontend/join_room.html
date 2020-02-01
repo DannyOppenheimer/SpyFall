@@ -1,28 +1,30 @@
 <!DOCTYPE html>
 <html>
-    <head>
-            <meta charset="utf-8" lang="en">
 
-            <title>SpyFall</title>
-            <link rel="icon" href="Spy.png" type="image/gif" sizes="16x16" alt="spy_icon">
-            
-            <link href="https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap" rel="stylesheet">
-            <link rel="stylesheet" type="text/css" href="join_room.css">
-            <script src="/socket.io/socket.io.js"></script>
-        </head>
+<head>
+        <meta charset="utf-8" lang="en">
 
-        <body>
-                
-                <script src="join_room.js" defer></script>
+        <title>SpyFall</title>
+        <link rel="icon" href="Spy.png" type="image/gif" sizes="16x16" alt="spy_icon">
 
-                <input id="back" type="button" value="Back" onclick="backToMain()">
-                <div class="title">
-                        <h1>Join Room</h1>
-                </div>
+        <link href="https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="join_room.css">
+        <script src="/socket.io/socket.io.js"></script>
+</head>
 
-                <input id="key_enter" type="text" placeholder="Type the 5 letter code." maxlength="5" pattern="[a-z]">
-                
-                <br>
-                <button id="join_room_button">Join</button>
-        </body>
+<body>
+
+        <script src="join_room.js" defer></script>
+
+        <input id="back" type="button" value="Back" onclick="backToMain()">
+        <div class="title">
+                <h1>Join Room</h1>
+        </div>
+
+        <input id="key_enter" type="text" placeholder="Type the 5 letter code." maxlength="5" pattern="[a-z]">
+
+        <br>
+        <button id="join_room_button">Join</button>
+</body>
+
 </html>
