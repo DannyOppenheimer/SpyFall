@@ -38,13 +38,25 @@ io.on('connection', socket => { console.log('New connection from ' + socket.id);
         });
     });
 
+    socket.on('join', data => {
+
+        if(!rooms[data.join_key]) {
+            io.to(data.source_socket).emit('no_key_error', data.join_key)
+            return;
+        }
+
+        io.to(data.source_socket).emit('join', {
+            back_data: data,
+            key: data.join_key
+        });
+
+    });
 
     socket.on('load_players', data => {
         rooms[data.key]["players"][data.source_socket] = {};
-        console.log(JSON.stringify(rooms, 4, 4));
+        console.log(JSON.stringify(rooms, null, 4));
 
         for(i=0; i < Object.keys(rooms[data.key]["players"]).length; i++) {
-            console.log((Object.keys(rooms[data.key]["players"]))[i]);
             io.to((Object.keys(rooms[data.key]["players"]))[i]).emit('load_players', {
                 player_sockets: Object.keys(rooms[data.key]["players"])
             });

@@ -29,7 +29,7 @@ body {
     border-radius: .25em;
 }
 
-.key_enter {
+#key_enter {
     margin: 0 auto;
     border: none;
     background-color: #FFFAEA;
