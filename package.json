@@ -8,6 +8,7 @@
     "csv-parse": "^4.8.5",
     "express": "^4.17.1",
     "fs": "0.0.1-security",
+    "node": "^13.7.0",
     "socket.io": "^2.3.0",
     "utf-8-validate": "^5.0.2"
   },
@@ -24,5 +25,8 @@
   "bugs": {
     "url": "https://github.com/DannyOppenheimer/SpyFall/issues"
   },
-  "homepage": "https://github.com/DannyOppenheimer/SpyFall#readme"
+  "homepage": "https://github.com/DannyOppenheimer/SpyFall#readme",
+  "keywords": [
+    "spyfall"
+  ]
 }
