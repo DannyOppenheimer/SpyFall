@@ -1,11 +1,21 @@
 
-var express = require('express');
-var socket = require('socket.io');
+const express = require('express');
+const socket = require('socket.io');
+const csv = require('neat-csv');
+const fs = require('fs');
 var rooms = {};
 //should name all connections 
 //const nsp = io.of('SpyFall');
 
 var app = express();
+
+// fs.readFile('Storage/spyfall_1.csv', async (err, data) => {
+//     if (err) {
+//         console.error(err);
+//         return;
+//     }
+//     spyfall1 = csv(data);
+// });
 
 // This is the creation of our server
 // We are telling our app to listen to port 80!
@@ -60,7 +70,13 @@ io.on('connection', socket => { console.log('New connection from ' + socket.id);
 
     // when a player enters the game_room, this will run
     socket.on('load_players', data => {
-        console.log(data.key);
+        
+        // If the room they are trying to load doesnt exit
+        if(!rooms[data.key]) {
+            io.to(data.source_socket).emit('no_key_error', data.key);
+            return;
+        }
+
         rooms[data.key]["players"][data.source_socket] = {};
         rooms[data.key]["players"][data.source_socket].name = data.name;
         console.log(JSON.stringify(rooms, null, 4));
@@ -73,6 +89,8 @@ io.on('connection', socket => { console.log('New connection from ' + socket.id);
         }
         
     });
+
+
 
     socket.on('disconnect', () => {
         for(let key in rooms) {

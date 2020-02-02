@@ -20,7 +20,7 @@ body {
     margin: 0 auto;
 
     padding-top: 1.25vh;
-    padding-left: 0.5vw;
+    padding-left: 0.55vw;
     padding-bottom: 1.25vh;
 
     border: none;
@@ -28,7 +28,7 @@ body {
     border-radius: .125em;
 
     width: 10.5vw;
-    min-width: 200px;
+    min-width: 215px;
     
 
     font-family: 'Josefin Sans', sans-serif;

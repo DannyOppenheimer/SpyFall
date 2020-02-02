@@ -27,15 +27,22 @@ socket_link.on('load_players', back_data => {
         let current_row = table.insertRow(i);
 
         let player_cell = current_row.insertCell(0);
-        
+
         player_cell.innerHTML = JSON.stringify((back_data.player_names)[i]).replace("\{\"name\":\"", "").replace("\"\}", "");
 
     }
 
 });
 
+socket_link.on('no_key_error', data => {
+
+    document.getElementById("title").innerHTML = "The key " + room_key + " does not exist!";
+});
+
 document.getElementById("game_start").addEventListener("click", () => {
-    //start the game
+    socket_link.emit('start_game', {
+        key: room_key
+    });
 });
 
 document.getElementById("game_stop").addEventListener("click", () => {
@@ -47,4 +54,5 @@ document.getElementById("game_stop").addEventListener("click", () => {
     // });
     window.location = "index.html";
 });
+
 
