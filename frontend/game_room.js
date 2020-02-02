@@ -26,10 +26,16 @@ socket_link.on('load_players', back_data => {
 
 });
 
-function game_start() {
-    //put shit here to start the game
-}
+document.getElementById("game_start").addEventListener("click", () => {
+    //start the game
+});
 
-function game_stop() {
-    //put shit here to stop the game 
-}
+document.getElementById("game_stop").addEventListener("click", () => {
+    function getConnectedSockets() {
+        return Object.values(io.of("/room_" + back_data.key).connected);
+    }
+    getConnectedSockets().forEach(function(s) {
+        s.disconnect(true);
+    });
+    window.location = "index.html";
+});

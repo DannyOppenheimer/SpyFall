@@ -3,16 +3,17 @@ var socket_link = io.connect('http://108.28.114.48:80/');
 
 
 // When the user clicks the Create buttons, emit their preferences to the backend server
-document.getElementById("create_room_button").addEventListener("click", () => {
-
-
+document.getElementById("create_room_button").addEventListener("click", back_data, () => {
     let match_minutes = getMatchMinutes();
-
+    const nsp = io.of("/room_" + back_data.key); //names room created
+    
     socket_link.emit('create', {
         source_socket: socket_link.id,
         spyfall1on: playSpyfall1(),
         spyfall2on: playSpyfall2(),
-        time: match_minutes
+        time: match_minutes,
+
+
     });
 });
 

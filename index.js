@@ -1,6 +1,9 @@
+
 var express = require('express');
 var socket = require('socket.io');
 var rooms = {};
+//should name all connections 
+//const nsp = io.of('SpyFall');
 
 var app = express();
 
