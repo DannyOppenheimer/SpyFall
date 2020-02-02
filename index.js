@@ -28,6 +28,8 @@ io.on('connection', socket => { console.log('New connection from ' + socket.id);
 
         let key_to_send = keyCreator();
 
+        let nsp = io.of("/room_" + key_to_send);
+
         // rooms_array.indexOf(key_to_send)
         rooms[key_to_send]["prefs"] = {};
         rooms[key_to_send]["players"] = {};

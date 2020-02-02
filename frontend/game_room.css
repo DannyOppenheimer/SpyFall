@@ -33,10 +33,6 @@ body {
     padding-right: 3vw;
 }
 
-#locations {
-
-}
-
 .container {
     display: flex;
     justify-content: center;
@@ -63,5 +59,4 @@ body {
 .button:hover {
     background-color:#FFFFFF;
     color:#000000;
- 
-  }
+}

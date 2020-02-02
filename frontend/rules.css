@@ -36,3 +36,47 @@ body {
     font-size: 5em;
     text-decoration: none;
 }
+
+
+
+@media only screen and (max-device-width: 720px) {
+    body {
+        background-color: #0d0d0d;
+    }
+    
+    
+    #back {
+        margin: 0 auto;
+        top: 0.25vh;
+        position: relative;
+        margin-top: 2vh;
+        border: none;
+        background-color: #FFFAEA;
+        padding-top: 2vh;
+        padding-right: 2vw;
+        padding-left: 2vw;
+        padding-bottom: 2vh;
+        display: block;
+        width: 90vw;
+        border-style: none;
+        text-decoration: none;
+        font-family: 'Josefin Sans', sans-serif;
+        border-radius: .25em;
+        font-size: 2em; 
+    }
+    
+    #text {
+        margin-left: 2.5vw;
+        margin-right: 2.5vw;
+        margin-top: 9vh;
+        text-align: center;
+        font-size:1.4em;
+        color: white;
+        font-family: 'Josefin Sans', sans-serif;   
+    }
+    
+    #text h1 {
+        font-size: 5em;
+        text-decoration: none;
+    }
+}

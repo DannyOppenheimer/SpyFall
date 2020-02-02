@@ -3,9 +3,8 @@ var socket_link = io.connect('http://108.28.114.48:80/');
 
 
 // When the user clicks the Create buttons, emit their preferences to the backend server
-document.getElementById("create_room_button").addEventListener("click", back_data, () => {
+document.getElementById("create_room_button").addEventListener("click", ()=> {
     let match_minutes = getMatchMinutes();
-    const nsp = io.of("/room_" + back_data.key); //names room created
     
     socket_link.emit('create', {
         source_socket: socket_link.id,

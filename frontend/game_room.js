@@ -1,8 +1,11 @@
 var socket_link = io.connect('http://108.28.114.48:80/');
 
-document.getElementById("title").innerHTML = "Room Key: " + location.search.substring(1);
+var room_key = location.search.substring(1);
+
+document.getElementById("title").innerHTML = "Room Key: " + room_key;
 
 socket_link.on('connect', () => {
+
     socket_link.emit('load_players', {
         key: location.search.substring(1),
         source_socket: socket_link.id
@@ -31,11 +34,11 @@ document.getElementById("game_start").addEventListener("click", () => {
 });
 
 document.getElementById("game_stop").addEventListener("click", () => {
-    function getConnectedSockets() {
-        return Object.values(io.of("/room_" + back_data.key).connected);
-    }
-    getConnectedSockets().forEach(function(s) {
-        s.disconnect(true);
-    });
+    // function getConnectedSockets() {
+    //     return Object.values(io.of("/room_" + room_key).connected);
+    // }
+    // getConnectedSockets().forEach(function(s) {
+    //     s.disconnect(true);
+    // });
     window.location = "index.html";
 });

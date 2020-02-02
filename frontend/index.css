@@ -1,74 +1,219 @@
-.messages {
-    color: white;
-}
-
 body {
     background-color: #0d0d0d;
+
 }
 
 .title {
+    color: white;
+
     margin-top: 22vh;
+
     text-align: center;
     font-size: 3.125em;
-    color: white;
     font-family: 'Josefin Sans', sans-serif;   
+   
 }
 
-.name_field {
-    margin: 0 auto;
-    border: none;
+#name_field {
     background-color: #FFFAEA;
+
+    margin: 0 auto;
+
     padding-top: 1.25vh;
-    padding-right: 4vw;
     padding-left: 0.5vw;
     padding-bottom: 1.25vh;
+
+    border: none;
     display: block;
-    width: 10.5vw;
     border-radius: .125em;
-    font-family: 'Josefin Sans', sans-serif;
-}
 
-.button1 {
-    margin: 0 auto;
-    border: none;
-    background-color: #FFFAEA;
-    padding-top: 1.5vh;
-    padding-bottom: 1.5vh;
-    display: block;
     width: 10.5vw;
-    border-style: none;
-    text-decoration: none;
+    min-width: 200px;
+    
+
     font-family: 'Josefin Sans', sans-serif;
-    border-radius: 0.125em;
-    text-align: center;
+    font-size: 1em;
 }
 
-.button2 {
-    margin: 0 auto;
-    border: none;
+#create_room_button {
     background-color: #FFFAEA;
+
+    margin: 0 auto;
+    display: block;
+
     padding-top: 1.5vh;
     padding-bottom: 1.5vh;
-    display: block;
-    width: 7vw;
+    padding-left: 1vw;
+    padding-right: 1vw;
+
+    border: none;
     border-style: none;
-    text-decoration: none;
-    font-family: 'Josefin Sans', sans-serif;
     border-radius: 0.125em;
+    
+    width: 10.5vw;
+    min-width: 125px;
+   
+    text-decoration: none;
     text-align: center;
+    font-size: 1em;
+    font-family: 'Josefin Sans', sans-serif;
+    
 }
 
-.button_rules {
+#join_room_button {
+    background-color: #FFFAEA;
+
+    margin: 0 auto;
+    display: block;
+    
+    
+    padding-top: 1.5vh;
+    padding-bottom: 1.5vh;
+    padding-left: 1vw;
+    padding-right: 1vw;
+
+    
+    width: 10.5vw;
+    min-width: 125px;
+
+    border: none;
+    border-style: none;
+    border-radius: 0.125em;
+
+    text-decoration: none;
+    text-align: center;
+    font-size: 1em;
+    font-family: 'Josefin Sans', sans-serif;
+    
+}
+
+#button_rules {
+    background-color: #FFFAEA;
+
     margin-left: 0.15vw;
     margin-top: 0.5vh;
-    border: none;
-    background-color: #FFFAEA;
+    display: block;
+    
     padding-top: 1.25vh;
     padding-bottom: 1.25vh;
-    display: block;
+    
     width: 7vw;
+    min-width: 125px;
+    border-radius: 0.125em;
+
+    border: none;
     border-style: none;
+
     text-decoration: none;
     font-family: 'Josefin Sans', sans-serif;
-    border-radius: .25em; 
+    font-size: 1em; 
+    
+}
+
+/*
+    For any screen that has a maximum screen width of 720px, display the mobile website
+*/
+@media only screen and (max-device-width: 720px) {
+
+    body {
+        background-color: #0d0d0d;
+    
+    }
+    
+    .title {
+        color: white;
+
+        margin-top: 22vh;
+
+        text-align: center;
+        font-family: 'Josefin Sans', sans-serif;
+        font-size: 7em;
+
+    }
+    
+    #name_field {
+        background-color: #FFFAEA;
+
+        margin: 0 auto;
+        display: block;
+        
+        padding-top: 2vh;
+        padding-right: 4vw;
+        padding-left: 2vw;
+        padding-bottom: 2vh;
+        
+        width: 75vw;
+        
+        border: none;
+        border-radius: .125em;
+
+        font-family: 'Josefin Sans', sans-serif;
+        font-size: 3em;
+
+    }
+    
+    #create_room_button {
+        background-color: #FFFAEA;
+
+        margin: 0 auto;
+        display: block;
+        
+        padding-top: 2vh;
+        padding-bottom: 2vh;
+        
+        width: 70vw;
+
+        border: none;
+        border-style: none;
+        border-radius: 0.125em;
+
+        text-decoration: none;
+        text-align: center;
+        font-family: 'Josefin Sans', sans-serif;
+        font-size: 3em;
+
+    }
+    
+    #join_room_button {
+        background-color: #FFFAEA;
+
+        margin: 0 auto;
+        display: block;
+        
+        padding-top: 2vh;
+        padding-bottom: 2vh;
+        
+        width: 70vw;
+
+        border: none;
+        border-style: none;
+        border-radius: 0.125em;
+
+        text-decoration: none;
+        text-align: center;
+        font-family: 'Josefin Sans', sans-serif;
+        font-size: 3em;
+
+    }
+    
+    #button_rules {
+        background-color: #FFFAEA;
+
+        margin-left: 0.15vw;
+        margin-top: 0.5vh;
+        display: block;
+
+        padding-top: 2vh;
+        padding-bottom: 2vh;
+        
+        width: 30vw;
+
+        border: none;
+        border-style: none;
+        border-radius: .25em; 
+
+        text-decoration: none;
+        font-family: 'Josefin Sans', sans-serif;
+        font-size: 2em;
+    }
 }
