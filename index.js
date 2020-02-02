@@ -30,12 +30,12 @@ io.on('connection', socket => { console.log('New connection from ' + socket.id);
 
         let nsp = io.of("/room_" + key_to_send);
 
-        // rooms_array.indexOf(key_to_send)
         rooms[key_to_send]["prefs"] = {};
         rooms[key_to_send]["players"] = {};
         rooms[key_to_send]["prefs"].spy1on = data.spyfall1on;
         rooms[key_to_send]["prefs"].spy2on = data.spyfall2on;
         rooms[key_to_send]["prefs"].matchtime = data.time;
+        rooms[key_to_send]["prefs"].owner = data.name;
 
         io.to(data.source_socket).emit('create', {
             back_data: data,
@@ -43,6 +43,7 @@ io.on('connection', socket => { console.log('New connection from ' + socket.id);
         });
     });
 
+    // When a user clicks the 'join' button on the website, this will run
     socket.on('join', data => {
 
         if(!rooms[data.join_key]) {
@@ -57,17 +58,36 @@ io.on('connection', socket => { console.log('New connection from ' + socket.id);
 
     });
 
+    // when a player enters the game_room, this will run
     socket.on('load_players', data => {
+        console.log(data.key);
         rooms[data.key]["players"][data.source_socket] = {};
+        rooms[data.key]["players"][data.source_socket].name = data.name;
         console.log(JSON.stringify(rooms, null, 4));
 
         for(i=0; i < Object.keys(rooms[data.key]["players"]).length; i++) {
             io.to((Object.keys(rooms[data.key]["players"]))[i]).emit('load_players', {
-                player_sockets: Object.keys(rooms[data.key]["players"])
+                player_sockets: Object.keys(rooms[data.key]["players"]),
+                player_names: Object.values(rooms[data.key]["players"])
             });
         }
         
     });
+
+    socket.on('disconnect', () => {
+        for(let key in rooms) {
+            if(rooms[key]["players"][socket.id]) {
+                delete rooms[key]["players"][socket.id];
+
+                for(i=0; i < Object.keys(rooms[key]["players"]).length; i++) {
+                    io.to((Object.keys(rooms[key]["players"]))[i]).emit('load_players', {
+                        player_sockets: Object.keys(rooms[key]["players"]),
+                        player_names: Object.values(rooms[key]["players"])
+                    });
+                }
+            }
+        }
+    })
 });
 
 

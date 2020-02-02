@@ -22,8 +22,12 @@ body {
 #players {
     text-align: center;
     margin: 0 auto;
-    border-collapse: collapse;
 
+    border-style: hidden;
+    border-color:  #FFFAEA;
+    
+    user-select: none;
+    font-family: 'Josefin Sans', sans-serif;
 }
 
 #players td {
@@ -31,6 +35,16 @@ body {
     padding-bottom: 2vh;
     padding-left: 3vw;
     padding-right: 3vw;
+
+    border-radius: 10%;
+    border-width: 0.1vw;
+    border-style: solid;
+
+    transition: background-color .1s linear;
+}
+
+#players td:hover {
+    background-color: darkslategrey;
 }
 
 .container {

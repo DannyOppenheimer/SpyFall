@@ -1,10 +1,10 @@
 var socket_link = io.connect('http://108.28.114.48:80/');
 
+var name = location.search.substring(1);
+
 function backToMain() {
     window.location = "index.html";
 }
-
-
 
 document.getElementById("join_room_button").addEventListener('click', () => {
     socket_link.emit('join', {
@@ -15,5 +15,5 @@ document.getElementById("join_room_button").addEventListener('click', () => {
 
 socket_link.on('join', data => {
 
-    window.location = "game_room.html?" + data.key;
+    window.location = "game_room.html?" + data.key + "&" + name;
 });

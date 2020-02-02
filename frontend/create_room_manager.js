@@ -1,6 +1,7 @@
 // Connect to the backend server
 var socket_link = io.connect('http://108.28.114.48:80/');
 
+var name = location.search.substring(1);
 
 // When the user clicks the Create buttons, emit their preferences to the backend server
 document.getElementById("create_room_button").addEventListener("click", ()=> {
@@ -11,14 +12,13 @@ document.getElementById("create_room_button").addEventListener("click", ()=> {
         spyfall1on: playSpyfall1(),
         spyfall2on: playSpyfall2(),
         time: match_minutes,
-
-
+        name: name
     });
 });
 
 // When the server sends back its response, go to the next page
 socket_link.on('create', back_data => {
-    window.location = "game_room.html?" + back_data.key;
+    window.location = "game_room.html?" + back_data.key + "&" + name;
 });
 
 // Add a listener to allow crossing off of both thSTOPe SpyFall 1 and 2 Locations
