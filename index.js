@@ -3,18 +3,44 @@ const socket = require('socket.io');
 const neatCsv = require('neat-csv');
 const fs = require('fs');
 var rooms = {};
-//should name all connections 
-//const nsp = io.of('SpyFall');
+var spyfall1data = [];
+var spyfall2data = [];
+var custom1data = [];
 
 var app = express();
 
-// fs.readFile('Storage/spyfall_1.csv', async (err, data) => {
-//     if (err) {
-//         console.error(err);
-//         return;
-//     }
-//     spyfall1 = csv(data);
-// });
+fs.readFile('Storage/spyfall_1.csv', async (err, data) => {
+    if (err) return console.error(err);
+    
+    let temp_data = await neatCsv(data);
+
+    for(i = 0; i < temp_data.length; i++) {
+        spyfall1data.push(temp_data[i]);
+    }
+    // console.log(spyfall1data);
+});
+
+fs.readFile('Storage/spyfall_2.csv', async (err, data) => {
+    if (err) return console.error(err);
+    
+    let temp_data = await neatCsv(data);
+
+    for(i = 0; i < temp_data.length; i++) {
+        spyfall2data.push(temp_data[i]);
+    }
+    // console.log(spyfall2data);
+});
+
+fs.readFile('Storage/custom_1.csv', async (err, data) => {
+    if (err) return console.error(err);
+    
+    let temp_data = await neatCsv(data);
+
+    for(i = 0; i < temp_data.length; i++) {
+        custom1data.push(temp_data[i]);
+    }
+    // console.log(custom1data);
+});
 
 // This is the creation of our server
 // We are telling our app to listen to port 80!

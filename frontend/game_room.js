@@ -1,8 +1,3 @@
-const neatCsv = require('neat-csv');
-const fs = require('fs');
-const parse = require('csv-parse');
-
-
 (function () {
     var socket_link = io.connect('http://108.28.114.48:80/');
 
@@ -39,24 +34,6 @@ const parse = require('csv-parse');
             role_cell.innerHTML = "You are a + ROLL -- IMPLEMENT AT SOME POINT";
         }
 
-        if (spyfall1on) {
-            var csvData = [];
-            fs.createReadStream("spyfall_1.csv")
-                .pipe(parse({ delimiter: ',' }))
-                .on('data', function (csvrow) {
-                    console.log(csvrow);
-                    //do something with csvrow
-                    csvData.push(csvrow);
-                })
-                .on('end', function () {
-                    console.log(csvData);
-                    var writeable = csvData.toString();
-                    var csv1_cell = document.getElementById("csv1");
-                    csv1_cell.innerHTML = writeable;
-                });
-        }
-        if (spyfall2on) {
-        }
     });
 
     socket_link.on('no_key_error', data => {
@@ -71,12 +48,6 @@ const parse = require('csv-parse');
     });
 
     document.getElementById("game_stop").addEventListener("click", () => {
-        // function getConnectedSockets() {
-        //     return Object.values(io.of("/room_" + room_key).connected);
-        // }
-        // getConnectedSockets().forEach(function(s) {
-        //     s.disconnect(true);
-        // });
         window.location = "index.html";
     });
 })();
