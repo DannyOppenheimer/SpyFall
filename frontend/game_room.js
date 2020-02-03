@@ -38,6 +38,27 @@
             player_cell.innerHTML = JSON.stringify((back_data.player_names)[i]).replace("\{\"name\":\"", "").replace("\"\}", "")
         }
 
+        //---TIMER ON PAGE---// - MOVE SOMEWHERE
+        var time = back_data.time; 
+        var total_seconds = (time*60); 
+        var time_cell = document.getElementById("time");
+        var d = new Date();
+        for(i=0; i<total_seconds; i++)
+        {
+            var n = d.getSeconds();
+            if(n > n-1)
+            {
+                total_seconds--; 
+            }
+            var total_minutes = round(total_seconds/60);
+            time_cell.innerHTML = total_minutes + ":" + total_seconds + "remaining";
+            if(total_seconds==0)
+            {
+                window.location = "game_end.html";
+            }
+        }
+        //-----------------//
+        
     });
 
     socket_link.on('start_game', back_data => {
