@@ -1,26 +1,26 @@
-location,role1,role2,role3,role4,role5,role6,role7
-amusement park,placeholder,placeholder,placeholder,placeholder,placeholder,placeholder,placeholder
+location,role1,role2,role3,role4,role5,role6,role7,role8,role9
+amusement park,a,a,a,a,a,a,a,a,a
 art museum,art critic,art collector,visitor,security guard,ticket seller,teacher,student,photographer,painter
-candy factory,visitor,taster,supply worker,oompa loompa,inspector,truffle maker,madcap redhed,pastry chef
-cat show,placeholder,placeholder,placeholder,placeholder,placeholder,placeholder,placeholder
-cemetery,placeholder,placeholder,placeholder,placeholder,placeholder,placeholder,placeholder
-coal mine,placeholder,placeholder,placeholder,placeholder,placeholder,placeholder,placeholder
-construction site,placeholder,placeholder,placeholder,placeholder,placeholder,placeholder,placeholder
+candy factory,visitor,taster,supply worker,oompa loompa,inspector,truffle maker,madcap redhed,pastry chef,a
+cat show,a,a,a,a,a,a,a,a,a
+cemetery,a,a,a,a,a,a,a,a,a
+coal mine,a,a,a,a,a,a,a,a,a
+construction site,a,a,a,a,a,a,a,a,a
 gaming convention,exhibitor,cosplayer,gamer,blogger,child,collector,shy person,security guard,geek
-gas station,placeholder,placeholder,placeholder,placeholder,placeholder,placeholder,placeholder
-harbor docks,placeholder,placeholder,placeholder,placeholder,placeholder,placeholder,placeholder
-ice hockey stadium,placeholder,placeholder,placeholder,placeholder,placeholder,placeholder,placeholder
+gas station,a,a,a,a,a,a,a,a,a
+harbor docks,a,a,a,a,a,a,a,a,a
+ice hockey stadium,a,a,a,a,a,a,a,a,a
 jail,visitor,janitor,criminal,guard,wrongly accused man,correctional officer,jailkeeper,lawyer,cctv operator
-jazz club,placeholder,placeholder,placeholder,placeholder,placeholder,placeholder,placeholder
+jazz club,a,a,a,a,a,a,a,a,a
 library,volunteer,old man,book fanatic,author,loudmouth,know-it-all,student,librarian,journalist
-night club,placeholder,placeholder,placeholder,placeholder,placeholder,placeholder,placeholder
-race track,placeholder,placeholder,placeholder,placeholder,placeholder,placeholder,placeholder
-retirement home,placeholder,placeholder,placeholder,placeholder,placeholder,placeholder,placeholder
-rock concert,placeholder,placeholder,placeholder,placeholder,placeholder,placeholder,placeholder
-sightseeing bus,placeholder,placeholder,placeholder,placeholder,placeholder,placeholder,placeholder
-stadium,placeholder,placeholder,placeholder,placeholder,placeholder,placeholder,placeholder
-subway,placeholder,placeholder,placeholder,placeholder,placeholder,placeholder,placeholder
-the u.n.,placeholder,placeholder,placeholder,placeholder,placeholder,placeholder,placeholder
-vineyard,placeholder,placeholder,placeholder,placeholder,placeholder,placeholder,placeholder
-wedding,placeholder,placeholder,placeholder,placeholder,placeholder,placeholder,placeholder
-zoo,placeholder,placeholder,placeholder,placeholder,placeholder,placeholder,placeholder
+night club,a,a,a,a,a,a,a,a,a
+race track,a,a,a,a,a,a,a,a,a
+retirement home,a,a,a,a,a,a,a,a,a
+rock concert,a,a,a,a,a,a,a,a,a
+sightseeing bus,a,a,a,a,a,a,a,a,a
+stadium,a,a,a,a,a,a,a,a,a
+subway,a,a,a,a,a,a,a,a,a
+the u.n.,a,a,a,a,a,a,a,a,a
+vineyard,a,a,a,a,a,a,a,a,a
+wedding,a,a,a,a,a,a,a,a,a
+zoo,a,a,a,a,a,a,a,a,a
