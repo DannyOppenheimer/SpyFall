@@ -16,7 +16,7 @@
             name: name,
         });
 
-        document.getElementById("game_start").addEventListener("click", () => {
+        document.getElementById("game_start").addEventListener("click",() => {
             socket_link.emit('start_game', {
                 key: room_key
             });
@@ -37,28 +37,6 @@
 
             player_cell.innerHTML = JSON.stringify((back_data.player_names)[i]).replace("\{\"name\":\"", "").replace("\"\}", "")
         }
-
-        //---TIMER ON PAGE---// - MOVE SOMEWHERE
-        var time = back_data.time; 
-        var total_seconds = (time*60); 
-        var time_cell = document.getElementById("time");
-        var d = new Date();
-        for(i=0; i<total_seconds; i++)
-        {
-            var n = d.getSeconds();
-            if(n > n-1)
-            {
-                total_seconds--; 
-            }
-            var total_minutes = round(total_seconds/60);
-            time_cell.innerHTML = total_minutes + ":" + total_seconds + "remaining";
-            if(total_seconds==0)
-            {
-                window.location = "game_end.html";
-            }
-        }
-        //-----------------//
-        
     });
 
     socket_link.on('start_game', back_data => {
@@ -73,7 +51,26 @@
             document.getElementById("role_location").innerHTML += "Your role is a " + JSON.stringify(back_data.role).replace("\"", "").replace("\"", "") ;
         }
         
-       
+        //---TIMER ON PAGE---// - MOVE SOMEWHERE
+        let time = back_data.time; 
+        let total_seconds = (time*60); 
+        let time_cell = document.getElementById("time");
+        var d = new Date();
+        for(i=0; i<total_seconds; i++)
+        {
+            var n = d.getSeconds();
+            if(n > n-1)
+            {
+                total_seconds--; 
+            }
+            let total_minutes = round(total_seconds/60);
+            time_cell.innerHTML = total_minutes + ":" + total_seconds + " remaining";
+            if(total_seconds==0)
+            {
+                window.location = "game_end.html";
+                //place holder - put code to reset room in here
+            }
+        }
     });
 
     socket_link.on('no_key_error', data => {
