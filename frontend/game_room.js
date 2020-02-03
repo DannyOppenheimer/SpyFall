@@ -41,7 +41,18 @@
     });
 
     socket_link.on('start_game', back_data => {
-        document.getElementById("role_&_location").innerHTML = "You are at the " + JSON.stringify(back_data.location).replace("\"", "").replace("\"", "");
+        document.getElementById("role_location").innerHTML = "";
+       
+        if(back_data.role == "spy") {
+            document.getElementById("role_location").innerHTML = "You are the <strong>Spy</strong>!<br>";
+             document.getElementById("role_location").innerHTML += "Try to guess the location from the other players' questions!";
+        } else {
+            document.getElementById("role_location").innerHTML = "You are <strong>not</strong> the Spy!<br>";
+            document.getElementById("role_location").innerHTML += "You are at the <strong>" + JSON.stringify(back_data.location).replace("\"", "").replace("\"", "") + "</strong><br>";
+            document.getElementById("role_location").innerHTML += "Your role is a " + JSON.stringify(back_data.role).replace("\"", "").replace("\"", "") ;
+        }
+        
+       
     });
 
     socket_link.on('no_key_error', data => {

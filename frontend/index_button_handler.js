@@ -22,7 +22,7 @@ function joinRoom() {
 }
 
 function rules() {
-    window.location = "rules";
+    window.location = "rules.html";
 }
 
 function isAllWhiteSpace(string) {

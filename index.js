@@ -28,7 +28,7 @@ fs.readFile('Storage/spyfall_2.csv', async (err, data) => {
     for(i = 0; i < temp_data.length; i++) {
         spyfall2data.push(temp_data[i]);
     }
-    // console.log(spyfall2data);
+    console.log(spyfall2data);
 });
 
 fs.readFile('Storage/custom_1.csv', async (err, data) => {
@@ -127,11 +127,27 @@ io.on('connection', socket => { console.log('New connection from ' + socket.id);
             }
         }
 
+        console.log(temp_locations);
+        let chosen_location = temp_locations[Math.floor(Math.random() * temp_locations.length)];
+
+    
+        let spy_num = Math.floor(Math.random() *  Object.keys(rooms[data.key]["players"]).length);
+
+
         for(i=0; i < Object.keys(rooms[data.key]["players"]).length; i++) {
+
+            if(i == spy_num) {
+                io.to((Object.keys(rooms[data.key]["players"]))[i]).emit('start_game', {
+                    location: chosen_location,
+                    role: "spy"
+                });
+            } else {
+                io.to((Object.keys(rooms[data.key]["players"]))[i]).emit('start_game', {
+                    location: chosen_location,
+                    role: "not spy"
+                });
+            }
             
-            io.to((Object.keys(rooms[data.key]["players"]))[i]).emit('start_game', {
-                location: temp_locations[(Math.floor(Math.random() * temp_locations.length))]
-            });
         }
     });
 
