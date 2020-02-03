@@ -1,4 +1,4 @@
-(function () {
+(() => {
     var socket_link = io.connect('http://108.28.114.48:80/');
 
     var page_info = location.search.substring(1).split("&");
@@ -9,16 +9,21 @@
     document.getElementById("title").innerHTML = "Room Key: " + room_key;
 
     socket_link.on('connect', () => {
-
+        
         socket_link.emit('load_players', {
             key: room_key,
             source_socket: socket_link.id,
             name: name,
         });
+
+        document.getElementById("game_start").addEventListener("click", () => {
+            socket_link.emit('start_game', {
+                key: room_key
+            });
+        });
     });
 
     socket_link.on('load_players', back_data => {
-        var role_cell = document.getElementById("role");
 
         document.getElementById("players").innerHTML = "";
 
@@ -30,21 +35,18 @@
 
             let player_cell = current_row.insertCell(0);
 
-            player_cell.innerHTML = JSON.stringify((back_data.player_names)[i]).replace("\{\"name\":\"", "").replace("\"\}", "");
-            role_cell.innerHTML = "You are a + ROLL -- IMPLEMENT AT SOME POINT";
+            player_cell.innerHTML = JSON.stringify((back_data.player_names)[i]).replace("\{\"name\":\"", "").replace("\"\}", "")
         }
 
+    });
+
+    socket_link.on('start_game', back_data => {
+        document.getElementById("role_&_location").innerHTML = "You are at the " + JSON.stringify(back_data.location).replace("\"", "").replace("\"", "");
     });
 
     socket_link.on('no_key_error', data => {
 
         document.getElementById("title").innerHTML = "The key " + room_key + " does not exist!";
-    });
-
-    document.getElementById("game_start").addEventListener("click", () => {
-        socket_link.emit('start_game', {
-            key: room_key
-        });
     });
 
     document.getElementById("game_stop").addEventListener("click", () => {

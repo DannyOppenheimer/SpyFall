@@ -51,8 +51,6 @@ var server = app.listen(80, () => {
 // It will default to using the 'Index.html' as a homepage
 app.use(express.static('frontend'));
 
-
-
 // Adding socket.io to our web server
 var io = socket(server);
 io.on('connection', socket => { console.log('New connection from ' + socket.id);
@@ -95,7 +93,6 @@ io.on('connection', socket => { console.log('New connection from ' + socket.id);
 
     // when a player enters the game_room, this will run
     socket.on('load_players', data => {
-        
         // If the room they are trying to load doesnt exit
         if(!rooms[data.key]) {
             io.to(data.source_socket).emit('no_key_error', data.key);
@@ -104,7 +101,6 @@ io.on('connection', socket => { console.log('New connection from ' + socket.id);
 
         rooms[data.key]["players"][data.source_socket] = {};
         rooms[data.key]["players"][data.source_socket].name = data.name;
-        console.log(JSON.stringify(rooms, null, 4));
 
         for(i=0; i < Object.keys(rooms[data.key]["players"]).length; i++) {
             io.to((Object.keys(rooms[data.key]["players"]))[i]).emit('load_players', {
@@ -115,7 +111,29 @@ io.on('connection', socket => { console.log('New connection from ' + socket.id);
         
     });
 
+    socket.on('start_game', data => {
 
+        let temp_locations = [];
+
+        if(rooms[data.key]["prefs"].spy1on) {
+            for(i = 0; i < spyfall1data.length; i++) {
+                temp_locations.push(spyfall1data[i].location);
+            }
+        }
+
+        if(rooms[data.key]["prefs"].spy2on) {
+            for(i = 0; i < spyfall2data.length; i++) {
+                temp_locations.push(spyfall2data[i].location);
+            }
+        }
+
+        for(i=0; i < Object.keys(rooms[data.key]["players"]).length; i++) {
+            
+            io.to((Object.keys(rooms[data.key]["players"]))[i]).emit('start_game', {
+                location: temp_locations[(Math.floor(Math.random() * temp_locations.length))]
+            });
+        }
+    });
 
     socket.on('disconnect', () => {
         for(let key in rooms) {
@@ -130,7 +148,7 @@ io.on('connection', socket => { console.log('New connection from ' + socket.id);
                 }
             }
         }
-    })
+    });
 });
 
 
