@@ -1,6 +1,5 @@
 body {
     background-color: #0d0d0d;
-
 }
 
 .title {
@@ -110,6 +109,33 @@ body {
     
 }
 
+
+footer {
+    color: #FFFAEA;
+    text-align: center;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+#git_link {
+    text-decoration: none;
+    color: #FFFAEA;
+}
+
+#git_image {
+    height: 2vh;
+    width: 2vh;
+}
+
+footer table {
+    margin-left: auto; 
+    margin-right: auto;
+    bottom: 0;
+    font-size: 0.8em;
+}
+
 /*
     For any screen that has a maximum screen width of 720px, display the mobile website
 */
@@ -117,7 +143,6 @@ body {
 
     body {
         background-color: #0d0d0d;
-    
     }
     
     .title {
@@ -215,5 +240,32 @@ body {
         text-decoration: none;
         font-family: 'Josefin Sans', sans-serif;
         font-size: 2em;
+    }
+
+    footer {
+        color: #FFFAEA;
+        text-align: center;
+        width: 100%;
+        position: absolute;
+        bottom: 0;
+        font-family: 'Josefin Sans', sans-serif;
+    }
+    
+    #git_link {
+        text-decoration: none;
+        color: #FFFAEA;
+    }
+    
+    #git_image {
+        height: 2vh;
+        width: 2vh;
+    }
+    
+    footer table {
+        margin-left: auto; 
+        margin-right: auto;
+        bottom: 0;
+        font-size: 0.8em;
+        
     }
 }

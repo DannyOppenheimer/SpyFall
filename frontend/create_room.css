@@ -18,6 +18,7 @@ body {
    width: 100%;
    text-align: center;
    
+   
 }
 
 #spyfall1label {
@@ -65,9 +66,14 @@ br {
     font-size: 24%;
 }
 
+#large_break {
+    line-height: 50vh;
+}
+
 #create_room_button {
     font-size: 1.25em;
-    margin: 0 auto;
+    margin: auto;
+    position: relative;
     border: none;
     background-color: #FFFAEA;
     padding-top: 1vh;
@@ -99,4 +105,126 @@ br {
     text-decoration: none;
     font-family: 'Josefin Sans', sans-serif;
     border-radius: .25em; 
+}
+
+/*
+    For any screen that has a maximum screen width of 720px, display the mobile website
+*/
+@media only screen and (max-device-width: 720px) {
+    body {
+        background-color: #0d0d0d;
+    }
+    
+    .title {
+        color: white;
+
+        margin-top: 12vh;
+
+        text-align: center;
+        font-family: 'Josefin Sans', sans-serif;
+        font-size: 7em;
+
+    }
+    
+    .checkbox {
+       color: white;
+       font-family: 'Josefin Sans', sans-serif;   
+       font-size: 3em;
+       margin: 0 auto;
+       width: 100%;
+       text-align: center;
+       
+    }
+    
+    #spyfall1label {
+        transition: color .1s linear;
+        user-select: none;
+        font-size: 2em;
+    }
+    
+    #spyfall1label:hover {
+        color: gray;
+    }
+    
+    #spyfall2label {
+        transition: color .1s linear;
+        user-select: none;
+        font-size: 2em;
+    }
+    
+    
+    #spyfall2label:hover {
+        color: gray;
+    }
+    
+    #matchime_label {
+        font-size: 2em;
+    }
+    
+    .checkbox #matchclock {
+        background-color: #FFFAEA;
+
+        margin: 0 auto;
+        display: block;
+        
+        padding-top: 1vh;
+        padding-bottom: 1vh;
+        
+        width: 50vw;
+        
+        border: none;
+        border-radius: .125em;
+
+        font-family: 'Josefin Sans', sans-serif;
+        font-size: 1.5em;
+        
+    }
+
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+    
+    br {
+        content: "";
+        margin: 2em;
+        display: block;
+        font-size: 24%;
+    }
+    
+    #create_room_button {
+        font-size: 3em;
+        margin: 0 auto;
+        border: none;
+        background-color: #FFFAEA;
+        padding-top: 1vh;
+        padding-right: 3vw;
+        padding-left: 3vw;
+        padding-bottom: 1vh;
+        display: block;
+        width: 30vw;
+        border-style: none;
+        text-decoration: none;
+        font-family: 'Josefin Sans', sans-serif;
+        border-radius: 0.125em;
+    }
+    
+    #back {
+        position: sticky;
+        top: 0.25vh;
+        margin-left: 0.15vw;
+        margin-top: 0.5vh;
+        border: none;
+        background-color: #FFFAEA;
+        padding-top: 1.25vh;
+        padding-right: 1vw;
+        padding-left: 1vw;
+        padding-bottom: 1.25vh;
+        display: block;
+        width: 7vw;
+        border-style: none;
+        text-decoration: none;
+        font-family: 'Josefin Sans', sans-serif;
+        border-radius: .25em; 
+    }
 }

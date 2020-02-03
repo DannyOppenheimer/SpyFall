@@ -28,7 +28,6 @@ fs.readFile('Storage/spyfall_2.csv', async (err, data) => {
     for(i = 0; i < temp_data.length; i++) {
         spyfall2data.push(temp_data[i]);
     }
-    console.log(spyfall2data);
 });
 fs.readFile('Storage/custom_1.csv', async (err, data) => {
     if (err) return console.error(err);
@@ -205,7 +204,7 @@ io.on('connection', socket => {
 
 
 
-// Function to create a unique five letter key. Will automatically push it to the rooms_array array
+// Function to create a unique five letter key.
 function keyCreator() {
     let alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p",
     "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];

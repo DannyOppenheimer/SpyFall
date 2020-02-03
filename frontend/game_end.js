@@ -4,9 +4,6 @@
     document.getElementById("return").addEventListener("click", () => {
         window.location = "index.html";  
     });
-    document.getElementById("return").addEventListener("click", () => {
-        window.location = "game_room.html?";
-    });
 })();
 
 
