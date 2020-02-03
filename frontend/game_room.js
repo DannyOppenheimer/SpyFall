@@ -1,3 +1,8 @@
+const neatCsv = require('neat-csv');
+const fs = require('fs');
+const parse = require('csv-parse');
+
+
 (function () {
     var socket_link = io.connect('http://108.28.114.48:80/');
 
@@ -13,11 +18,12 @@
         socket_link.emit('load_players', {
             key: room_key,
             source_socket: socket_link.id,
-            name: name
+            name: name,
         });
     });
 
     socket_link.on('load_players', back_data => {
+        var role_cell = document.getElementById("role");
 
         document.getElementById("players").innerHTML = "";
 
@@ -30,9 +36,27 @@
             let player_cell = current_row.insertCell(0);
 
             player_cell.innerHTML = JSON.stringify((back_data.player_names)[i]).replace("\{\"name\":\"", "").replace("\"\}", "");
-
+            role_cell.innerHTML = "You are a + ROLL -- IMPLEMENT AT SOME POINT";
         }
 
+        if (spyfall1on) {
+            var csvData = [];
+            fs.createReadStream("spyfall_1.csv")
+                .pipe(parse({ delimiter: ',' }))
+                .on('data', function (csvrow) {
+                    console.log(csvrow);
+                    //do something with csvrow
+                    csvData.push(csvrow);
+                })
+                .on('end', function () {
+                    console.log(csvData);
+                    var writeable = csvData.toString();
+                    var csv1_cell = document.getElementById("csv1");
+                    csv1_cell.innerHTML = writeable;
+                });
+        }
+        if (spyfall2on) {
+        }
     });
 
     socket_link.on('no_key_error', data => {

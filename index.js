@@ -1,7 +1,6 @@
-
 const express = require('express');
 const socket = require('socket.io');
-const csv = require('neat-csv');
+const neatCsv = require('neat-csv');
 const fs = require('fs');
 var rooms = {};
 //should name all connections 

@@ -7,7 +7,6 @@
     // When the user clicks the Create buttons, emit their preferences to the backend server
     document.getElementById("create_room_button").addEventListener("click", () => {
         let match_minutes = getMatchMinutes();
-        alert("bruh");
         socket_link.emit('create', {
             source_socket: socket_link.id,
             spyfall1on: playSpyfall1(),
