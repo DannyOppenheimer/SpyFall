@@ -79,6 +79,10 @@ body {
     font-size: 2em;
 }
 
+#time {
+    font-size: 2.5em;
+}
+
 #location {
     font-size: 1.5em;
 }
