@@ -39,7 +39,7 @@ body {
 
 
 
-@media only screen and (max-device-width: 720px) {
+@media only screen and (max-device-width: 480px) {
     body {
         background-color: #0d0d0d;
     }

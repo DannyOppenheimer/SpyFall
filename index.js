@@ -2,6 +2,7 @@ const express = require('express');
 const socket = require('socket.io');
 const neatCsv = require('neat-csv');
 const fs = require('fs');
+const serveStatic = require('serve-static')
 
 var rooms = {};
 var spyfall1data = [];
@@ -48,12 +49,15 @@ var server = app.listen(80, () => {
 
 // Now we are feeding our app the folder containing all of our frontend pages
 // It will default to using the 'Index.html' as a homepage
-app.use(express.static('frontend'));
+app.use(serveStatic('frontend', { 
+    extensions: ['html']
+}));
 
 // Adding socket.io to our web server
 var io = socket(server);
 io.on('connection', socket => { 
-    console.log("New connection from " + socket.id);
+    let address = socket.handshake.address;
+    console.log("New connection from socket " + socket.id + " with IP Address " + address.address + ":" + address.port);
     
     // When a user clicks the 'create' button on the website, this will run
     socket.on('create', data => {
@@ -134,7 +138,7 @@ io.on('connection', socket => {
         let chosen_location = temp_locations[Math.floor(Math.random() * temp_locations.length)];
 
         // add the corresponding roles for the locations that are in play.
-        for(i=0; i < temp_locations.length; i++) {
+        /*for(i=0; i < temp_locations.length; i++) {
             if(spyfall1data[i].location) {
                 if(spyfall1data[i].location == chosen_location) {
                     temp_roles.push((spyfall1data[i].role1));
@@ -158,7 +162,7 @@ io.on('connection', socket => {
                     temp_roles.push((spyfall2data[i].role8));
                     temp_roles.push((spyfall2data[i].role9));
             }
-        }
+        }*/
 
         // choose a spy from the numer of sockets connected to the room
         let spy_num = Math.floor(Math.random() *  Object.keys(rooms[data.key]["players"]).length);

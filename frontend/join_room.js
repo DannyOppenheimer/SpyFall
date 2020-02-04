@@ -12,7 +12,7 @@
         });
 
         document.getElementById("back").addEventListener('click', () => {
-            window.location = "index.html";
+            window.location = "/";
         });        
     });
 

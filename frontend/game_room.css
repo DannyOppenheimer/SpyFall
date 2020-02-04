@@ -94,7 +94,7 @@ body {
 /*
     For any screen that has a maximum screen width of 720px, display the mobile website
 */
-@media only screen and (max-device-width: 720px) {
+@media only screen and (max-device-width: 480px) {
     
     #title {
         margin-top: 3vh;

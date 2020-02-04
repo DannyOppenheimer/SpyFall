@@ -61,7 +61,7 @@
           
             if(min + sec <= 0) {
                 clearInterval(0);
-                window.location = "index.html";
+                window.location = "/";
             }
             //Format : hh:mm:ss
             time_cell.innerHTML = (min=min < 10 ? "0" + min:min) + ":" + (sec = sec <10 ? "0" + sec:sec);
@@ -76,7 +76,7 @@
     });
 
     document.getElementById("game_stop").addEventListener('click', () => {
-        window.location = "index.html";
+        window.location = "/";
     });
 
 })();
