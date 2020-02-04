@@ -57,7 +57,7 @@ io.on('connection', socket => {
     
     // When a user clicks the 'create' button on the website, this will run
     socket.on('create', data => {
-
+        console.log("3334");
         let key_to_send = keyCreator();
 
         // set up the preferences of the room based on the create room screen choices
@@ -71,7 +71,8 @@ io.on('connection', socket => {
         // emit the created key back to the frontend
         io.to(data.source_socket).emit('create', {
             back_data: data,
-            key: key_to_send
+            key: key_to_send,
+            time: JSON.stringify(rooms[key_to_send]["prefs"].matchtime)
         });
     });
 
