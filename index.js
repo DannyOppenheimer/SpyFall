@@ -79,7 +79,7 @@ io.on('connection', socket => {
 
         // if the room doesn't exist...
         if(!rooms[data.join_key]) {
-            io.to(data.source_socket).emit('no_key_error', data.join_key)
+            io.to(data.source_socket).emit('no_key_error', data.join_key);
 
             // send a no key error message.
             return io.to(data.source_socket).emit('join', {
