@@ -135,16 +135,29 @@ io.on('connection', socket => {
 
         // add the corresponding roles for the locations that are in play.
         for(i=0; i < temp_locations.length; i++) {
-            /*if(spyfall1data[i].location == chosen_location) {
-                temp_roles.push((spyfall1data[i].role1));
-                temp_roles.push((spyfall1data[i].role2));
-                temp_roles.push((spyfall1data[i].role3));
-                temp_roles.push((spyfall1data[i].role4));
-                temp_roles.push((spyfall1data[i].role5));
-                temp_roles.push((spyfall1data[i].role6));
-                temp_roles.push((spyfall1data[i].role7));
-                break;
-            }*/
+            if(spyfall1data[i].location) {
+                if(spyfall1data[i].location == chosen_location) {
+                    temp_roles.push((spyfall1data[i].role1));
+                    temp_roles.push((spyfall1data[i].role2));
+                    temp_roles.push((spyfall1data[i].role3));
+                    temp_roles.push((spyfall1data[i].role4));
+                    temp_roles.push((spyfall1data[i].role5));
+                    temp_roles.push((spyfall1data[i].role6));
+                    temp_roles.push((spyfall1data[i].role7));
+                    break;
+                }
+            }
+            if(spyfall2data[i].location) {
+                temp_roles.push((spyfall2data[i].role1));
+                    temp_roles.push((spyfall2data[i].role2));
+                    temp_roles.push((spyfall2data[i].role3));
+                    temp_roles.push((spyfall2data[i].role4));
+                    temp_roles.push((spyfall2data[i].role5));
+                    temp_roles.push((spyfall2data[i].role6));
+                    temp_roles.push((spyfall2data[i].role7));
+                    temp_roles.push((spyfall2data[i].role8));
+                    temp_roles.push((spyfall2data[i].role9));
+            }
         }
 
         // choose a spy from the numer of sockets connected to the room

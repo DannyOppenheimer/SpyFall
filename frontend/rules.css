@@ -46,10 +46,9 @@ body {
     
     
     #back {
-        margin: 0 auto;
-        top: 0.25vh;
+        margin: auto;
+        margin-top: 0.5vh;
         position: relative;
-        margin-top: 2vh;
         border: none;
         background-color: #FFFAEA;
         padding-top: 2vh;

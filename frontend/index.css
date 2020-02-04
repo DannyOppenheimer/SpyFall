@@ -110,13 +110,14 @@ body {
 }
 
 
-footer {
+.footer {
     color: #FFFAEA;
     text-align: center;
-    width: 100%;
+    width: 99%;
     position: absolute;
     bottom: 0;
     font-family: 'Josefin Sans', sans-serif;
+    overflow-x:hidden;
 }
 
 #git_link {
@@ -129,9 +130,8 @@ footer {
     width: 2vh;
 }
 
-footer table {
-    margin-left: auto; 
-    margin-right: auto;
+table {
+    margin: auto;
     bottom: 0;
     font-size: 0.8em;
 }
@@ -168,7 +168,7 @@ footer table {
         padding-bottom: 2vh;
         
         width: 75vw;
-        
+
         border: none;
         border-radius: .125em;
 
@@ -242,7 +242,7 @@ footer table {
         font-size: 2em;
     }
 
-    footer {
+    .footer {
         color: #FFFAEA;
         text-align: center;
         width: 100%;
@@ -261,11 +261,10 @@ footer table {
         width: 2vh;
     }
     
-    footer table {
+    table {
         margin-left: auto; 
         margin-right: auto;
         bottom: 0;
-        font-size: 0.8em;
-        
+        font-size: .8em;
     }
 }
