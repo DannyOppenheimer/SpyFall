@@ -88,7 +88,6 @@ io.on('connection', socket => {
                 key: data.join_key
             });
         }
-
     });
 
     // when a player enters the game_room, this will run

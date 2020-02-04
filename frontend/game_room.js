@@ -53,6 +53,9 @@
         let time = data.time; 
         let total_seconds = (time*60); 
         let time_cell = document.getElementById("time");
+        time_cell.innerHTML = back_data.time;
+        
+        /*let time_cell = document.getElementById("time");
         var d = new Date();
         for(i=0; i<total_seconds; i++)
         {
@@ -68,7 +71,7 @@
                 window.location = "game_end.html";
                 //place holder - put code to reset room in here
             }
-        }
+        }*/
     });
 
     socket_link.on('no_key_error', () => {
