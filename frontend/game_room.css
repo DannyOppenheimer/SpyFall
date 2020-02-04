@@ -75,6 +75,109 @@ body {
     color:#000000;
 }
 
-#role_location {
-    font-size: 1em;
+#spy_message {
+    font-size: 2em;
+}
+
+#location {
+    font-size: 1.5em;
+}
+
+#role {
+    font-size: 1.5em;
+}
+
+/*
+    For any screen that has a maximum screen width of 720px, display the mobile website
+*/
+@media only screen and (max-device-width: 720px) {
+    body {
+        background-color: #0d0d0d;
+        color: white;
+    }
+    
+    #title {
+        margin-top: 3vh;
+        text-align: center;
+        font-size: 6em;
+        color: white;
+        font-family: 'Josefin Sans', sans-serif;   
+    }
+    
+    .subtitle {
+        margin-top: 1vh;
+        text-align: center;
+        font-size: 2em;
+        color: white;
+        font-family: 'Josefin Sans', sans-serif;   
+    }
+    
+    #players {
+        text-align: center;
+        margin: 0 auto;
+    
+        border-style: hidden;
+        border-color:  #FFFAEA;
+        
+        user-select: none;
+        font-family: 'Josefin Sans', sans-serif;
+    }
+    
+    #players td {
+        padding-top: 2vh;
+        padding-bottom: 2vh;
+        padding-left: 3vw;
+        padding-right: 3vw;
+    
+        border-radius: 10%;
+        border-width: 0.1vw;
+        border-style: solid;
+    
+        transition: background-color .1s linear;
+    }
+    
+    #players td:hover {
+        background-color: darkslategrey;
+    }
+    
+    .container {
+        display: flex;
+        justify-content: center;
+      }
+    
+    .button {
+        border:0.1em solid #FFFFFF;
+        margin:0 0.3em 0.3em 0;
+        border-radius:0.12em;
+        box-sizing: border-box;
+        cursor: pointer;
+        background-color: white;
+        border-color: white;
+        color: white;
+        font-size: 2.2em;
+        background-color: #0d0d0d;
+        padding-top: 2vh;
+        padding-bottom: 2vh;    
+        width: 21vw;
+        font-family: 'Josefin Sans', sans-serif;
+        transition: all 0.2s;
+    }
+    
+    .button:hover {
+        background-color:#FFFFFF;
+        color:#000000;
+    }
+    
+    .subtitle #spy_message {
+        font-size: 2em;
+    }
+
+    .subtitle #location {
+        font-size: 1.5em;
+    }
+
+    .subtitle #role {
+        font-size: 1.5em;
+    }
+    
 }

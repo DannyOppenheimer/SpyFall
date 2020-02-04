@@ -42,7 +42,7 @@ fs.readFile('Storage/custom_1.csv', async (err, data) => {
 // This is the creation of our server
 // We are telling our app to listen to port 80!
 var server = app.listen(80, () => {
-    console.log('Listening to port 80');
+    console.log("Listening to port 80");
 });
 
 // Now we are feeding our app the folder containing all of our frontend pages
@@ -52,7 +52,7 @@ app.use(express.static('frontend'));
 // Adding socket.io to our web server
 var io = socket(server);
 io.on('connection', socket => { 
-    console.log('New connection from ' + socket.id);
+    console.log("New connection from " + socket.id);
     
     // When a user clicks the 'create' button on the website, this will run
     socket.on('create', data => {
@@ -67,6 +67,7 @@ io.on('connection', socket => {
         rooms[key_to_send]["prefs"].matchtime = data.time;
         rooms[key_to_send]["prefs"].owner = data.name;
 
+        console.log(JSON.stringify(rooms[key_to_send]["prefs"].matchtime));
         // emit the created key back to the frontend
         io.to(data.source_socket).emit('create', {
             back_data: data,
@@ -80,15 +81,14 @@ io.on('connection', socket => {
 
         // if the room doesn't exist...
         if(!rooms[data.join_key]) {
-            io.to(data.source_socket).emit('no_key_error', data.join_key);
-
-            // send a no key error message.
-            return io.to(data.source_socket).emit('join', {
+            return io.to(data.source_socket).emit('no_key_error', data.join_key);
+            
+        } else {
+            io.to(data.source_socket).emit('join', {
                 back_data: data,
                 key: data.join_key
             });
         }
-
     });
 
     // when a player enters the game_room, this will run
@@ -134,7 +134,7 @@ io.on('connection', socket => {
 
         // choose a location from the list at random
         let chosen_location = temp_locations[Math.floor(Math.random() * temp_locations.length)];
-
+        /*
         // add the corresponding roles for the locations that are in play.
         for(i=0; i < temp_locations.length; i++) {
             if(spyfall1data[i].location == chosen_location) {
@@ -160,11 +160,12 @@ io.on('connection', socket => {
                 
                 break;
             }
-        }
+        }*/
 
         // choose a spy from the numer of sockets connected to the room
         let spy_num = Math.floor(Math.random() *  Object.keys(rooms[data.key]["players"]).length);
 
+        console.log(chosen_location);
         // here we will emit back to the sockets the information
         for(i=0; i < Object.keys(rooms[data.key]["players"]).length; i++) {
 

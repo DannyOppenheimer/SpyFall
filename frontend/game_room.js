@@ -4,7 +4,7 @@
     var page_info = location.search.substring(1).split("&");
 
     var room_key = page_info[0];
-    var name = page_info[1]
+    var name = page_info[1];
 
     document.getElementById("title").innerHTML = "Room Key: " + room_key;
 
@@ -13,7 +13,7 @@
         socket_link.emit('load_players', {
             key: room_key,
             source_socket: socket_link.id,
-            name: name,
+            name: name
         });
 
         document.getElementById("game_start").addEventListener("click",() => {
@@ -23,11 +23,11 @@
         });
     });
 
-    socket_link.on('load_players', back_data => {
+    socket_link.on('load_players', data => {
 
         document.getElementById("players").innerHTML = "";
 
-        for (i = 0; i < (back_data.player_names).length; i += 1) {
+        for (i = 0; i < (data.player_names).length; i += 1) {
 
             let table = document.getElementById("players");
 
@@ -35,25 +35,22 @@
 
             let player_cell = current_row.insertCell(0);
 
-            player_cell.innerHTML = JSON.stringify((back_data.player_names)[i]).replace("\{\"name\":\"", "").replace("\"\}", "")
+            player_cell.innerHTML = JSON.stringify((data.player_names)[i]).replace("\{\"name\":\"", "").replace("\"\}", "")
         }
     });
 
-    socket_link.on('start_game', back_data => {
-        document.getElementById("role_location").innerHTML = "";
-       
-        if(back_data.role == "spy") {
-            document.getElementById("role_location").innerHTML = "You are the <strong>Spy</strong>!<br>";
-             document.getElementById("role_location").innerHTML += "Try to guess the location from the other players' questions!";
+    socket_link.on('start_game', data => {
+        if(data.role == "spy") {
+            document.getElementById("spy_message").innerHTML = "You are the <strong>Spy</strong>!<br>";
+            document.getElementById("location").innerHTML = "Try to guess the location from the other players' questions!";
         } else {
-            document.getElementById("role_location").innerHTML = "You are <strong>not</strong> the Spy!<br>";
-            document.getElementById("role_location").innerHTML += "You are at the <strong>" + JSON.stringify(back_data.location).replace("\"", "").replace("\"", "") + "</strong><br>";
-            document.getElementById("role_location").innerHTML += "Your role is a " + JSON.stringify(back_data.role).replace("\"", "").replace("\"", "") ;
+            document.getElementById("spy_message").innerHTML = "You are <strong>not</strong> the Spy!<br>";
+            document.getElementById("location").innerHTML = "You are at the <strong>" + JSON.stringify(data.location).replace("\"", "").replace("\"", "") + "</strong><br>";
+            document.getElementById("role").innerHTML = "Your role is a " + JSON.stringify(data.role).replace("\"", "").replace("\"", "");
         }
         
         //---TIMER ON PAGE---// - MOVE SOMEWHERE
-        var total_time = back_data.time;
-
+        let time = data.time; 
         let total_seconds = (time*60); 
         let time_cell = document.getElementById("time");
        
@@ -78,14 +75,15 @@
         }*/
     });
 
-    socket_link.on('no_key_error', data => {
+    socket_link.on('no_key_error', () => {
 
         document.getElementById("title").innerHTML = "The key " + room_key + " does not exist!";
     });
 
-    document.getElementById("game_stop").addEventListener("click", () => {
+    document.getElementById("game_stop").addEventListener('click', () => {
         window.location = "index.html";
     });
+
 })();
 
 

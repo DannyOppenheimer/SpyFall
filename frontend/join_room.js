@@ -4,6 +4,7 @@
     var name = location.search.substring(1);
     socket_link.on('connect', () => {
         document.getElementById("join_room_button").addEventListener('click', () => {
+            console.log('bruh');
             socket_link.emit('join', {
                 source_socket: socket_link.id,
                 join_key: document.getElementById("key_enter").value
