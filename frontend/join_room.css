@@ -58,3 +58,54 @@ body {
     font-family: 'Josefin Sans', sans-serif;
     border-radius: 0.125em;
 }
+
+@media only screen and (max-device-width: 720px) {
+    body {
+        background-color: #0d0d0d;
+    }
+    
+    .title {
+        color: white;
+
+        margin-top: 12vh;
+
+        text-align: center;
+        font-family: 'Josefin Sans', sans-serif;
+        font-size: 7em;
+    }
+
+    #key_enter {
+        background-color: #FFFAEA;
+
+        margin: 0 auto;
+        display: block;
+        
+        padding-top: 2vh;
+        padding-bottom: 2vh;
+        
+        width: 50vw;
+        
+        border: none;
+        border-radius: .125em;
+
+        font-family: 'Josefin Sans', sans-serif;
+        font-size: 2em;
+    }
+    
+    #join_room_button {
+        font-size: 3em;
+        margin: 0 auto;
+        border: none;
+        background-color: #FFFAEA;
+        padding-top: 1.7vh;
+        padding-right: 3vw;
+        padding-left: 3vw;
+        padding-bottom: 1.7vh;
+        display: block;
+        width: 40vw;
+        border-style: none;
+        text-decoration: none;
+        font-family: 'Josefin Sans', sans-serif;
+        border-radius: 0.125em;
+    }
+}

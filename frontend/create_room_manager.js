@@ -45,13 +45,8 @@
 
     document.getElementById("back").addEventListener("click", () => {
 
-        window.location = "index.html"
+        window.location = "index.html";
     });
-
-    document.getElementById("matchclock").addEventListener('focus', () => {
-        
-    });
-
 
     function playSpyfall1() {
         if (document.getElementById("spyfall1label").innerHTML == "Spyfall 1 Locations") {
@@ -72,5 +67,6 @@
     function getMatchMinutes() {
         return (document.getElementById("matchclock").value);
     }
+
 })();
 
