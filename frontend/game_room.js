@@ -9,14 +9,14 @@
     document.getElementById("title").innerHTML = "Room Key: " + room_key;
 
     socket_link.on('connect', () => {
-        
+
         socket_link.emit('load_players', {
             key: room_key,
             source_socket: socket_link.id,
             name: name
         });
 
-        document.getElementById("game_start").addEventListener("click",() => {
+        document.getElementById("game_start").addEventListener("click", () => {
             socket_link.emit('start_game', {
                 key: room_key
             });
@@ -40,7 +40,7 @@
     });
 
     socket_link.on('start_game', data => {
-        if(data.role == "spy") {
+        if (data.role == "spy") {
             document.getElementById("spy_message").innerHTML = "You are the <strong>Spy</strong>!<br>";
             document.getElementById("location").innerHTML = "Try to guess the location from the other players' questions!";
         } else {
@@ -48,31 +48,36 @@
             document.getElementById("location").innerHTML = "You are at the <strong>" + JSON.stringify(data.location).replace("\"", "").replace("\"", "") + "</strong><br>";
             document.getElementById("role").innerHTML = "Your role is a " + JSON.parse(data.role).replace("\"", "").replace("\"", "");
         }
-        
+
         //---TIMER ON PAGE---// - MOVE SOMEWHERE
-        let total_time = data.time; 
-        let total_seconds = (total_time*60); 
+        let time = data.time;
+        let total_minutes = time-1;
+        let total_seconds = (time * 60);
+        let counter = 0;
         let time_cell = document.getElementById("time");
-       
-        time_cell.innerHTML = total_time;
-        
-        /*let time_cell = document.getElementById("time");
-        var d = new Date();
-        for(i=0; i<total_seconds; i++)
-        {
-            var n = d.getSeconds();
-            if(n > n-1)
+
+        clock = setInterval(function(){ 
+            counter++;
+            if(counter%61 == 0)
             {
-                total_seconds--; 
+                total_minutes--;
+                counter=0;
             }
-            let total_minutes = round(total_seconds/60);
-            time_cell.innerHTML = total_minutes + ":" + total_seconds + " remaining";
-            if(total_seconds==0)
-            {
+            total_seconds--;
+            if(60 - counter <= 9) {
+                time_cell.innerHTML = total_minutes + ":0" + (60 - counter);
+            }
+            else{
+                time_cell.innerHTML = total_minutes + ":" + (60 - counter);
+            }
+           
+            if (total_seconds == 0) {
+                clearInterval(clock);
                 window.location = "game_end.html";
-                //place holder - put code to reset room in here
+                //place holder code - put code to reset room in here
             }
-        }*/
+        }, 250);    
+    
     });
 
     socket_link.on('no_key_error', () => {
