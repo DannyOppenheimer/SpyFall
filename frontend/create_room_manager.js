@@ -5,7 +5,7 @@
     var name = location.search.substring(1);
     socket_link.on('connect', () => {
         document.getElementById("create_room_button").addEventListener("click", () => {
-            alert("hey");
+
             let match_minutes = getMatchMinutes();
             socket_link.emit('create', {
                 source_socket: socket_link.id,
@@ -24,7 +24,7 @@
         window.location = "game_room.html?" + back_data.key + "&" + name;
     });
 
-    // Add a listener to allow crossing off of both thSTOPe SpyFall 1 and 2 Locations
+    // Add a listener to allow crossing off of both SpyFall 1 and 2 Locations
     document.getElementById("spyfall1label").addEventListener("click", () => {
         if (document.getElementById("spyfall1label").innerHTML == "Spyfall 1 Locations") {
             document.getElementById("spyfall1label").innerHTML = "<del>Spyfall 1 Locations</del>";
@@ -48,6 +48,9 @@
         window.location = "index.html"
     });
 
+    document.getElementById("matchclock").addEventListener('focus', () => {
+        
+    });
 
 
     function playSpyfall1() {
