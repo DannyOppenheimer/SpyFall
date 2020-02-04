@@ -91,10 +91,6 @@ body {
     For any screen that has a maximum screen width of 720px, display the mobile website
 */
 @media only screen and (max-device-width: 720px) {
-    body {
-        background-color: #0d0d0d;
-        color: white;
-    }
     
     #title {
         margin-top: 3vh;
@@ -112,38 +108,6 @@ body {
         font-family: 'Josefin Sans', sans-serif;   
     }
     
-    #players {
-        text-align: center;
-        margin: 0 auto;
-    
-        border-style: hidden;
-        border-color:  #FFFAEA;
-        
-        user-select: none;
-        font-family: 'Josefin Sans', sans-serif;
-    }
-    
-    #players td {
-        padding-top: 2vh;
-        padding-bottom: 2vh;
-        padding-left: 3vw;
-        padding-right: 3vw;
-    
-        border-radius: 10%;
-        border-width: 0.1vw;
-        border-style: solid;
-    
-        transition: background-color .1s linear;
-    }
-    
-    #players td:hover {
-        background-color: darkslategrey;
-    }
-    
-    .container {
-        display: flex;
-        justify-content: center;
-      }
     
     .button {
         border:0.1em solid #FFFFFF;
@@ -161,11 +125,6 @@ body {
         width: 21vw;
         font-family: 'Josefin Sans', sans-serif;
         transition: all 0.2s;
-    }
-    
-    .button:hover {
-        background-color:#FFFFFF;
-        color:#000000;
     }
     
     .subtitle #spy_message {

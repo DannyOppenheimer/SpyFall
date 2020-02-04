@@ -111,9 +111,6 @@ br {
     For any screen that has a maximum screen width of 720px, display the mobile website
 */
 @media only screen and (max-device-width: 720px) {
-    body {
-        background-color: #0d0d0d;
-    }
     
     .title {
         color: white;
@@ -142,19 +139,10 @@ br {
         font-size: 2em;
     }
     
-    #spyfall1label:hover {
-        color: gray;
-    }
-    
     #spyfall2label {
         transition: color .1s linear;
         user-select: none;
         font-size: 2em;
-    }
-    
-    
-    #spyfall2label:hover {
-        color: gray;
     }
     
     #matchime_label {
@@ -179,18 +167,6 @@ br {
         font-size: 1.2em;
         
     }
-
-    input::-webkit-inner-spin-button {
-        -webkit-appearance: none;
-        margin: 0;
-    }
-    
-    br {
-        content: "";
-        margin: 2em;
-        display: block;
-        font-size: 24%;
-    }
     
     #create_room_button {
         font-size: 3em;
@@ -210,21 +186,22 @@ br {
     }
     
     #back {
-        position: sticky;
+        margin: 0 auto;
         top: 0.25vh;
-        margin-left: 0.15vw;
-        margin-top: 0.5vh;
+        position: relative;
+        margin-top: 2vh;
         border: none;
         background-color: #FFFAEA;
-        padding-top: 1.25vh;
-        padding-right: 1vw;
-        padding-left: 1vw;
-        padding-bottom: 1.25vh;
+        padding-top: 2vh;
+        padding-right: 2vw;
+        padding-left: 2vw;
+        padding-bottom: 2vh;
         display: block;
-        width: 7vw;
+        width: 90vw;
         border-style: none;
         text-decoration: none;
         font-family: 'Josefin Sans', sans-serif;
-        border-radius: .25em; 
+        border-radius: .25em;
+        font-size: 2em; 
     }
 }

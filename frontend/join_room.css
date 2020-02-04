@@ -108,4 +108,24 @@ body {
         font-family: 'Josefin Sans', sans-serif;
         border-radius: 0.125em;
     }
+
+    #back {
+        margin: 0 auto;
+        top: 0.25vh;
+        position: relative;
+        margin-top: 2vh;
+        border: none;
+        background-color: #FFFAEA;
+        padding-top: 2vh;
+        padding-right: 2vw;
+        padding-left: 2vw;
+        padding-bottom: 2vh;
+        display: block;
+        width: 90vw;
+        border-style: none;
+        text-decoration: none;
+        font-family: 'Josefin Sans', sans-serif;
+        border-radius: .25em;
+        font-size: 2em; 
+    }
 }
