@@ -52,10 +52,12 @@
         }
         
         //---TIMER ON PAGE---// - MOVE SOMEWHERE
-        let time = back_data.time; 
+        var total_time = back_data.time;
+
         let total_seconds = (time*60); 
         let time_cell = document.getElementById("time");
-        time_cell.innerHTML = back_data.time;
+       
+        time_cell.innerHTML = total_time;
         
         /*let time_cell = document.getElementById("time");
         var d = new Date();
