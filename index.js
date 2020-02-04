@@ -2,12 +2,13 @@ const express = require('express');
 const socket = require('socket.io');
 const neatCsv = require('neat-csv');
 const fs = require('fs');
+
 var rooms = {};
 var spyfall1data = [];
 var spyfall2data = [];
 var custom1data = [];
 
-// creaet the express app
+// create the express app
 var app = express();
 
 // using neat csv, load in our csv data into arrays with objects in them
@@ -67,7 +68,6 @@ io.on('connection', socket => {
         rooms[key_to_send]["prefs"].matchtime = data.time;
         rooms[key_to_send]["prefs"].owner = data.name;
 
-        console.log(JSON.stringify(rooms[key_to_send]["prefs"].matchtime));
         // emit the created key back to the frontend
         io.to(data.source_socket).emit('create', {
             back_data: data,
@@ -133,7 +133,7 @@ io.on('connection', socket => {
 
         // choose a location from the list at random
         let chosen_location = temp_locations[Math.floor(Math.random() * temp_locations.length)];
-        /*
+
         // add the corresponding roles for the locations that are in play.
         for(i=0; i < temp_locations.length; i++) {
             if(spyfall1data[i].location == chosen_location) {
@@ -146,25 +146,10 @@ io.on('connection', socket => {
                 temp_roles.push((spyfall1data[i].role7));
                 break;
             }
-            if(spyfall2data[i].location == chosen_location) {
-                temp_roles.push((spyfall2data[i].role1));
-                temp_roles.push((spyfall2data[i].role2));
-                temp_roles.push((spyfall2data[i].role3));
-                temp_roles.push((spyfall2data[i].role4));
-                temp_roles.push((spyfall2data[i].role5));
-                temp_roles.push((spyfall2data[i].role6));
-                temp_roles.push((spyfall2data[i].role7));
-                temp_roles.push((spyfall2data[i].role8));
-                temp_roles.push((spyfall2data[i].role9));
-                
-                break;
-            }
-        }*/
+        }
 
         // choose a spy from the numer of sockets connected to the room
         let spy_num = Math.floor(Math.random() *  Object.keys(rooms[data.key]["players"]).length);
-
-        console.log(chosen_location);
         // here we will emit back to the sockets the information
         for(i=0; i < Object.keys(rooms[data.key]["players"]).length; i++) {
 
@@ -176,7 +161,7 @@ io.on('connection', socket => {
             } else { // else, choose a random role from the chosen location
                 io.to((Object.keys(rooms[data.key]["players"]))[i]).emit('start_game', {
                     location: chosen_location,
-                    role: "placeholder"
+                    role: temp_roles[Math.floor(Math.random() * temp_roles.length)]
                 });
             }
             
@@ -200,6 +185,11 @@ io.on('connection', socket => {
                 }
             }
         }
+        for(let key in rooms) {
+            if(objectIsEmpty(rooms[key]["players"])) {
+                
+            }
+        }
     });
 });
 
@@ -220,4 +210,12 @@ function keyCreator() {
         rooms[temp_key] = {};
         return temp_key;
     }
+}
+
+function objectIsEmpty(obj) {
+    for(var prop in obj) {
+        if(obj.hasOwnProperty(prop))
+            return false;
+    }
+    return true;
 }
