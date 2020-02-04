@@ -46,12 +46,12 @@
         } else {
             document.getElementById("spy_message").innerHTML = "You are <strong>not</strong> the Spy!<br>";
             document.getElementById("location").innerHTML = "You are at the <strong>" + JSON.stringify(data.location).replace("\"", "").replace("\"", "") + "</strong><br>";
-            document.getElementById("role").innerHTML = "Your role is a " + JSON.stringify(data.role).replace("\"", "").replace("\"", "");
+            document.getElementById("role").innerHTML = "Your role is a " + JSON.parse(data.role).replace("\"", "").replace("\"", "");
         }
         
         //---TIMER ON PAGE---// - MOVE SOMEWHERE
-        let time = data.time; 
-        let total_seconds = (time*60); 
+        let total_time = data.time; 
+        let total_seconds = (total_time*60); 
         let time_cell = document.getElementById("time");
        
         time_cell.innerHTML = total_time;

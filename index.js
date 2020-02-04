@@ -57,7 +57,6 @@ io.on('connection', socket => {
     
     // When a user clicks the 'create' button on the website, this will run
     socket.on('create', data => {
-        console.log("3334");
         let key_to_send = keyCreator();
 
         // set up the preferences of the room based on the create room screen choices
@@ -71,8 +70,7 @@ io.on('connection', socket => {
         // emit the created key back to the frontend
         io.to(data.source_socket).emit('create', {
             back_data: data,
-            key: key_to_send,
-            time: JSON.stringify(rooms[key_to_send]["prefs"].matchtime)
+            key: key_to_send
         });
     });
 
@@ -137,7 +135,7 @@ io.on('connection', socket => {
 
         // add the corresponding roles for the locations that are in play.
         for(i=0; i < temp_locations.length; i++) {
-            if(spyfall1data[i].location == chosen_location) {
+            /*if(spyfall1data[i].location == chosen_location) {
                 temp_roles.push((spyfall1data[i].role1));
                 temp_roles.push((spyfall1data[i].role2));
                 temp_roles.push((spyfall1data[i].role3));
@@ -146,7 +144,7 @@ io.on('connection', socket => {
                 temp_roles.push((spyfall1data[i].role6));
                 temp_roles.push((spyfall1data[i].role7));
                 break;
-            }
+            }*/
         }
 
         // choose a spy from the numer of sockets connected to the room
@@ -157,12 +155,14 @@ io.on('connection', socket => {
             if(i == spy_num) { // if the current for loop is on the person chosen to be the spy
                 io.to((Object.keys(rooms[data.key]["players"]))[i]).emit('start_game', {
                     location: chosen_location,
-                    role: "spy"
+                    role: "spy",
+                    time: JSON.parse(rooms[data.key]["prefs"].matchtime)
                 });
             } else { // else, choose a random role from the chosen location
                 io.to((Object.keys(rooms[data.key]["players"]))[i]).emit('start_game', {
                     location: chosen_location,
-                    role: temp_roles[Math.floor(Math.random() * temp_roles.length)]
+                    role: temp_roles[Math.floor(Math.random() * temp_roles.length)],
+                    time: JSON.parse(rooms[data.key]["prefs"].matchtime)
                 });
             }
             
@@ -188,7 +188,7 @@ io.on('connection', socket => {
         }
         for(let key in rooms) {
             if(objectIsEmpty(rooms[key]["players"])) {
-                
+
             }
         }
     });
