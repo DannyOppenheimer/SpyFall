@@ -49,34 +49,24 @@
             document.getElementById("role").innerHTML = "Your role is a " + JSON.parse(data.role).replace("\"", "").replace("\"", "");
         }
 
-        //---TIMER ON PAGE---// - MOVE SOMEWHERE
+        // code for a count down time with a total minutes that the user specified when creating the room
         let time = data.time;
-        let total_minutes = time-1;
-        let total_seconds = (time * 60);
-        let counter = 0;
         let time_cell = document.getElementById("time");
 
-        clock = setInterval(function(){ 
-            counter++;
-            if(counter%61 == 0)
-            {
-                total_minutes--;
-                counter=0;
+        let countDown = (time * 60);
+        let clock = setInterval(() => {
+            countDown--;
+            let min = Math.floor(countDown % 3600 / 60);
+            let sec = Math.floor(countDown % 3600 % 60);
+          
+            if(min + sec <= 0) {
+                clearInterval(0);
+                window.location = "index.html";
             }
-            total_seconds--;
-            if(60 - counter <= 9) {
-                time_cell.innerHTML = total_minutes + ":0" + (60 - counter);
-            }
-            else{
-                time_cell.innerHTML = total_minutes + ":" + (60 - counter);
-            }
-           
-            if (total_seconds == 0) {
-                clearInterval(clock);
-                window.location = "game_end.html";
-                //place holder code - put code to reset room in here
-            }
-        }, 250);    
+            //Format : hh:mm:ss
+            time_cell.innerHTML = (min=min < 10 ? "0" + min:min) + ":" + (sec = sec <10 ? "0" + sec:sec);
+          
+          }, 1000);
     
     });
 
