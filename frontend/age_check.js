@@ -6,4 +6,6 @@ if (window.localStorage) {
 	} else {
 		document.getElementById('overlay').style.display = 'block';
 	}
+} else {
+	document.getElementById('overlay').style.display = 'block';
 }

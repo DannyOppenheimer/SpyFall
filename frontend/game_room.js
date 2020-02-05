@@ -31,31 +31,13 @@
 
 		document.getElementById('game_stop').addEventListener('click', () => {
 			socket_link.emit('game_stop', room_key);
-
-			document.getElementById('time').innerHTML = 'Waiting for game to start...';
-			document.getElementById('location').innerHTML = '';
-			document.getElementById('spy_message').innerHTML = '';
-			document.getElementById('location').innerHTML = '';
-			document.getElementById('role').innerHTML = '';
-
-			document.getElementById('csv1').style.display = 'none';
-			document.getElementById('csv2').style.display = 'none';
-			document.getElementById('location_reference').style.display = 'none';
-			document.getElementById('hide_bar').style.display = 'none';
 		});
 	});
 
 	socket_link.on('load_players', data => {
-		document.getElementById('players').innerHTML = '';
-
+		document.getElementById('table_div').innerHTML = '';
 		for (i = 0; i < data.player_names.length; i++) {
-			let table = document.getElementById('players');
-
-			let current_row = table.insertRow(i);
-
-			let player_cell = current_row.insertCell(0);
-
-			player_cell.innerHTML = data.player_names[i].name;
+			document.getElementById('table_div').innerHTML += '<div>' + data.player_names[i].name + '</div>';
 		}
 	});
 
@@ -67,7 +49,7 @@
 
 		if (data.role == 'spy') {
 			document.getElementById('spy_message').innerHTML = 'You are the <strong>Spy</strong>!<br>';
-			document.getElementById('location').innerHTML = "Try to guess the location from the other players' questions!";
+			document.getElementById('location').innerHTML = 'Guess the location based on the questions asked.';
 		} else {
 			document.getElementById('spy_message').innerHTML = 'You are <strong>not</strong> the Spy!<br>';
 			document.getElementById('location').innerHTML = 'You are at the <strong>' + data.location;
@@ -80,6 +62,19 @@
 		// code for a count down time with a total minutes that the user specified when creating the room
 
 		//let clock = setInterval(() => {}, 1000);
+	});
+
+	socket_link.on('game_stop', data => {
+		document.getElementById('time').innerHTML = 'Waiting for game to start...';
+		document.getElementById('location').innerHTML = '';
+		document.getElementById('spy_message').innerHTML = '';
+		document.getElementById('location').innerHTML = '';
+		document.getElementById('role').innerHTML = '';
+
+		document.getElementById('csv1').style.display = 'none';
+		document.getElementById('csv2').style.display = 'none';
+		document.getElementById('location_reference').style.display = 'none';
+		document.getElementById('hide_bar').style.display = 'none';
 	});
 
 	socket_link.on('no_key_error', () => {
@@ -98,7 +93,7 @@
 		let sec = Math.floor((countDown % 3600) % 60);
 
 		if (min + sec <= 0) {
-			window.location = '/';
+			socket_link.emit('game_stop', room_key);
 			clock.clearInterval(0);
 		}
 

@@ -27,32 +27,33 @@ body {
 	font-family: 'Josefin Sans', sans-serif;
 }
 
-#players {
+#table_div {
 	text-align: center;
 	margin: 0 auto;
 
-	border-style: hidden;
 	border-color: #fffaea;
 
 	user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+
 	font-family: 'Josefin Sans', sans-serif;
 }
 
-#players td {
+#table_div div {
+	display: inline-block;
+	border-width: 10vh;
+	border: solid white;
+	border-radius: 0.8vh;
+
+	margin: 1vh 0 0 2%;
+	flex-grow: 1;
+
 	padding-top: 2vh;
 	padding-bottom: 2vh;
-	padding-left: 3vw;
-	padding-right: 3vw;
 
-	border-radius: 10%;
-	border-width: 0.1vw;
-	border-style: solid;
-
-	transition: background-color 0.1s linear;
-}
-
-#players td:hover {
-	background-color: darkslategrey;
+	width: calc(100% * (1 / 4) - 10px - 1px);
+	vertical-align: middle;
 }
 
 .container {

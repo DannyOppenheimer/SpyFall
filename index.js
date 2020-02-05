@@ -99,14 +99,16 @@ io.on('connection', socket => {
 				io.to(Object.keys(rooms[data.key]['players'])[i]).emit('start_game', {
 					location: chosen_location,
 					role: 'spy',
-					time: rooms[data.key]['prefs'].matchtime
+					time: rooms[data.key]['prefs'].matchtime,
+					locations: temp_locations
 				});
 			} else {
 				// else, choose a random role from the chosen location
 				io.to(Object.keys(rooms[data.key]['players'])[i]).emit('start_game', {
 					location: chosen_location,
 					role: temp_roles[Math.floor(Math.random() * temp_roles.length)],
-					time: rooms[data.key]['prefs'].matchtime
+					time: rooms[data.key]['prefs'].matchtime,
+					locations: temp_locations
 				});
 			}
 		}
@@ -114,6 +116,10 @@ io.on('connection', socket => {
 
 	socket.on('game_stop', data => {
 		rooms[data]['prefs'].gamestate = 'down';
+
+		for (i = 0; i < Object.keys(rooms[data]['players']).length; i++) {
+			io.to(Object.keys(rooms[data]['players'])[i]).emit('game_stop', data);
+		}
 	});
 
 	// ran whenever a socket disconnects
