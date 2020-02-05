@@ -19,7 +19,8 @@
 </head>
 
 <body>
-
+    <script src="age_check.js" defer></script>
+    
     <div class="container">
         <input id="button_rules" type="button" value="How To Play" onclick="rules()">
 
@@ -27,6 +28,11 @@
             <h1>Spyfall</h1>
         </div>
 
+        <div id="overlay">
+            <p>By clicking continue, you agree that you are of at least 13 years of age.</p>
+            <input type="button" value="Continue" class="button" onclick="ageVerification()">
+        </div>
+        <br>
         <div class="buttons">
             <input type="input" id="name_field" placeholder="Please enter your name.">
             <br>

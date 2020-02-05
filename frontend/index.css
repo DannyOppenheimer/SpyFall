@@ -1,270 +1,310 @@
 body {
-    background-color: #0d0d0d;
+	background-color: #0d0d0d;
 }
 
 .title {
-    color: white;
+	color: white;
 
-    margin-top: 22vh;
+	margin-top: 22vh;
 
-    text-align: center;
-    font-size: 3.125em;
-    font-family: 'Josefin Sans', sans-serif;   
-   
+	text-align: center;
+	font-size: 3.125em;
+	font-family: 'Josefin Sans', sans-serif;
+}
+
+#overlay {
+	position: fixed;
+	display: block;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: rgba(255, 250, 234, 0.9);
+	z-index: 2;
+	cursor: pointer;
+
+	text-align: center;
+	font-family: 'Josefin Sans', sans-serif;
+	font-size: 2em;
+}
+
+#overlay p {
+	margin-left: 15%;
+	margin-right: 15%;
+
+	width: 70%;
+}
+
+#overlay input {
+	background-color: #fffaea;
+
+	margin: 0 auto;
+	display: block;
+
+	padding-top: 1.5vh;
+	padding-bottom: 1.5vh;
+	padding-left: 1.5vw;
+	padding-right: 1.5vw;
+
+	border: none;
+	border-style: none;
+	border-radius: 0.125em;
+
+	width: 10.5vw;
+	min-width: 175px;
+
+	text-decoration: none;
+	text-align: center;
+	font-size: 1em;
+	font-family: 'Josefin Sans', sans-serif;
 }
 
 #name_field {
-    background-color: #FFFAEA;
+	background-color: #fffaea;
 
-    margin: 0 auto;
+	margin: 0 auto;
 
-    padding-top: 1.25vh;
-    padding-left: 0.55vw;
-    padding-bottom: 1.25vh;
+	padding-top: 1.25vh;
+	padding-left: 0.55vw;
+	padding-bottom: 1.25vh;
 
-    border: none;
-    display: block;
-    border-radius: .125em;
+	border: none;
+	display: block;
+	border-radius: 0.125em;
 
-    width: 10.5vw;
-    min-width: 215px;
-    
+	width: 10.5vw;
+	min-width: 215px;
 
-    font-family: 'Josefin Sans', sans-serif;
-    font-size: 1em;
+	font-family: 'Josefin Sans', sans-serif;
+	font-size: 1em;
 }
 
 #create_room_button {
-    background-color: #FFFAEA;
+	background-color: #fffaea;
 
-    margin: 0 auto;
-    display: block;
+	margin: 0 auto;
+	display: block;
 
-    padding-top: 1.5vh;
-    padding-bottom: 1.5vh;
-    padding-left: 1.5vw;
-    padding-right: 1.5vw;
+	padding-top: 1.5vh;
+	padding-bottom: 1.5vh;
+	padding-left: 1.5vw;
+	padding-right: 1.5vw;
 
-    border: none;
-    border-style: none;
-    border-radius: 0.125em;
-    
-    width: 10.5vw;
-    min-width: 125px;
-   
-    text-decoration: none;
-    text-align: center;
-    font-size: 1em;
-    font-family: 'Josefin Sans', sans-serif;
-    
+	border: none;
+	border-style: none;
+	border-radius: 0.125em;
+
+	width: 10.5vw;
+	min-width: 125px;
+
+	text-decoration: none;
+	text-align: center;
+	font-size: 1em;
+	font-family: 'Josefin Sans', sans-serif;
 }
 
 #join_room_button {
-    background-color: #FFFAEA;
+	background-color: #fffaea;
 
-    margin: 0 auto;
-    display: block;
-    
-    
-    padding-top: 1.5vh;
-    padding-bottom: 1.5vh;
-    padding-left: 1.5vw;
-    padding-right: 1.5vw;
+	margin: 0 auto;
+	display: block;
 
-    
-    width: 10.5vw;
-    min-width: 125px;
+	padding-top: 1.5vh;
+	padding-bottom: 1.5vh;
+	padding-left: 1.5vw;
+	padding-right: 1.5vw;
 
-    border: none;
-    border-style: none;
-    border-radius: 0.125em;
+	width: 10.5vw;
+	min-width: 125px;
 
-    text-decoration: none;
-    text-align: center;
-    font-size: 1em;
-    font-family: 'Josefin Sans', sans-serif;
-    
+	border: none;
+	border-style: none;
+	border-radius: 0.125em;
+
+	text-decoration: none;
+	text-align: center;
+	font-size: 1em;
+	font-family: 'Josefin Sans', sans-serif;
 }
 
 #button_rules {
-    background-color: #FFFAEA;
+	background-color: #fffaea;
 
-    margin-left: 0.15vw;
-    margin-top: 0.5vh;
-    display: block;
-    
-    padding-top: 1.25vh;
-    padding-bottom: 1.25vh;
-    
-    width: 7vw;
-    min-width: 125px;
-    border-radius: 0.125em;
+	margin-left: 0.15vw;
+	margin-top: 0.5vh;
+	display: block;
 
-    border: none;
-    border-style: none;
+	padding-top: 1.25vh;
+	padding-bottom: 1.25vh;
 
-    text-decoration: none;
-    font-family: 'Josefin Sans', sans-serif;
-    font-size: 1em; 
-    
+	width: 7vw;
+	min-width: 125px;
+	border-radius: 0.125em;
+
+	border: none;
+	border-style: none;
+
+	text-decoration: none;
+	font-family: 'Josefin Sans', sans-serif;
+	font-size: 1em;
 }
 
-
 .footer {
-    color: #FFFAEA;
-    text-align: center;
-    width: 99%;
-    position: absolute;
-    bottom: 0;
-    font-family: 'Josefin Sans', sans-serif;
-    overflow-x:hidden;
+	color: #fffaea;
+	text-align: center;
+	width: 99%;
+	position: absolute;
+	bottom: 0;
+	font-family: 'Josefin Sans', sans-serif;
+	overflow-x: hidden;
 }
 
 #git_link {
-    text-decoration: none;
-    color: #FFFAEA;
+	text-decoration: none;
+	color: #fffaea;
 }
 
 #git_image {
-    height: 2vh;
-    width: 2vh;
+	height: 2vh;
+	width: 2vh;
 }
 
 table {
-    margin: auto;
-    bottom: 0;
-    font-size: 0.8em;
+	margin: auto;
+	bottom: 0;
+	font-size: 0.8em;
 }
 
 /*
     For any screen that has a maximum screen width of 720px, display the mobile website
 */
 @media only screen and (max-device-width: 480px) {
+	body {
+		background-color: #0d0d0d;
+	}
 
-    body {
-        background-color: #0d0d0d;
-    }
-    
-    .title {
-        color: white;
+	.title {
+		color: white;
 
-        margin-top: 22vh;
+		margin-top: 22vh;
 
-        text-align: center;
-        font-family: 'Josefin Sans', sans-serif;
-        font-size: 3em;
+		text-align: center;
+		font-family: 'Josefin Sans', sans-serif;
+		font-size: 3em;
+	}
 
-    }
-    
-    #name_field {
-        background-color: #FFFAEA;
+	#name_field {
+		background-color: #fffaea;
 
-        margin: 0 auto;
-        display: block;
-        
-        padding-top: 2vh;
-        padding-right: 4vw;
-        padding-left: 2vw;
-        padding-bottom: 2vh;
-        
-        width: 75vw;
+		margin: 0 auto;
+		display: block;
 
-        border: none;
-        border-radius: .125em;
+		padding-top: 2vh;
+		padding-right: 4vw;
+		padding-left: 2vw;
+		padding-bottom: 2vh;
 
-        font-family: 'Josefin Sans', sans-serif;
-        font-size: 1.5em;
+		width: 75vw;
 
-    }
-    
-    #create_room_button {
-        background-color: #FFFAEA;
+		border: none;
+		border-radius: 0.125em;
 
-        margin: 0 auto;
-        display: block;
-        
-        padding-top: 2vh;
-        padding-bottom: 2vh;
-        
-        width: 70vw;
+		font-family: 'Josefin Sans', sans-serif;
+		font-size: 1.5em;
+	}
 
-        border: none;
-        border-style: none;
-        border-radius: 0.125em;
+	#create_room_button {
+		background-color: #fffaea;
 
-        text-decoration: none;
-        text-align: center;
-        font-family: 'Josefin Sans', sans-serif;
-        font-size: 2em;
+		margin: 0 auto;
+		display: block;
 
-    }
-    
-    #join_room_button {
-        background-color: #FFFAEA;
+		padding-top: 2vh;
+		padding-bottom: 2vh;
 
-        margin: 0 auto;
-        display: block;
-        
-        padding-top: 2vh;
-        padding-bottom: 2vh;
-        
-        width: 70vw;
+		width: 70vw;
 
-        border: none;
-        border-style: none;
-        border-radius: 0.125em;
+		border: none;
+		border-style: none;
+		border-radius: 0.125em;
 
-        text-decoration: none;
-        text-align: center;
-        font-family: 'Josefin Sans', sans-serif;
-        font-size: 2em;
+		text-decoration: none;
+		text-align: center;
+		font-family: 'Josefin Sans', sans-serif;
+		font-size: 2em;
+	}
 
-    }
-    
-    #button_rules {
-        background-color: #FFFAEA;
+	#join_room_button {
+		background-color: #fffaea;
 
-        margin-left: 0.15vw;
-        margin-top: 0.5vh;
-        display: block;
+		margin: 0 auto;
+		display: block;
 
-        padding-top: 2vh;
-        padding-bottom: 2vh;
-        
-        width: 30vw;
+		padding-top: 2vh;
+		padding-bottom: 2vh;
 
-        border: none;
-        border-style: none;
-        border-radius: .25em; 
+		width: 70vw;
 
-        text-decoration: none;
-        font-family: 'Josefin Sans', sans-serif;
-        font-size: 1em;
-    }
+		border: none;
+		border-style: none;
+		border-radius: 0.125em;
 
-    .footer {
-        color: #FFFAEA;
-        text-align: center;
-        width: 100%;
-        position: absolute;
-        bottom: 0;
-        font-family: 'Josefin Sans', sans-serif;
-    }
-    
-    #git_link {
-        text-decoration: none;
-        color: #FFFAEA;
-    }
-    
-    #git_image {
-        height: 2vh;
-        width: 2vh;
-    }
-    
-    table {
-        margin-left: auto; 
-        margin-right: auto;
-        bottom: 0;
-        font-size: .8em;
-    }
+		text-decoration: none;
+		text-align: center;
+		font-family: 'Josefin Sans', sans-serif;
+		font-size: 2em;
+	}
+
+	#button_rules {
+		background-color: #fffaea;
+
+		margin-left: 0.15vw;
+		margin-top: 0.5vh;
+		display: block;
+
+		padding-top: 2vh;
+		padding-bottom: 2vh;
+
+		width: 30vw;
+
+		border: none;
+		border-style: none;
+		border-radius: 0.25em;
+
+		text-decoration: none;
+		font-family: 'Josefin Sans', sans-serif;
+		font-size: 1em;
+	}
+
+	.footer {
+		color: #fffaea;
+		text-align: center;
+		width: 100%;
+		position: absolute;
+		bottom: 0;
+		font-family: 'Josefin Sans', sans-serif;
+	}
+
+	#git_link {
+		text-decoration: none;
+		color: #fffaea;
+	}
+
+	#git_image {
+		height: 2vh;
+		width: 2vh;
+	}
+
+	table {
+		margin-left: auto;
+		margin-right: auto;
+		bottom: 0;
+		font-size: 0.8em;
+	}
+
+	#overlay input {
+		width: 42vw;
+	}
 }

@@ -110,11 +110,11 @@ br {
 	.title {
 		color: white;
 
-		margin-top: 8vh;
+		margin-top: 7vh;
 
 		text-align: center;
 		font-family: 'Josefin Sans', sans-serif;
-		font-size: 3em;
+		font-size: 2.5em;
 	}
 
 	.checkbox {
@@ -187,7 +187,7 @@ br {
 		margin: 0 auto;
 		top: 0.25vh;
 		position: relative;
-		margin-top: 2vh;
+		margin-top: 0.25vh;
 		border: none;
 		background-color: #fffaea;
 		padding-top: 1.5vh;
@@ -195,11 +195,11 @@ br {
 		padding-left: 1.5vw;
 		padding-bottom: 1.5vh;
 		display: block;
-		width: 80vw;
+		width: 70vw;
 		border-style: none;
 		text-decoration: none;
 		font-family: 'Josefin Sans', sans-serif;
-		border-radius: 0.25em;
-		font-size: 1.6em;
+		border-radius: 0.125em;
+		font-size: 1.2em;
 	}
 }
