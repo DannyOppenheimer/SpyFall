@@ -1,131 +1,137 @@
 body {
-    background-color: #0d0d0d;
+	background-color: #0d0d0d;
 }
 
 .title {
-    margin-top: 9vw;
-    text-align: center;
-    font-size: 3.125em;
-    color: white;
-    font-family: 'Josefin Sans', sans-serif;   
+	margin-top: 9vw;
+	text-align: center;
+	font-size: 3.125em;
+	color: white;
+	font-family: 'Josefin Sans', sans-serif;
 }
 
 #back {
-    position: sticky;
-    top: 0.25vh;
-    margin-left: 0.15vw;
-    margin-top: 0.5vh;
-    border: none;
-    background-color: #FFFAEA;
-    padding-top: 1.25vh;
-    padding-right: 1vw;
-    padding-left: 1vw;
-    padding-bottom: 1.25vh;
-    display: block;
-    width: 7vw;
-    border-style: none;
-    text-decoration: none;
-    font-family: 'Josefin Sans', sans-serif;
-    border-radius: .25em;
+	position: sticky;
+	top: 0.25vh;
+	margin-left: 0.15vw;
+	margin-top: 0.5vh;
+	border: none;
+	background-color: #fffaea;
+	padding-top: 1.25vh;
+	padding-right: 1vw;
+	padding-left: 1vw;
+	padding-bottom: 1.25vh;
+	display: block;
+	width: 7vw;
+	border-style: none;
+	text-decoration: none;
+	font-family: 'Josefin Sans', sans-serif;
+	border-radius: 0.25em;
 }
 
 #key_enter {
-    margin: 0 auto;
-    border: none;
-    background-color: #FFFAEA;
-    padding-top: 1.25vh;
-    padding-bottom: 1.25vh;
-    display: block;
-    width: 10.5vw;
-    border-radius: .125em;
-    font-family: 'Josefin Sans', sans-serif;
-    text-align: center;
+	margin: 0 auto;
+	border: none;
+	background-color: #fffaea;
+	padding-top: 1.25vh;
+	padding-bottom: 1.25vh;
+	display: block;
+	width: 10.5vw;
+	border-radius: 0.125em;
+	font-family: 'Josefin Sans', sans-serif;
+	text-align: center;
 }
 
 #join_room_button {
-    font-size: 1.25em;
-    margin: 0 auto;
-    border: none;
-    background-color: #FFFAEA;
-    padding-top: 1vh;
-    padding-right: 3vw;
-    padding-left: 3vw;
-    padding-bottom: 1vh;
-    display: block;
-    width: 15.5vw;
-    border-style: none;
-    text-decoration: none;
-    font-family: 'Josefin Sans', sans-serif;
-    border-radius: 0.125em;
+	font-size: 1.25em;
+	margin: 0 auto;
+	border: none;
+	background-color: #fffaea;
+	padding-top: 1vh;
+	padding-right: 3vw;
+	padding-left: 3vw;
+	padding-bottom: 1vh;
+	display: block;
+	width: 15.5vw;
+	border-style: none;
+	text-decoration: none;
+	font-family: 'Josefin Sans', sans-serif;
+	border-radius: 0.125em;
+}
+
+#no_key_err {
+	color: lightcoral;
+	font-family: 'Josefin Sans', sans-serif;
+	text-align: center;
 }
 
 @media only screen and (max-device-width: 480px) {
-    body {
-        background-color: #0d0d0d;
-    }
-    
-    .title {
-        color: white;
+	body {
+		background-color: #0d0d0d;
+	}
 
-        margin-top: 12vh;
+	.title {
+		color: white;
 
-        text-align: center;
-        font-family: 'Josefin Sans', sans-serif;
-        font-size: 7em;
-    }
+		margin-top: 12vh;
 
-    #key_enter {
-        background-color: #FFFAEA;
+		text-align: center;
+		font-family: 'Josefin Sans', sans-serif;
+		font-size: 3em;
+	}
 
-        margin: 0 auto;
-        display: block;
-        
-        padding-top: 2vh;
-        padding-bottom: 2vh;
-        
-        width: 50vw;
-        
-        border: none;
-        border-radius: .125em;
+	#key_enter {
+		background-color: #fffaea;
 
-        font-family: 'Josefin Sans', sans-serif;
-        font-size: 2em;
-    }
-    
-    #join_room_button {
-        font-size: 3em;
-        margin: 0 auto;
-        border: none;
-        background-color: #FFFAEA;
-        padding-top: 1.7vh;
-        padding-right: 3vw;
-        padding-left: 3vw;
-        padding-bottom: 1.7vh;
-        display: block;
-        width: 40vw;
-        border-style: none;
-        text-decoration: none;
-        font-family: 'Josefin Sans', sans-serif;
-        border-radius: 0.125em;
-    }
+		margin: 0 auto;
+		display: block;
 
-    #back {
-        margin: 0 auto;
-        top: 0.25vh;
-        position: relative;
-        margin-top: 2vh;
-        border: none;
-        background-color: #FFFAEA;
-        padding-top: 2vh;
-        padding-right: 2vw;
-        padding-left: 2vw;
-        padding-bottom: 2vh;
-        display: block;
-        width: 90vw;
-        border-style: none;
-        text-decoration: none;
-        font-family: 'Josefin Sans', sans-serif;
-        border-radius: .25em;
-        font-size: 2em; 
-    }
+		padding-top: 2vh;
+		padding-bottom: 2vh;
+
+		width: 75vw;
+
+		border: none;
+		border-radius: 0.125em;
+
+		font-family: 'Josefin Sans', sans-serif;
+		font-size: 1.5em;
+	}
+
+	#join_room_button {
+		font-size: 3em;
+		margin: 0 auto;
+		border: none;
+		background-color: #fffaea;
+		padding-top: 1.7vh;
+		padding-right: 3vw;
+		padding-left: 3vw;
+		padding-bottom: 1.7vh;
+		display: block;
+		width: 40vw;
+		border-style: none;
+		text-decoration: none;
+		font-family: 'Josefin Sans', sans-serif;
+		border-radius: 0.125em;
+	}
+
+	#back {
+		margin: 0 auto;
+		top: 0.25vh;
+		position: relative;
+		margin-top: 2vh;
+		border: none;
+		background-color: #fffaea;
+		padding-top: 2vh;
+		padding-right: 2vw;
+		padding-left: 2vw;
+		padding-bottom: 2vh;
+		display: block;
+		width: 90vw;
+		border-style: none;
+		text-decoration: none;
+		font-family: 'Josefin Sans', sans-serif;
+		border-radius: 0.25em;
+		font-size: 2em;
+	}
 }

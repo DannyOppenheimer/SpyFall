@@ -6,7 +6,15 @@
 	var room_key = page_info[0];
 	var name = page_info[1];
 
+	var time = 0;
+	var time_cell = document.getElementById('time');
+	var countDown = 0;
+
 	document.getElementById('title').innerHTML = 'Room Key: ' + room_key;
+	document.getElementById('csv1').style.display = 'none';
+	document.getElementById('csv2').style.display = 'none';
+	document.getElementById('location_reference').style.display = 'none';
+	document.getElementById('hide_bar').style.display = 'none';
 
 	socket_link.on('connect', () => {
 		socket_link.emit('load_players', {
@@ -20,68 +28,81 @@
 				key: room_key
 			});
 		});
+
+		document.getElementById('game_stop').addEventListener('click', () => {
+			socket_link.emit('game_stop', room_key);
+
+			document.getElementById('time').innerHTML = 'Waiting for game to start...';
+			document.getElementById('location').innerHTML = '';
+			document.getElementById('spy_message').innerHTML = '';
+			document.getElementById('location').innerHTML = '';
+			document.getElementById('role').innerHTML = '';
+
+			document.getElementById('csv1').style.display = 'none';
+			document.getElementById('csv2').style.display = 'none';
+			document.getElementById('location_reference').style.display = 'none';
+			document.getElementById('hide_bar').style.display = 'none';
+		});
 	});
 
 	socket_link.on('load_players', data => {
 		document.getElementById('players').innerHTML = '';
 
-		for (i = 0; i < data.player_names.length; i += 1) {
+		for (i = 0; i < data.player_names.length; i++) {
 			let table = document.getElementById('players');
 
 			let current_row = table.insertRow(i);
 
 			let player_cell = current_row.insertCell(0);
 
-			player_cell.innerHTML = JSON.stringify(data.player_names[i])
-				.replace('{"name":"', '')
-				.replace('"}', '');
+			player_cell.innerHTML = data.player_names[i].name;
 		}
 	});
 
 	socket_link.on('start_game', data => {
-		alert(data.role);
+		document.getElementById('csv1').style.display = 'block';
+		document.getElementById('csv2').style.display = 'block';
+		document.getElementById('location_reference').style.display = 'block';
+		document.getElementById('hide_bar').style.display = 'block';
+
 		if (data.role == 'spy') {
-			document.getElementById('spy_message').innerHTML =
-				'You are the <strong>Spy</strong>!<br>';
-			document.getElementById('location').innerHTML =
-				"Try to guess the location from the other players' questions!";
+			document.getElementById('spy_message').innerHTML = 'You are the <strong>Spy</strong>!<br>';
+			document.getElementById('location').innerHTML = "Try to guess the location from the other players' questions!";
 		} else {
-			document.getElementById('spy_message').innerHTML =
-				'You are <strong>not</strong> the Spy!<br>';
-			document.getElementById('location').innerHTML =
-				'You are at the <strong>' + data.location;
+			document.getElementById('spy_message').innerHTML = 'You are <strong>not</strong> the Spy!<br>';
+			document.getElementById('location').innerHTML = 'You are at the <strong>' + data.location;
 			('</strong><br>');
 			document.getElementById('role').innerHTML = 'Your role is a ' + data.role;
 		}
 
+		time = data.time;
+		countDown = time * 60;
 		// code for a count down time with a total minutes that the user specified when creating the room
-		let time = data.time;
-		let time_cell = document.getElementById('time');
 
-		let countDown = time * 60;
-		let clock = setInterval(() => {
-			countDown--;
-			let min = Math.floor((countDown % 3600) / 60);
-			let sec = Math.floor((countDown % 3600) % 60);
-
-			if (min + sec <= 0) {
-				clearInterval(0);
-				window.location = '/';
-			}
-			//Format : hh:mm:ss
-			time_cell.innerHTML =
-				(min = min < 10 ? '0' + min : min) +
-				':' +
-				(sec = sec < 10 ? '0' + sec : sec);
-		}, 1000);
+		//let clock = setInterval(() => {}, 1000);
 	});
 
 	socket_link.on('no_key_error', () => {
-		document.getElementById('title').innerHTML =
-			'The key ' + room_key + ' does not exist!';
+		document.getElementById('title').innerHTML = 'The room <strong>' + room_key + '</strong> does not exist!';
+
+		let game_div = document.getElementById('game_content');
+		while (game_div.firstChild) {
+			game_div.removeChild(game_div.firstChild);
+		}
 	});
 
-	document.getElementById('game_stop').addEventListener('click', () => {
-		window.location = '/';
+	socket_link.on('event_tick', data => {
+		if (data.room_up == 'down') return;
+
+		let min = Math.floor((countDown % 3600) / 60);
+		let sec = Math.floor((countDown % 3600) % 60);
+
+		if (min + sec <= 0) {
+			window.location = '/';
+			clock.clearInterval(0);
+		}
+
+		time_cell.innerHTML = (min = min < 10 ? '0' + min : min) + ':' + (sec = sec < 10 ? '0' + sec : sec);
+		countDown--;
 	});
 })();

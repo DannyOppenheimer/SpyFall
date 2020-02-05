@@ -1,214 +1,205 @@
 body {
-    background-color: #0d0d0d;
+	background-color: #0d0d0d;
 }
 
 .title {
-    margin-top: 5vh;
-    text-align: center;
-    font-size: 3em;
-    color: white;
-    font-family: 'Josefin Sans', sans-serif;   
+	margin-top: 5vh;
+	text-align: center;
+	font-size: 3em;
+	color: white;
+	font-family: 'Josefin Sans', sans-serif;
 }
 
 .checkbox {
-   color: white;
-   font-family: 'Josefin Sans', sans-serif;   
-   font-size: 3em;
-   margin: 0 auto;
-   width: 100%;
-   text-align: center;
-   
-   
+	color: white;
+	font-family: 'Josefin Sans', sans-serif;
+	font-size: 3em;
+	margin: 0 auto;
+	width: 100%;
+	text-align: center;
 }
 
 #spyfall1label {
-    transition: color .1s linear;
-    user-select: none;
+	transition: color 0.1s linear;
+	user-select: none;
 }
 
 #spyfall1label:hover {
-    color: gray;
+	color: gray;
 }
 
 #spyfall2label {
-    transition: color .1s linear;
-    user-select: none;
+	transition: color 0.1s linear;
+	user-select: none;
 }
-
 
 #spyfall2label:hover {
-    color: gray;
+	color: gray;
 }
 
-
 .checkbox #matchclock {
-    margin: 0 auto;
-    border: none;
-    background-color: #FFFAEA;
-    padding-top: 1.25vh;
-    padding-bottom: 1.25vh;
-    display: block;
-    width: 6vw;
-    border-radius: .125em;
-    font-family: 'Josefin Sans', sans-serif;
-    text-align: center;
+	margin: 0 auto;
+	border: none;
+	background-color: #fffaea;
+	padding-top: 1.25vh;
+	padding-bottom: 1.25vh;
+	display: block;
+	width: 6vw;
+	border-radius: 0.125em;
+	font-family: 'Josefin Sans', sans-serif;
+	text-align: center;
 }
 
 input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
+	-webkit-appearance: none;
+	margin: 0;
 }
 
 br {
-    content: "";
-    margin: 2em;
-    display: block;
-    font-size: 24%;
+	content: '';
+	margin: 2em;
+	display: block;
+	font-size: 24%;
 }
 
 #large_break {
-    line-height: 50vh;
+	line-height: 50vh;
 }
 
 #create_room_button {
-    font-size: 1.25em;
-    margin: auto;
-    position: relative;
-    border: none;
-    background-color: #FFFAEA;
-    padding-top: 1vh;
-    padding-right: 3vw;
-    padding-left: 3vw;
-    padding-bottom: 1vh;
-    display: block;
-    width: 15.5vw;
-    border-style: none;
-    text-decoration: none;
-    font-family: 'Josefin Sans', sans-serif;
-    border-radius: 0.125em;
+	font-size: 1.25em;
+	margin: auto;
+	position: relative;
+	border: none;
+	background-color: #fffaea;
+	padding-top: 1vh;
+	padding-right: 3vw;
+	padding-left: 3vw;
+	padding-bottom: 1vh;
+	display: block;
+	width: 15.5vw;
+	border-style: none;
+	text-decoration: none;
+	font-family: 'Josefin Sans', sans-serif;
+	border-radius: 0.125em;
 }
 
 #back {
-    position: sticky;
-    top: 0.25vh;
-    margin-left: 0.15vw;
-    margin-top: 0.5vh;
-    border: none;
-    background-color: #FFFAEA;
-    padding-top: 1.25vh;
-    padding-right: 1vw;
-    padding-left: 1vw;
-    padding-bottom: 1.25vh;
-    display: block;
-    width: 7vw;
-    border-style: none;
-    text-decoration: none;
-    font-family: 'Josefin Sans', sans-serif;
-    border-radius: .25em; 
+	position: sticky;
+	top: 0.25vh;
+	margin-left: 0.15vw;
+	margin-top: 0.5vh;
+	border: none;
+	background-color: #fffaea;
+	padding-top: 1.25vh;
+	padding-right: 1vw;
+	padding-left: 1vw;
+	padding-bottom: 1.25vh;
+	display: block;
+	width: 7vw;
+	border-style: none;
+	text-decoration: none;
+	font-family: 'Josefin Sans', sans-serif;
+	border-radius: 0.25em;
 }
 
 /*
     For any screen that has a maximum screen width of 720px, display the mobile website
 */
 @media only screen and (max-device-width: 480px) {
-    
-    .title {
-        color: white;
+	.title {
+		color: white;
 
-        margin-top: 12vh;
+		margin-top: 8vh;
 
-        text-align: center;
-        font-family: 'Josefin Sans', sans-serif;
-        font-size: 7em;
+		text-align: center;
+		font-family: 'Josefin Sans', sans-serif;
+		font-size: 3em;
+	}
 
-    }
-    
-    .checkbox {
-       color: white;
-       font-family: 'Josefin Sans', sans-serif;   
-       font-size: 3em;
-       margin: 0 auto;
-       width: 100%;
-       text-align: center;
-       
-    }
-    
-    #spyfall1label {
-        user-select: none;
-        font-size: 2em;
-    }
-    
-    #spyfall2label {
-        user-select: none;
-        font-size: 2em;
-    }
-    
-    #spyfall1label:hover {
-        color: #FFFAEA;
-    }
+	.checkbox {
+		color: white;
+		font-family: 'Josefin Sans', sans-serif;
+		font-size: 3em;
+		margin: 0 auto;
+		width: 100%;
+		text-align: center;
+	}
 
-    #spyfall2label:hover {
-        color: #FFFAEA;
-    }
-    
+	#spyfall1label {
+		user-select: none;
+		font-size: 0.9em;
+	}
 
-    #matchime_label {
-        font-size: 2em;
-    }
-    
-    .checkbox #matchclock {
-        background-color: #FFFAEA;
+	#spyfall2label {
+		user-select: none;
+		font-size: 0.9em;
+	}
 
-        margin: 0 auto;
-        display: block;
-        
-        padding-top: 0.5vh;
-        padding-bottom: 0.5vh;
-        
-        width: 50vw;
-        
-        border: none;
-        border-radius: .05em;
+	#spyfall1label:hover {
+		color: #fffaea;
+	}
 
-        font-family: 'Josefin Sans', sans-serif;
-        font-size: 1.2em;
-        
-    }
-    
-    #create_room_button {
-        font-size: 3em;
-        margin: 0 auto;
-        border: none;
-        background-color: #FFFAEA;
-        padding-top: 1.7vh;
-        padding-right: 3vw;
-        padding-left: 3vw;
-        padding-bottom: 1.7vh;
-        display: block;
-        width: 40vw;
-        border-style: none;
-        text-decoration: none;
-        font-family: 'Josefin Sans', sans-serif;
-        border-radius: 0.125em;
-    }
-    
-    #back {
-        margin: 0 auto;
-        top: 0.25vh;
-        position: relative;
-        margin-top: 2vh;
-        border: none;
-        background-color: #FFFAEA;
-        padding-top: 2vh;
-        padding-right: 2vw;
-        padding-left: 2vw;
-        padding-bottom: 2vh;
-        display: block;
-        width: 90vw;
-        border-style: none;
-        text-decoration: none;
-        font-family: 'Josefin Sans', sans-serif;
-        border-radius: .25em;
-        font-size: 2em; 
-    }
+	#spyfall2label:hover {
+		color: #fffaea;
+	}
+
+	#matchime_label {
+		font-size: 0.9em;
+	}
+
+	.checkbox #matchclock {
+		background-color: #fffaea;
+
+		margin: 0 auto;
+		display: block;
+
+		padding-top: 0.5vh;
+		padding-bottom: 0.5vh;
+
+		width: 50vw;
+
+		border: none;
+		border-radius: 0.05em;
+
+		font-family: 'Josefin Sans', sans-serif;
+		font-size: 0.9em;
+	}
+
+	#create_room_button {
+		font-size: 2em;
+		margin: 0 auto;
+		border: none;
+		background-color: #fffaea;
+		padding-top: 1.7vh;
+		padding-right: 3vw;
+		padding-left: 3vw;
+		padding-bottom: 1.7vh;
+		display: block;
+		width: 40vw;
+		border-style: none;
+		text-decoration: none;
+		font-family: 'Josefin Sans', sans-serif;
+		border-radius: 0.125em;
+	}
+
+	#back {
+		margin: 0 auto;
+		top: 0.25vh;
+		position: relative;
+		margin-top: 2vh;
+		border: none;
+		background-color: #fffaea;
+		padding-top: 1.5vh;
+		padding-right: 1.5vw;
+		padding-left: 1.5vw;
+		padding-bottom: 1.5vh;
+		display: block;
+		width: 80vw;
+		border-style: none;
+		text-decoration: none;
+		font-family: 'Josefin Sans', sans-serif;
+		border-radius: 0.25em;
+		font-size: 1.6em;
+	}
 }

@@ -1,46 +1,44 @@
 <!DOCTYPE html>
 <html>
+	<head>
+		<meta charset="utf-8" lang="en" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<head>
-    <meta charset="utf-8" lang="en">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    
-    <title>SpyFall</title>
+		<title>SpyFall</title>
 
-    <link rel="icon" href="Spy.png" type="image/gif" sizes="16x16" alt="spy_icon">
-    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="game_room.css">
+		<link rel="icon" href="Spy.png" type="image/gif" sizes="16x16" alt="spy_icon" />
+		<link href="https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="game_room.css" />
 
-    <script src="/socket.io/socket.io.js"></script>
-</head>
+		<script src="/socket.io/socket.io.js"></script>
+	</head>
 
-<body>
-    
-    <script src="game_room.js" defer></script>
-    <div id="title">If you can read this your game is not working correctly.</div>
-    <br>
-    <div class="subtitle" id="time">Waiting for game to start...</div>
-    <div class="subtitle" id="spy_message">Waiting for game to start...</div>
-    <div class="subtitle" id="location"></div>
-    <div class="subtitle" id="role"></div>
+	<body>
+		<script src="game_room.js" defer></script>
+		<div id="title">If you can read this javascript is turned off in your browser.</div>
+		<div class="bar"></div>
+		<div id="game_content">
+			<div class="subtitle" id="time">Waiting for game to start...</div>
+			<div class="bar"></div>
+			<div class="subtitle" id="spy_message"></div>
+			<div class="subtitle" id="location"></div>
+			<div class="subtitle" id="role"></div>
+			<div class="bar" id="hide_bar"></div>
+			<div class="subtitle">
+				<table id="players"></table>
+			</div>
+			<div class="bar"></div>
+			<div class="subtitle">
+				<h1 id="location_reference">Location Reference:</h1>
+				<!-- <table id="locations" align="center" border="1"></table> -->
+				<p id="csv1">If you can read this your game is not working correctly.</p>
+				<p id="csv2">If you can read this your game is not working correctly.</p>
+			</div>
 
-    <div class="subtitle">
-        <table id="players"></table>
-    </div>
-
-    <div class="subtitle">
-        <h1>Location Reference:</h1>
-        <!-- <table id="locations" align="center" border="1"></table> -->
-        <p id=csv1>If you can read this your game is not working correctly.</p>
-        <p id=csv2>If you can read this your game is not working correctly.</p>
-    </div>
-
-    <div class="container">
-        <button class="button" id="game_start">Start Game</button>
-        <button class="button" id="game_stop">End Game</button>
-    </div>
-
-    
-</body>
-
+			<div class="container">
+				<button class="button" id="game_start">Start Game</button>
+				<button class="button" id="game_stop">End Game</button>
+			</div>
+		</div>
+	</body>
 </html>

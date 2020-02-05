@@ -1,81 +1,87 @@
 body {
-    background-color: #0d0d0d;
+	background-color: #0d0d0d;
 }
 
-
 #back {
-    position: sticky;
-    top: 0.25vh;
-    margin-left: 0.15vw;
-    margin-top: 0.5vh;
-    border: none;
-    background-color: #FFFAEA;
-    padding-top: 1.25vh;
-    padding-right: 1vw;
-    padding-left: 1vw;
-    padding-bottom: 1.25vh;
-    display: block;
-    width: 8vw;
-    border-style: none;
-    text-decoration: none;
-    font-family: 'Josefin Sans', sans-serif;
-    border-radius: .25em; 
+	position: sticky;
+	top: 0.25vh;
+	margin-left: 0.15vw;
+	margin-top: 0.5vh;
+	border: none;
+	background-color: #fffaea;
+	padding-top: 1.25vh;
+	padding-right: 1vw;
+	padding-left: 1vw;
+	padding-bottom: 1.25vh;
+	display: block;
+	width: 8vw;
+	border-style: none;
+	text-decoration: none;
+	font-family: 'Josefin Sans', sans-serif;
+	border-radius: 0.25em;
 }
 
 #text {
-    margin-left: 2.5vw;
-    margin-right: 2.5vw;
-    margin-top: 9vh;
-    text-align: center;
-    font-size:1.4em;
-    color: white;
-    font-family: 'Josefin Sans', sans-serif;   
+	margin-left: 2.5vw;
+	margin-right: 2.5vw;
+	margin-top: 9vh;
+	text-align: center;
+	font-size: 1.4em;
+	color: white;
+	font-family: 'Josefin Sans', sans-serif;
 }
 
 #text h1 {
-    font-size: 5em;
-    text-decoration: none;
+	font-size: 5em;
+	text-decoration: none;
 }
 
-
-
 @media only screen and (max-device-width: 480px) {
-    body {
-        background-color: #0d0d0d;
-    }
-    
-    
-    #back {
-        margin: auto;
-        margin-top: 0.5vh;
-        position: relative;
-        border: none;
-        background-color: #FFFAEA;
-        padding-top: 2vh;
-        padding-right: 2vw;
-        padding-left: 2vw;
-        padding-bottom: 2vh;
-        display: block;
-        width: 90vw;
-        border-style: none;
-        text-decoration: none;
-        font-family: 'Josefin Sans', sans-serif;
-        border-radius: .25em;
-        font-size: 2em; 
-    }
-    
-    #text {
-        margin-left: 2.5vw;
-        margin-right: 2.5vw;
-        margin-top: 9vh;
-        text-align: center;
-        font-size:1.4em;
-        color: white;
-        font-family: 'Josefin Sans', sans-serif;   
-    }
-    
-    #text h1 {
-        font-size: 5em;
-        text-decoration: none;
-    }
+	body {
+		background-color: #0d0d0d;
+	}
+
+	#text .title {
+		color: white;
+
+		margin-top: 10vh;
+
+		text-align: center;
+		font-size: 3em;
+		font-family: 'Josefin Sans', sans-serif;
+	}
+
+	#back {
+		margin: auto;
+		margin-top: 0.5vh;
+		position: relative;
+		border: none;
+		background-color: #fffaea;
+		padding-top: 2vh;
+		padding-right: 2vw;
+		padding-left: 2vw;
+		padding-bottom: 2vh;
+		display: block;
+		width: 90vw;
+		border-style: none;
+		text-decoration: none;
+		font-family: 'Josefin Sans', sans-serif;
+		border-radius: 0.25em;
+		font-size: 2em;
+	}
+
+	#text {
+		margin-left: 2.5vw;
+		margin-right: 2.5vw;
+		margin-top: 9vh;
+		text-align: center;
+		font-size: 1.4em;
+		color: white;
+		font-family: 'Josefin Sans', sans-serif;
+	}
+
+	#text h1 {
+		font-size: 5em;
+		text-decoration: none;
+	}
 }

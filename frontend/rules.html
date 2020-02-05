@@ -1,47 +1,67 @@
 <!DOCTYPE html>
 <html>
+	<head>
+		<meta charset="utf-8" lang="en" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<head>
-    <meta charset="utf-8" lang="en">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    
-    <title>SpyFall</title>
-    <link rel="icon" href="Spy.png" type="image/gif" sizes="16x16" alt="spy_icon">
+		<title>SpyFall</title>
+		<link
+			rel="icon"
+			href="Spy.png"
+			type="image/gif"
+			sizes="16x16"
+			alt="spy_icon"
+		/>
 
-    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="rules.css">
-    <script src="/socket.io/socket.io.js"></script>
-    <script src="rules.js"></script>
-</head>
+		<link
+			href="https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap"
+			rel="stylesheet"
+		/>
+		<link rel="stylesheet" type="text/css" href="rules.css" />
+		<script src="/socket.io/socket.io.js"></script>
+		<script src="rules.js"></script>
+	</head>
 
-<body>
-    <input id="back" type="button" value="Back" onclick="backToMain()">
-    <div id="text">
-        <h1>Instructions</h1>
-        <p>Spyfall, a group-style game created in 2016, is fairly simple.</p>
-        <p><strong>Main Idea:</strong></p>
-        <p>When the round begins, a single location will be randomly selected. All the Players
-            will be assigned the same location, but will have different roles. One player knows neither the location
-            nor the roles assigned to other Players. This player is the spy, and his goal is to find out the location.
-            If the spy finds out the location, then
-            the spy wins, and if the Players figure out who the spy is, the Players win. This is achieved by asking
-            other Players questions. The Players should
-            ask questions that they think will reveal the spy, and the spy should ask questions that they think will
-            reveal the location.
-        </p>
-        <br>
-        <p><strong>Instructions</strong></p>
-        <p>1: One player will create a room, the others will join with the provided key.</p>
-        <p>2: One player will click "Start Game." You now can see your roles and location.</p>
-        <p>3: Ask questions in the specified time period. The spy can guess the location at anytime. Once you get asked
-            a question, it is your turn to ask another player.</p>
-        <p>4: After the time limit ends, and the spy hasn't revealed themselves to guess yet, the players may vote on
-            who they think the spy is</p>
-        <p>5: If the players vote correctly, they win, otherwise the spy wins.</p>
-        <br>
-        <p><strong>Have Fun!</strong></p>
-    </div>
-    <br>
-</body>
-
+	<body>
+		<input id="back" type="button" value="Back" onclick="backToMain()" />
+		<div id="text">
+			<h1 class="title">Instructions</h1>
+			<p>Spyfall, a group-style game created in 2016, is fairly simple.</p>
+			<p><strong>Main Idea:</strong></p>
+			<p>
+				When the round begins, a single location will be randomly selected. All
+				the Players will be assigned the same location, but will have different
+				roles. One player knows neither the location nor the roles assigned to
+				other Players. This player is the spy, and his goal is to find out the
+				location. If the spy finds out the location, then the spy wins, and if
+				the Players figure out who the spy is, the Players win. This is achieved
+				by asking other Players questions. The Players should ask questions that
+				they think will reveal the spy, and the spy should ask questions that
+				they think will reveal the location.
+			</p>
+			<br />
+			<p><strong>Instructions</strong></p>
+			<p>
+				1: One player will create a room, the others will join with the provided
+				key.
+			</p>
+			<p>
+				2: One player will click "Start Game." You now can see your roles and
+				location.
+			</p>
+			<p>
+				3: Ask questions in the specified time period. The spy can guess the
+				location at anytime. Once you get asked a question, it is your turn to
+				ask another player.
+			</p>
+			<p>
+				4: After the time limit ends, and the spy hasn't revealed themselves to
+				guess yet, the players may vote on who they think the spy is
+			</p>
+			<p>5: If the players vote correctly, they win, otherwise the spy wins.</p>
+			<br />
+			<p><strong>Have Fun!</strong></p>
+		</div>
+		<br />
+	</body>
 </html>
