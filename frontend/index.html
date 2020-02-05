@@ -4,19 +4,22 @@
 <head>
     <meta charset="utf-8" lang="en">
     <meta name="description" content="Play SpyFall online, anytime. Uses SpyFall 1 and 2 Locations." />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>SpyFall</title>
 
     <link rel="icon" href="Spy.png" type="image/gif" sizes="16x16" alt="spy_icon">
     <link href="https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="index.css">
+    <link rel="stylesheet" type="text/css" href="global_css.css">
 
     <script src="/socket.io/socket.io.js"></script>
     <script src="index_button_handler.js"></script>
 
 </head>
 
-<body scroll>
+<body>
+
     <div class="container">
         <input id="button_rules" type="button" value="How To Play" onclick="rules()">
 
@@ -33,12 +36,9 @@
         </div>
     </div>
     <div class="footer">
-        <table >
-            <td>By clicking on either of the buttons "Create Room" or "Join Room," you agree that you are of at least 13 years of age - </td>
-            <td>Source code:</td>
-            <td><a href="https://github.com/DannyOppenheimer/SpyFall" id="git_link" target="_blank"><img id="git_image" src="git_image.png" alt="Github Gogo"></a></td>
-        </table>
+        <label>Source code: <a href="https://github.com/DannyOppenheimer/SpyFall" id="git_link" target="_blank"><img id="git_image" src="git_image.png" alt="Github Gogo"></label>
     </div>
 
 </body>
+
 </html>

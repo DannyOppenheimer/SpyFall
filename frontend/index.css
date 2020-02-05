@@ -42,8 +42,8 @@ body {
 
     padding-top: 1.5vh;
     padding-bottom: 1.5vh;
-    padding-left: 1vw;
-    padding-right: 1vw;
+    padding-left: 1.5vw;
+    padding-right: 1.5vw;
 
     border: none;
     border-style: none;
@@ -68,8 +68,8 @@ body {
     
     padding-top: 1.5vh;
     padding-bottom: 1.5vh;
-    padding-left: 1vw;
-    padding-right: 1vw;
+    padding-left: 1.5vw;
+    padding-right: 1.5vw;
 
     
     width: 10.5vw;
@@ -152,7 +152,7 @@ table {
 
         text-align: center;
         font-family: 'Josefin Sans', sans-serif;
-        font-size: 7em;
+        font-size: 3em;
 
     }
     
@@ -173,7 +173,7 @@ table {
         border-radius: .125em;
 
         font-family: 'Josefin Sans', sans-serif;
-        font-size: 3em;
+        font-size: 1.5em;
 
     }
     
@@ -195,7 +195,7 @@ table {
         text-decoration: none;
         text-align: center;
         font-family: 'Josefin Sans', sans-serif;
-        font-size: 3em;
+        font-size: 2em;
 
     }
     
@@ -217,7 +217,7 @@ table {
         text-decoration: none;
         text-align: center;
         font-family: 'Josefin Sans', sans-serif;
-        font-size: 3em;
+        font-size: 2em;
 
     }
     
@@ -239,7 +239,7 @@ table {
 
         text-decoration: none;
         font-family: 'Josefin Sans', sans-serif;
-        font-size: 2em;
+        font-size: 1em;
     }
 
     .footer {

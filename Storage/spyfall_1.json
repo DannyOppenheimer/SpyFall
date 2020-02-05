@@ -1,0 +1,263 @@
+{
+    "airplane": {
+      "role1": "first class passenger",
+      "role2": "air marshal",
+      "role3": "mechanic",
+      "role4": "air hostess",
+      "role5": "copilot",
+      "role6": "captain",
+      "role7": "economy class passenger"
+    },
+    "bank": {
+      "role1": "armored car driver",
+      "role2": "manager",
+      "role3": "consultant",
+      "role4": "robber",
+      "role5": "security guard",
+      "role6": "teller",
+      "role7": "customer"
+    },
+    "beach": {
+      "role1": "beach waitress",
+      "role2": "kite surfer",
+      "role3": "lifeguard",
+      "role4": "thief",
+      "role5": "beach photographer",
+      "role6": "ice cream truck driver",
+      "role7": "beach goer"
+    },
+    "broadway theatre": {
+      "role1": "coat check",
+      "role2": "cue card prompter",
+      "role3": "ticket office cashier",
+      "role4": "teatre visitor",
+      "role5": "director",
+      "role6": "actor",
+      "role7": "crewman"
+    },
+    "cathedral": {
+      "role1": "priest",
+      "role2": "beggar",
+      "role3": "sinner",
+      "role4": "tourist",
+      "role5": "sponsor",
+      "role6": "chorister",
+      "role7": "parishioner"
+    },
+    "circus": {
+      "role1": "acrobat",
+      "role2": "animal trainer",
+      "role3": "magician",
+      "role4": "fire eater",
+      "role5": "clown",
+      "role6": "juggler",
+      "role7": "visitor"
+    },
+    "corporate party": {
+      "role1": "entertainer",
+      "role2": "manager",
+      "role3": "unwanted guest",
+      "role4": "owner",
+      "role5": "secretary",
+      "role6": "delivery boy",
+      "role7": "accountant"
+    },
+    "crusader army": {
+      "role1": "monk",
+      "role2": "imprisoned saracen",
+      "role3": "servant",
+      "role4": "bishop",
+      "role5": "squire",
+      "role6": "archer",
+      "role7": "knight"
+    },
+    "casino": {
+      "role1": "bartender",
+      "role2": "head security guard",
+      "role3": "bouncer",
+      "role4": "manager",
+      "role5": "hustler",
+      "role6": "dealer",
+      "role7": "gambler"
+    },
+    "day spa": {
+      "role1": "stylist",
+      "role2": "masseuse",
+      "role3": "manicurist",
+      "role4": "makeup artist",
+      "role5": "dermatologist",
+      "role6": "beautician",
+      "role7": "customer"
+    },
+    "embassy": {
+      "role1": "security guard",
+      "role2": "secretary",
+      "role3": "ambassador",
+      "role4": "tourist",
+      "role5": "refugee",
+      "role6": "diplomat",
+      "role7": "government official"
+    },
+    "hospital": {
+      "role1": "nurse",
+      "role2": "doctor",
+      "role3": "anesthesiologist",
+      "role4": "intern",
+      "role5": "therapist",
+      "role6": "surgeon",
+      "role7": "patient"
+    },
+    "hotel": {
+      "role1": "doorman",
+      "role2": "security guard",
+      "role3": "manager",
+      "role4": "housekeeper",
+      "role5": "bartender",
+      "role6": "bellman",
+      "role7": "customer"
+    },
+    "military base": {
+      "role1": "deserter",
+      "role2": "colonel",
+      "role3": "medic",
+      "role4": "sniper",
+      "role5": "officer",
+      "role6": "tank engineer",
+      "role7": "soldier"
+    },
+    "movie studio": {
+      "role1": "stunt man",
+      "role2": "sound engineer",
+      "role3": "camera man",
+      "role4": "director",
+      "role5": "costume artist",
+      "role6": "producer",
+      "role7": "actor"
+    },
+    "ocean liner": {
+      "role1": "cook",
+      "role2": "captain",
+      "role3": "bartender",
+      "role4": "musician",
+      "role5": "waiter",
+      "role6": "mechanic",
+      "role7": "rich passenger"
+    },
+    "passenger train": {
+      "role1": "mechanic",
+      "role2": "border patrol",
+      "role3": "train attendant",
+      "role4": "restaurant chef",
+      "role5": "train driver",
+      "role6": "stoker",
+      "role7": "passenger"
+    },
+    "pirate ship": {
+      "role1": "cook",
+      "role2": "slave",
+      "role3": "cannoneer",
+      "role4": "tied up prisoner",
+      "role5": "cabin boy",
+      "role6": "brave captain",
+      "role7": "sailor"
+    },
+    "polar station": {
+      "role1": "medic",
+      "role2": "expedition leader",
+      "role3": "biologist",
+      "role4": "radioman",
+      "role5": "hydrologist",
+      "role6": "meteorologist",
+      "role7": "geologist"
+    },
+    "police station": {
+      "role1": "detective",
+      "role2": "lawyer",
+      "role3": "journalist",
+      "role4": "criminalist",
+      "role5": "archivist",
+      "role6": "criminal",
+      "role7": "patrol officer"
+    },
+    "restaurant": {
+      "role1": "musician",
+      "role2": "bouncer",
+      "role3": "hostess",
+      "role4": "head chef",
+      "role5": "food critic",
+      "role6": "waiter",
+      "role7": "customer"
+    },
+    "school": {
+      "role1": "gym teacher",
+      "role2": "principal",
+      "role3": "security guard",
+      "role4": "janitor",
+      "role5": "cafeteria lady",
+      "role6": "maintenance man",
+      "role7": "student"
+    },
+    "service station": {
+      "role1": "manager",
+      "role2": "tire specialist",
+      "role3": "biker",
+      "role4": "car owner",
+      "role5": "car wash operator",
+      "role6": "electrician",
+      "role7": "auto mechanic"
+    },
+    "space station": {
+      "role1": "engineer",
+      "role2": "alien",
+      "role3": "pilot",
+      "role4": "commander",
+      "role5": "scientist",
+      "role6": "doctor",
+      "role7": "space tourist"
+    },
+    "submarine": {
+      "role1": "cook",
+      "role2": "commander",
+      "role3": "sonar technician",
+      "role4": "electronics technician",
+      "role5": "radioman",
+      "role6": "navigator",
+      "role7": "sailor"
+    },
+    "supermarket": {
+      "role1": "cashier",
+      "role2": "butcher",
+      "role3": "janitor",
+      "role4": "security guard",
+      "role5": "food sample demonstrator",
+      "role6": "shelf stocker",
+      "role7": "customer"
+    },
+    "theater": {
+      "role1": "coat check lady",
+      "role2": "prompter",
+      "role3": "cashier",
+      "role4": "director",
+      "role5": "actor",
+      "role6": "crew man",
+      "role7": "audience member"
+    },
+    "university": {
+      "role1": "graduate student",
+      "role2": "professor",
+      "role3": "dean",
+      "role4": "psychologist",
+      "role5": "maintenance man",
+      "role6": "janitor",
+      "role7": "student"
+    },
+    "world war 2 squad": {
+      "role1": "resistance fighter",
+      "role2": "radioman",
+      "role3": "scout",
+      "role4": "medic",
+      "role5": "cook",
+      "role6": "prisoner",
+      "role7": "soldier"
+    }
+}

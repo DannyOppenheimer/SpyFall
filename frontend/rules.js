@@ -1,3 +1,3 @@
 function backToMain() {
-    window.location = "/";
+	window.location = '/';
 }

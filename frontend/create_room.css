@@ -134,17 +134,24 @@ br {
     }
     
     #spyfall1label {
-        transition: color .1s linear;
         user-select: none;
         font-size: 2em;
     }
     
     #spyfall2label {
-        transition: color .1s linear;
         user-select: none;
         font-size: 2em;
     }
     
+    #spyfall1label:hover {
+        color: #FFFAEA;
+    }
+
+    #spyfall2label:hover {
+        color: #FFFAEA;
+    }
+    
+
     #matchime_label {
         font-size: 2em;
     }
