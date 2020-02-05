@@ -1,7 +1,8 @@
 const express = require('express');
 const socket = require('socket.io');
 const fs = require('fs');
-const serveStatic = require('serve-static');
+const serve_static = require('serve-static');
+const cors = require('cors');
 
 var rooms = {};
 const json1 = JSON.parse(fs.readFileSync('./Storage/spyfall_1.json', 'utf8'));
@@ -10,12 +11,12 @@ const json2 = JSON.parse(fs.readFileSync('./Storage/spyfall_2.json', 'utf8'));
 var app = express();
 
 var server = app.listen(80, () => {
-	console.log('Listening to port 80');
+	console.log('App listening at on port 80');
 });
 
 // feeding our app the folder containing all of our frontend pages
 app.use(
-	serveStatic('frontend', {
+	serve_static('frontend', {
 		extensions: ['html']
 	})
 );
@@ -36,6 +37,7 @@ io.on('connection', socket => {
 		rooms[key_to_send]['prefs'].spy2on = data.spyfall2on;
 		rooms[key_to_send]['prefs'].matchtime = data.time;
 		rooms[key_to_send]['prefs'].owner = data.name;
+		rooms[key_to_send]['prefs'].gamestate = 'down';
 
 		// emit the created key back to the frontend
 		io.to(data.source_socket).emit('create', {
@@ -81,20 +83,16 @@ io.on('connection', socket => {
 	// when a user clicks "start game" this will get run
 	socket.on('start_game', data => {
 		// array to store the locations and roles that are in play
-		let temp_locations = getLocations(
-			JSON.parse(rooms[data.key]['prefs'].spy1on),
-			JSON.parse(rooms[data.key]['prefs'].spy2on)
-		);
+		let temp_locations = getLocations(JSON.parse(rooms[data.key]['prefs'].spy1on), JSON.parse(rooms[data.key]['prefs'].spy2on));
 
-		let chosen_location =
-			temp_locations[Math.floor(Math.random() * temp_locations.length)];
+		let chosen_location = temp_locations[Math.floor(Math.random() * temp_locations.length)];
 
 		let temp_roles = getRoles(chosen_location);
 
+		rooms[data.key]['prefs'].gamestate = 'up';
+
 		// choose a spy from the numer of sockets connected to the room
-		let spy_num = Math.floor(
-			Math.random() * Object.keys(rooms[data.key]['players']).length
-		);
+		let spy_num = Math.floor(Math.random() * Object.keys(rooms[data.key]['players']).length);
 		for (i = 0; i < Object.keys(rooms[data.key]['players']).length; i++) {
 			if (i == spy_num) {
 				// if the current for loop is on the person chosen to be the spy
@@ -112,6 +110,10 @@ io.on('connection', socket => {
 				});
 			}
 		}
+	});
+
+	socket.on('game_stop', data => {
+		rooms[data]['prefs'].gamestate = 'down';
 	});
 
 	// ran whenever a socket disconnects
@@ -139,34 +141,7 @@ io.on('connection', socket => {
 
 // Function to create a unique five letter key.
 function keyCreator() {
-	let alphabet = [
-		'a',
-		'b',
-		'c',
-		'd',
-		'e',
-		'f',
-		'g',
-		'h',
-		'i',
-		'j',
-		'k',
-		'l',
-		'm',
-		'n',
-		'o',
-		'p',
-		'q',
-		'r',
-		's',
-		't',
-		'u',
-		'v',
-		'w',
-		'x',
-		'y',
-		'z'
-	];
+	let alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
 
 	let temp_key =
 		alphabet[Math.floor(Math.random() * 25)] +
@@ -233,3 +208,33 @@ function getRoles(location) {
 
 	return [].concat.apply([], temp_array);
 }
+
+let uptime = 0;
+let last_sec = 0;
+
+// Get second precision down to a tenth of a second
+setInterval(() => {
+	var today = new Date();
+	/*
+			for dd/mm/yyy:
+			var dd = String(today.getDate()).padStart(2, '0');
+			var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+			var yyyy = today.getFullYear();
+			*/
+
+	let second = today.getSeconds();
+
+	if (last_sec != second) {
+		last_sec = second;
+		++uptime;
+		for (let key in rooms) {
+			for (i = 0; i < Object.keys(rooms[key]['players']).length; i++) {
+				io.to(Object.keys(rooms[key]['players'])[i]).emit('event_tick', {
+					uptime: uptime,
+					to_socket: Object.keys(rooms[key]['players'])[i],
+					room_up: rooms[key]['prefs'].gamestate
+				});
+			}
+		}
+	}
+}, 100);
