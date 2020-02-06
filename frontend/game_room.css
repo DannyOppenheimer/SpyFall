@@ -12,8 +12,7 @@ body {
 }
 
 .bar {
-	margin-left: 25%;
-	margin-right: 25%;
+	margin: auto;
 	height: 1vh;
 	width: 50%;
 	border-bottom: 0.4vh ridge #2a2a2a;
