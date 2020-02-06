@@ -1,38 +1,36 @@
 <!DOCTYPE html>
 <html>
+	<head>
+		<meta charset="utf-8" lang="en" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<head>
-        <meta charset="utf-8" lang="en">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        
-        <title>SpyFall</title>
-        <link rel="icon" href="Spy.png" type="image/gif" sizes="16x16" alt="spy_icon">
+		<title>SpyFall</title>
+		<link rel="icon" href="Spy.png" type="image/gif" sizes="16x16" alt="spy_icon" />
 
-        <link href="https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap" rel="stylesheet">
-        <link rel="stylesheet" type="text/css" href="create_room.css">
-        <script src="/socket.io/socket.io.js"></script>
-</head>
+		<link href="https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="create_room.css" />
+		<script src="/socket.io/socket.io.js"></script>
 
-<body>
+		<link rel=“canonical” href=“http://spyfall.groups.id/create_room.html”/>
+	</head>
 
-        <script src="create_room_manager.js" defer></script>
+	<body>
+		<script src="create_room_manager.js" defer></script>
 
-        <input id="back" type="button" value="Back" onclick="backToMain()">
-        <div class="title">
-                <h1>Create Room</h1>
-        </div>
+		<input id="back" type="button" value="Back" onclick="backToMain()" />
+		<div class="title">
+			<h1>Create Room</h1>
+		</div>
 
-        <div class="checkbox">
-                <label id="spyfall1label">Spyfall 1 Locations</label>
-                <br>
-                <label id="spyfall2label">Spyfall 2 Locations</label>
-                <br>
-                <label id="matchime_label">Matchtime Minutes: <input id="matchclock" type="number"></label>
-        </div>
+		<div class="checkbox">
+			<label id="spyfall1label">Spyfall 1 Locations</label>
+			<br />
+			<label id="spyfall2label">Spyfall 2 Locations</label>
+			<br />
+			<label id="matchime_label">Matchtime Minutes: <input id="matchclock" type="number"/></label>
+		</div>
 
-        <br>
-        <button id="create_room_button">Create</button>
-
-</body>
-
+		<br />
+		<button id="create_room_button">Create</button>
+	</body>
 </html>

@@ -2,7 +2,7 @@ const express = require('express');
 const socket = require('socket.io');
 const fs = require('fs');
 const serve_static = require('serve-static');
-const cors = require('cors');
+const greenlock = require('greenlock-express');
 
 var rooms = {};
 const json1 = JSON.parse(fs.readFileSync('./Storage/spyfall_1.json', 'utf8'));
