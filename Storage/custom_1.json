@@ -1,110 +1,119 @@
 {
-  "haunted house": {
-    "role1": "ghost actor",
-    "role2": "ticket cashier",
-    "role3": "scared attendee",
-    "role4": "room designer",
-    "role5": "security guard",
-    "role6": "costume designer",
-    "role7": "chainsaw actor"
-  },
-  "ski resort": {
-    "role1": "food court chef",
-    "role2": "lift ticket cashier",
-    "role3": "skiier",
-    "role4": "out of control snowboarder",
-    "role5": "ski patrol",
-    "role6": "concerned parent",
-    "role7": "mechanic"
-  },
-  "recording studio": {
-    "role1": "drummer",
-    "role2": "guitarist",
-    "role3": "sound board operator",
-    "role4": "visitor",
-    "role5": "security guard",
-    "role6": "mic man",
-    "role7": "singer"
-  },
-  "mall": {
-    "role1": "retail store cashier",
-    "role2": "mall cop",
-    "role3": "mechanic",
-    "role4": "janitor",
-    "role5": "shopper",
-    "role6": "rowdy teenager",
-    "role7": "greeter"
-  },
-  "country farm": {
-    "role1": "farmer",
-    "role2": "tractor driver",
-    "role3": "hayride driver",
-    "role4": "pumpkin seller",
-    "role5": "farm grandpa",
-    "role6": "livestock inspector",
-    "role7": "mechanic"
-  },
-  "medieval castle": {
-    "role1": "archer",
-    "role2": "cavalry",
-    "role3": "king",
-    "role4": "queen",
-    "role5": "peasant",
-    "role6": "knight",
-    "role7": "respected elder"
-  },
-  "horse stable": {
-    "role1": "feeder",
-    "role2": "jockey",
-    "role3": "horse whisperer",
-    "role4": "waste scooper",
-    "role5": "braider",
-    "role6": "visitor",
-    "role7": "trainer"
-  },
-  "public pool": {
-    "role1": "toddler",
-    "role2": "lifegaurd",
-    "role3": "snack cashier",
-    "role4": "sunbather",
-    "role5": "competitive swimmer",
-    "role6": "old man",
-    "role7": "ice-cream truck driver"
-  },
-  "back alleyway": {
-    "role1": "sketchy dealer",
-    "role2": "patrolling police",
-    "role3": "dumpster diver",
-    "role4": "concerned man on balcony",
-    "role5": "hooker",
-    "role6": "",
-    "role7": ""
-  },
-  "dojo": {
-    "role1": "sensai",
-    "role2": "kung fu master",
-    "role3": "black belt",
-    "role4": "youth lessons coach",
-    "role5": "student",
-    "role6": "parent",
-    "role7": "ninja"
-  },
-  "city park": {
-    "role1": "dog walker",
-    "role2": "old man with newspaper",
-    "role3": "jogger",
-    "role4": "picnicer",
-    "role5": "birdwatcher",
-    "role6": "construction worker",
-    "role7": "tree planter"
-  },
-  "warehouse": {
-    "role1": "safety inspector",
-    "role2": "strong man",
-    "role3": "forklift operator",
-    "role4": "truck driver",
-    "role5": "inventory specialist",
-    "role6": "manager",
-    "role7": "intern"
-  }
+	"haunted house": {
+		"role1": "ghost actor",
+		"role2": "ticket cashier",
+		"role3": "scared attendee",
+		"role4": "room designer",
+		"role5": "security guard",
+		"role6": "costume designer",
+		"role7": "chainsaw actor"
+	},
+	"ski resort": {
+		"role1": "food court chef",
+		"role2": "lift ticket cashier",
+		"role3": "skiier",
+		"role4": "out of control snowboarder",
+		"role5": "ski patrol",
+		"role6": "concerned parent",
+		"role7": "mechanic"
+	},
+	"recording studio": {
+		"role1": "drummer",
+		"role2": "guitarist",
+		"role3": "sound board operator",
+		"role4": "visitor",
+		"role5": "security guard",
+		"role6": "mic man",
+		"role7": "singer"
+	},
+	"mall": {
+		"role1": "retail store cashier",
+		"role2": "mall cop",
+		"role3": "mechanic",
+		"role4": "janitor",
+		"role5": "shopper",
+		"role6": "rowdy teenager",
+		"role7": "greeter"
+	},
+	"country farm": {
+		"role1": "farmer",
+		"role2": "tractor driver",
+		"role3": "hayride driver",
+		"role4": "pumpkin seller",
+		"role5": "farm grandpa",
+		"role6": "livestock inspector",
+		"role7": "mechanic"
+	},
+	"medieval castle": {
+		"role1": "archer",
+		"role2": "cavalry",
+		"role3": "king",
+		"role4": "queen",
+		"role5": "peasant",
+		"role6": "knight",
+		"role7": "respected elder"
+	},
+	"horse stable": {
+		"role1": "feeder",
+		"role2": "jockey",
+		"role3": "horse whisperer",
+		"role4": "waste scooper",
+		"role5": "braider",
+		"role6": "visitor",
+		"role7": "trainer"
+	},
+	"public pool": {
+		"role1": "toddler",
+		"role2": "lifegaurd",
+		"role3": "snack cashier",
+		"role4": "sunbather",
+		"role5": "competitive swimmer",
+		"role6": "old man",
+		"role7": "ice-cream truck driver"
+	},
+	"back alleyway": {
+		"role1": "sketchy dealer",
+		"role2": "chill police",
+		"role3": "dumpster diver",
+		"role4": "concerned man on balcony",
+		"role5": "hooker",
+		"role6": "",
+		"role7": ""
+	},
+	"dojo": {
+		"role1": "sensai",
+		"role2": "kung fu master",
+		"role3": "black belt",
+		"role4": "youth lessons coach",
+		"role5": "student",
+		"role6": "parent",
+		"role7": "ninja"
+	},
+	"city park": {
+		"role1": "dog walker",
+		"role2": "old man with newspaper",
+		"role3": "jogger",
+		"role4": "picnicer",
+		"role5": "birdwatcher",
+		"role6": "construction worker",
+		"role7": "tree planter"
+	},
+	"warehouse": {
+		"role1": "safety inspector",
+		"role2": "strong man",
+		"role3": "forklift operator",
+		"role4": "truck driver",
+		"role5": "inventory specialist",
+		"role6": "manager",
+		"role7": "intern"
+	},
+	"frat house": {
+		"role1": "hazer",
+		"role2": "the chad",
+		"role3": "frat leader",
+		"role4": "freshmam",
+		"role5": "policeman",
+		"role6": "5th year",
+		"role7": "visiting highschool girl"
+	}
 }

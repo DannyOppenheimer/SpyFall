@@ -3,6 +3,7 @@ const socket = require('socket.io');
 const fs = require('fs');
 const serve_static = require('serve-static');
 const greenlock = require('greenlock-express');
+const helmet = require('helmet');
 
 var rooms = {};
 const json1 = JSON.parse(fs.readFileSync('./Storage/spyfall_1.json', 'utf8'));
@@ -20,6 +21,7 @@ app.use(
 		extensions: ['html']
 	})
 );
+app.use(helmet());
 
 var io = socket(server);
 

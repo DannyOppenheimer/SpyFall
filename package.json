@@ -1,33 +1,34 @@
 {
-  "name": "spyfall",
-  "version": "1.0.0",
-  "description": "A website for the game spyfall",
-  "main": "index.js",
-  "dependencies": {
-    "bufferutil": "^4.0.1",
-    "express": "^4.17.1",
-    "fs": "0.0.1-security",
-    "greenlock-express": "^4.0.3",
-    "node": "^13.7.0",
-    "serve-static": "^1.14.1",
-    "socket.io": "^2.3.0",
-    "utf-8-validate": "^5.0.2"
-  },
-  "devDependencies": {},
-  "scripts": {
-    "start": "node index.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/DannyOppenheimer/SpyFall.git"
-  },
-  "author": "Danny O.",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/DannyOppenheimer/SpyFall/issues"
-  },
-  "homepage": "https://github.com/DannyOppenheimer/SpyFall#readme",
-  "keywords": [
-    "spyfall"
-  ]
+	"name": "spyfall",
+	"version": "1.0.0",
+	"description": "A website for the game spyfall",
+	"main": "index.js",
+	"dependencies": {
+		"bufferutil": "^4.0.1",
+		"express": "^4.17.1",
+		"fs": "0.0.1-security",
+		"greenlock-express": "^4.0.3",
+		"helmet": "^3.21.2",
+		"node": "^13.7.0",
+		"serve-static": "^1.14.1",
+		"socket.io": "^2.3.0",
+		"utf-8-validate": "^5.0.2"
+	},
+	"devDependencies": {},
+	"scripts": {
+		"start": "node index.js"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/DannyOppenheimer/SpyFall.git"
+	},
+	"author": "Danny O.",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/DannyOppenheimer/SpyFall/issues"
+	},
+	"homepage": "https://github.com/DannyOppenheimer/SpyFall#readme",
+	"keywords": [
+		"spyfall"
+	]
 }
