@@ -13,11 +13,11 @@
 		<link rel="stylesheet" type="text/css" href="create_room.css" />
 		<script src="/socket.io/socket.io.js"></script>
 
-		<link rel=“canonical” href=“http://spyfall.groups.id/create_room.html”/>
+		<link rel=“canonical” href=“https://spyfall.groups.id/create_room”/>
 	</head>
 
 	<body>
-		<script src="create_room_manager.js" defer></script>
+		<script src="create_room.js" defer></script>
 
 		<input id="back" type="button" value="Back" onclick="backToMain()" />
 		<div class="title">
@@ -28,6 +28,10 @@
 			<label id="spyfall1label">Spyfall 1 Locations</label>
 			<br />
 			<label id="spyfall2label">Spyfall 2 Locations</label>
+			<div class="empty"></div>
+			<label id="custom1label"><del>Extra Spyfall Pack</del></label>
+			<br />
+			<div id="custom_addition"></div>
 			<br />
 			<label id="matchime_label">Matchtime Minutes: <input id="matchclock" type="number"/></label>
 		</div>

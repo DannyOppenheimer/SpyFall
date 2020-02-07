@@ -2,7 +2,9 @@ const express = require('express');
 const socket = require('socket.io');
 const fs = require('fs');
 const serve_static = require('serve-static');
-//const helmet = require('helmet');
+const helmet = require('helmet');
+const compression = require('compression');
+const https = require('https');
 
 var rooms = {};
 const json1 = JSON.parse(fs.readFileSync('./Storage/spyfall_1.json', 'utf8'));
@@ -10,10 +12,16 @@ const json2 = JSON.parse(fs.readFileSync('./Storage/spyfall_2.json', 'utf8'));
 
 var app = express();
 
-let port = 8080;
+var https_key_config = https.createServer(
+	{
+		key: fs.readFileSync('/etc/letsencrypt/live/spyfall.groups.id/privkey.pem'),
+		cert: fs.readFileSync('/etc/letsencrypt/live/spyfall.groups.id/fullchain.pem')
+	},
+	app
+);
 
-var server = app.listen(port, () => {
-	console.log('App listening at on port ' + port);
+var server = https_key_config.listen(443, () => {
+	console.log('spyfall.groups.id is listening on port 443!');
 });
 
 // feeding our app the folder containing all of our frontend pages
@@ -22,8 +30,8 @@ app.use(
 		extensions: ['html']
 	})
 );
-
-//app.use(helmet());
+app.use(helmet());
+app.use(compression());
 
 var io = socket(server);
 

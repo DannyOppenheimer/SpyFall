@@ -22,6 +22,7 @@ body {
 #spyfall1label {
 	transition: color 0.1s linear;
 	user-select: none;
+	font-size: 1em;
 }
 
 #spyfall1label:hover {
@@ -31,9 +32,20 @@ body {
 #spyfall2label {
 	transition: color 0.1s linear;
 	user-select: none;
+	font-size: 1em;
 }
 
 #spyfall2label:hover {
+	color: gray;
+}
+
+#custom1label {
+	transition: color 0.1s linear;
+	user-select: none;
+	font-size: 0.75em;
+}
+
+#custom1label:hover {
 	color: gray;
 }
 
