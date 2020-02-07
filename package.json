@@ -4,12 +4,13 @@
 	"description": "A website for the game spyfall",
 	"main": "index.js",
 	"dependencies": {
+		"@greenlock/manager": "^3.1.0",
+		"acme-http-01-standalone": "^3.0.5",
 		"bufferutil": "^4.0.1",
 		"express": "^4.17.1",
 		"fs": "0.0.1-security",
-		"greenlock-express": "^4.0.3",
+		"greenlock-store-fs": "^3.2.2",
 		"helmet": "^3.21.2",
-		"node": "^13.7.0",
 		"serve-static": "^1.14.1",
 		"socket.io": "^2.3.0",
 		"utf-8-validate": "^5.0.2"
