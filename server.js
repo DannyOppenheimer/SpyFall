@@ -3,7 +3,8 @@ const socket = require('socket.io');
 const fs = require('fs');
 const serve_static = require('serve-static');
 const helmet = require('helmet');
-const https = require('https')
+const compression = require('compression');
+const https = require('https');
 
 var rooms = {};
 const json1 = JSON.parse(fs.readFileSync('./Storage/spyfall_1.json', 'utf8'));
@@ -28,6 +29,7 @@ app.use(
 	})
 );
 app.use(helmet());
+app.use(compression());
 
 var io = socket(server);
 

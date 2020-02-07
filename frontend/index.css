@@ -156,19 +156,20 @@ body {
 	text-align: center;
 	width: 99%;
 	position: absolute;
-	bottom: 0;
+	bottom: 1vh;
 	font-family: 'Josefin Sans', sans-serif;
 	overflow-x: hidden;
-}
-
-#git_link {
-	text-decoration: none;
-	color: #fffaea;
+	font-size: 1em
 }
 
 #git_image {
 	height: 2vh;
 	width: 2vh;
+	vertical-align: middle;
+}
+
+#footer_text {
+	display:inline-block;
 }
 
 table {
@@ -201,10 +202,10 @@ table {
 		margin: 0 auto;
 		display: block;
 
-		padding-top: 2vh;
 		padding-right: 4vw;
 		padding-left: 2vw;
-		padding-bottom: 2vh;
+		padding-top: 4vw;
+		padding-bottom: 4vw;
 
 		width: 75vw;
 
@@ -221,8 +222,8 @@ table {
 		margin: 0 auto;
 		display: block;
 
-		padding-top: 2vh;
-		padding-bottom: 2vh;
+		padding-top: 4vw;
+		padding-bottom: 4vw;
 
 		width: 70vw;
 
@@ -242,8 +243,8 @@ table {
 		margin: 0 auto;
 		display: block;
 
-		padding-top: 2vh;
-		padding-bottom: 2vh;
+		padding-top: 4vw;
+		padding-bottom: 4vw;
 
 		width: 70vw;
 
@@ -264,8 +265,8 @@ table {
 		margin-top: 0.5vh;
 		display: block;
 
-		padding-top: 2vh;
-		padding-bottom: 2vh;
+		padding-top: 4vw;
+		padding-bottom: 4vw;
 
 		width: 30vw;
 
@@ -287,15 +288,6 @@ table {
 		font-family: 'Josefin Sans', sans-serif;
 	}
 
-	#git_link {
-		text-decoration: none;
-		color: #fffaea;
-	}
-
-	#git_image {
-		height: 2vh;
-		width: 2vh;
-	}
 
 	table {
 		margin-left: auto;
@@ -306,5 +298,26 @@ table {
 
 	#overlay input {
 		width: 42vw;
+	}
+
+
+	.footer {
+		all: none;
+		width: 10vw;
+		position: fixed;
+		margin-bottom: 3vw;
+		right: 1vw;
+	}
+
+	#footer_text {
+		display: none;
+		
+	}
+	#git_image {
+		all: none;
+		height: 5vw;
+		width: 5vw;
+		
+		
 	}
 }

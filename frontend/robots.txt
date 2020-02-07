@@ -1,16 +1,3 @@
-# Group 2
 User-agent: *
-Allow: /
-
-# Bad bots
-User-agent: rogerbot
-Disallow: /
-
-User-agent: BLEXBot
-Disallow: /
-
-User-agent: dotbot
-Disallow: /
-
-User-agent: MJ12bot
-Disallow: /
+Disallow:
+Sitemap: https://spyfall.groups.id/sitemap.xml
