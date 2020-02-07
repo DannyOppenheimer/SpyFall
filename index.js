@@ -2,8 +2,8 @@ const express = require('express');
 const socket = require('socket.io');
 const fs = require('fs');
 const serve_static = require('serve-static');
-const greenlock = require('greenlock-express');
 const helmet = require('helmet');
+const https = require('https')
 
 var rooms = {};
 const json1 = JSON.parse(fs.readFileSync('./Storage/spyfall_1.json', 'utf8'));
@@ -11,9 +11,15 @@ const json2 = JSON.parse(fs.readFileSync('./Storage/spyfall_2.json', 'utf8'));
 
 var app = express();
 
-var server = app.listen(80, () => {
-	console.log('App listening at on port 80');
-});
+var https_key_config = https.createServer({
+  key: fs.readFileSync('/etc/letsencrypt/live/spyfall.groups.id/privkey.pem'),
+  cert: fs.readFileSync('/etc/letsencrypt/live/spyfall.groups.id/fullchain.pem')
+}, app)
+
+var server = https_key_config.listen(443, () => {
+  console.log('spyfall.groups.id is listening on port 443!')
+})
+
 
 // feeding our app the folder containing all of our frontend pages
 app.use(
@@ -223,12 +229,6 @@ let last_sec = 0;
 // Get second precision down to a tenth of a second
 setInterval(() => {
 	var today = new Date();
-	/*
-			for dd/mm/yyy:
-			var dd = String(today.getDate()).padStart(2, '0');
-			var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-			var yyyy = today.getFullYear();
-			*/
 
 	let second = today.getSeconds();
 
@@ -246,3 +246,4 @@ setInterval(() => {
 		}
 	}
 }, 100);
+
