@@ -2,7 +2,7 @@
 	"name": "spyfall",
 	"version": "1.0.0",
 	"description": "A website for the game spyfall",
-	"main": "index.js",
+	"main": "server.js",
 	"dependencies": {
 		"bufferutil": "^4.0.1",
 		"compression": "^1.7.4",

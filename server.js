@@ -1,28 +1,31 @@
 const express = require('express');
-const socket = require('socket.io');
-const fs = require('fs');
-const serve_static = require('serve-static');
-const helmet = require('helmet');
-const compression = require('compression');
+const app = express();
 const https = require('https');
 
+const helmet = require('helmet');
+const serve_static = require('serve-static');
+const compression = require('compression');
+app.use(helmet());
+app.use(compression());
+
+const socket = require('socket.io');
+const fs = require('fs');
+
 var rooms = {};
+
 const json1 = JSON.parse(fs.readFileSync('./Storage/spyfall_1.json', 'utf8'));
 const json2 = JSON.parse(fs.readFileSync('./Storage/spyfall_2.json', 'utf8'));
+const json3 = JSON.parse(fs.readFileSync('./Storage/custom_1.json', 'utf-8'))
 
-var app = express();
+const https_key_config = https.createServer({
+  key: fs.readFileSync('/etc/letsencrypt/live/spyfall.groups.id/privkey.pem'),
+  cert: fs.readFileSync('/etc/letsencrypt/live/spyfall.groups.id/fullchain.pem')
+}, app);
 
-var https_key_config = https.createServer(
-	{
-		key: fs.readFileSync('/etc/letsencrypt/live/spyfall.groups.id/privkey.pem'),
-		cert: fs.readFileSync('/etc/letsencrypt/live/spyfall.groups.id/fullchain.pem')
-	},
-	app
-);
-
-var server = https_key_config.listen(443, () => {
-	console.log('spyfall.groups.id is listening on port 443!');
+const server = https_key_config.listen(443, () => {
+  console.log('spyfall.groups.id is listening on port 443!')
 });
+
 
 // feeding our app the folder containing all of our frontend pages
 app.use(
@@ -30,10 +33,9 @@ app.use(
 		extensions: ['html']
 	})
 );
-app.use(helmet());
-app.use(compression());
 
-var io = socket(server);
+
+const io = socket(server);
 
 io.on('connection', socket => {
 	console.log('New connection from socket ' + socket.id);
@@ -47,6 +49,7 @@ io.on('connection', socket => {
 		rooms[key_to_send]['players'] = {};
 		rooms[key_to_send]['prefs'].spy1on = data.spyfall1on;
 		rooms[key_to_send]['prefs'].spy2on = data.spyfall2on;
+		rooms[key_to_send]['prefs'].cus1on = data.custom1on;
 		rooms[key_to_send]['prefs'].matchtime = data.time;
 		rooms[key_to_send]['prefs'].owner = data.name;
 		rooms[key_to_send]['prefs'].gamestate = 'down';
@@ -95,7 +98,7 @@ io.on('connection', socket => {
 	// when a user clicks "start game" this will get run
 	socket.on('start_game', data => {
 		// array to store the locations and roles that are in play
-		let temp_locations = getLocations(JSON.parse(rooms[data.key]['prefs'].spy1on), JSON.parse(rooms[data.key]['prefs'].spy2on));
+		let temp_locations = getLocations(JSON.parse(rooms[data.key]['prefs'].spy1on), JSON.parse(rooms[data.key]['prefs'].spy2on), JSON.parse(rooms[data.key]['prefs'].cus1on));
 
 		let chosen_location = temp_locations[Math.floor(Math.random() * temp_locations.length)];
 
@@ -185,13 +188,16 @@ function objectIsEmpty(obj) {
 	return true;
 }
 
-function getLocations(spy1, spy2) {
+function getLocations(spy1, spy2, cus1) {
 	let temp_array = [];
 	if (spy1) {
 		temp_array.push(Object.keys(json1));
 	}
 	if (spy2) {
 		temp_array.push(Object.keys(json2));
+	}
+	if (cus1) {
+		temp_array.push(Object.keys(json3));
 	}
 	return [].concat.apply([], temp_array);
 }
@@ -250,3 +256,4 @@ setInterval(() => {
 		}
 	}
 }, 100);
+

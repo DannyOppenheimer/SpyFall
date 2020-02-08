@@ -3,3 +3,7 @@
     height: device-height;
     
 }
+
+*:focus {
+    outline: none;
+}

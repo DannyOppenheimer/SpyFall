@@ -1,2 +1,4 @@
 node_modules
 saved_for_later
+.well-known
+.well-known/acme-challenge

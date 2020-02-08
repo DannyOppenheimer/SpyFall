@@ -12,6 +12,7 @@
 				source_socket: socket_link.id,
 				spyfall1on: playSpyfall1(),
 				spyfall2on: playSpyfall2(),
+				custom1on: playCustom1(),
 				time: match_minutes,
 				name: name
 			});
@@ -40,6 +41,14 @@
 		}
 	});
 
+	document.getElementById('custom1label').addEventListener('click', () => {
+		if (document.getElementById('custom1label').innerHTML == 'Extra Spyfall Pack') {
+			document.getElementById('custom1label').innerHTML = '<del>Extra Spyfall Pack</del>';
+		} else {
+			document.getElementById('custom1label').innerHTML = 'Extra Spyfall Pack';
+		}
+	});
+
 	document.getElementById('back').addEventListener('click', () => {
 		window.location = '/';
 	});
@@ -54,6 +63,14 @@
 
 	function playSpyfall2() {
 		if (document.getElementById('spyfall2label').innerHTML == 'Spyfall 2 Locations') {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	function playCustom1() {
+		if (document.getElementById('custom1label').innerHTML == 'Extra Spyfall Pack') {
 			return true;
 		} else {
 			return false;

@@ -1,5 +1,5 @@
 body {
-	background-color: #0d0d0d;
+	background-color: #0d0d0d; 
 }
 
 .title {
@@ -23,7 +23,6 @@ body {
 	bottom: 0;
 	background-color: rgba(255, 250, 234, 0.9);
 	z-index: 2;
-	cursor: pointer;
 
 	text-align: center;
 	font-family: 'Josefin Sans', sans-serif;

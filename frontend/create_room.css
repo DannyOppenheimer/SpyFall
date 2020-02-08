@@ -64,6 +64,7 @@ body {
 
 input::-webkit-inner-spin-button {
 	-webkit-appearance: none;
+	-moz-appearance: textfield;
 	margin: 0;
 }
 
@@ -71,11 +72,11 @@ br {
 	content: '';
 	margin: 2em;
 	display: block;
-	font-size: 24%;
+	font-size: 0.2vw;
 }
 
 #large_break {
-	line-height: 50vh;
+	line-height: 0.4vw;
 }
 
 #create_room_button {

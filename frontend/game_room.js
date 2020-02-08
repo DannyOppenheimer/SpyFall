@@ -11,8 +11,7 @@
 	var countDown = 0;
 
 	document.getElementById('title').innerHTML = 'Room Key: ' + room_key;
-	document.getElementById('csv1').style.display = 'none';
-	document.getElementById('csv2').style.display = 'none';
+	document.getElementById('locations').style.display = 'none';
 	document.getElementById('location_reference').style.display = 'none';
 	document.getElementById('hide_bar').style.display = 'none';
 
@@ -37,13 +36,12 @@
 	socket_link.on('load_players', data => {
 		document.getElementById('table_div').innerHTML = '';
 		for (i = 0; i < data.player_names.length; i++) {
-			document.getElementById('table_div').innerHTML += '<div>' + data.player_names[i].name + '</div>';
+			document.getElementById('table_div').innerHTML += '<div>' + data.player_names[i].name.split('%20').join(' '); + '</div>';
 		}
 	});
 
 	socket_link.on('start_game', data => {
-		document.getElementById('csv1').style.display = 'block';
-		document.getElementById('csv2').style.display = 'block';
+		document.getElementById('locations').style.display = 'block';
 		document.getElementById('location_reference').style.display = 'block';
 		document.getElementById('hide_bar').style.display = 'block';
 
@@ -52,16 +50,18 @@
 			document.getElementById('location').innerHTML = 'Guess the location based on the questions asked.';
 		} else {
 			document.getElementById('spy_message').innerHTML = 'You are <strong>not</strong> the Spy!<br>';
-			document.getElementById('location').innerHTML = 'You are at the <strong>' + data.location;
-			('</strong><br>');
+			document.getElementById('location').innerHTML = 'You are at the <strong>' + data.location + ('</strong><br>');
 			document.getElementById('role').innerHTML = 'Your role is a ' + data.role;
 		}
 
+		// for (i = 0; i < data.temp_location.length; i++) {
+		// 	document.getElementById('locations').innerHTML += '<div>' + data.temp_location[i] + '</div>';
+		// }
+
+		
+		// set a count down time with a total minutes that the user specified when creating the room
 		time = data.time;
 		countDown = time * 60;
-		// code for a count down time with a total minutes that the user specified when creating the room
-
-		//let clock = setInterval(() => {}, 1000);
 	});
 
 	socket_link.on('game_stop', data => {
@@ -71,8 +71,7 @@
 		document.getElementById('location').innerHTML = '';
 		document.getElementById('role').innerHTML = '';
 
-		document.getElementById('csv1').style.display = 'none';
-		document.getElementById('csv2').style.display = 'none';
+		document.getElementById('locations').style.display = 'none';
 		document.getElementById('location_reference').style.display = 'none';
 		document.getElementById('hide_bar').style.display = 'none';
 	});
