@@ -6,7 +6,7 @@ body {
 	margin-top: 9vw;
 	text-align: center;
 	font-size: 3.125em;
-	color: white;
+	color: #fffaea;
 	font-family: 'Josefin Sans', sans-serif;
 }
 
@@ -71,7 +71,7 @@ body {
 	}
 
 	.title {
-		color: white;
+		color: #fffaea;
 
 		margin-top: 12vh;
 

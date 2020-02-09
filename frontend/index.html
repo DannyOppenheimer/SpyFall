@@ -37,10 +37,12 @@
             <p>(We also save your response as a cookie)</p>
             <input type="button" value="Continue" class="button" onclick="ageVerification()">
         </div>
+
         <br>
         <div class="buttons">
-            <input type="input" id="name_field" placeholder="Please enter your name.">
-            <br>
+            <input type="text" id="name_field" placeholder="Please enter your name." maxlength="25" onkeypress="enterPress(event)">
+            <p id="error_message"></p>
+            
             <input type="button" id="create_room_button" value="Create Room" onclick="createRoom()">
             <br>
             <input type="button" id="join_room_button" value="Join Room" onclick="joinRoom()">

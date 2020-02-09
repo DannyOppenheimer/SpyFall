@@ -78,6 +78,8 @@
 	}
 
 	function getMatchMinutes() {
-		return document.getElementById('matchclock').value;
+		let list = document.getElementById('list');
+		let time_num = parseInt(list.options[list.selectedIndex].value);
+		return time_num;
 	}
 })();

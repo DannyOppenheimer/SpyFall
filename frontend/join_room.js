@@ -24,5 +24,4 @@
 	socket_link.on('no_key_error', data => {
 		document.getElementById('no_key_err').innerHTML = '<br>The room "' + data + '" does not exist!';
 	});
-	
 })();

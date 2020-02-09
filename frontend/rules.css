@@ -27,7 +27,7 @@ body {
 	margin-top: 9vh;
 	text-align: center;
 	font-size: 1.4em;
-	color: white;
+	color: #fffaea;
 	font-family: 'Josefin Sans', sans-serif;
 }
 
@@ -42,7 +42,7 @@ body {
 	}
 
 	#text .title {
-		color: white;
+		color: #fffaea;
 
 		margin-top: 10vh;
 
@@ -76,7 +76,7 @@ body {
 		margin-top: 9vh;
 		text-align: center;
 		font-size: 1.4em;
-		color: white;
+		color: #fffaea;
 		font-family: 'Josefin Sans', sans-serif;
 	}
 

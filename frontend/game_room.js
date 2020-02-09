@@ -31,12 +31,17 @@
 		document.getElementById('game_stop').addEventListener('click', () => {
 			socket_link.emit('game_stop', room_key);
 		});
+
+		document.getElementById('home').addEventListener('click', () => {
+			window.location = '/';
+		});
 	});
 
 	socket_link.on('load_players', data => {
-		document.getElementById('table_div').innerHTML = '';
+		document.getElementById('player_reference').innerHTML = '';
 		for (i = 0; i < data.player_names.length; i++) {
-			document.getElementById('table_div').innerHTML += '<div>' + data.player_names[i].name.split('%20').join(' '); + '</div>';
+			document.getElementById('player_reference').innerHTML += '<div>' + data.player_names[i].name.split('%20').join(' ');
+			+'</div>';
 		}
 	});
 
@@ -50,15 +55,14 @@
 			document.getElementById('location').innerHTML = 'Guess the location based on the questions asked.';
 		} else {
 			document.getElementById('spy_message').innerHTML = 'You are <strong>not</strong> the Spy!<br>';
-			document.getElementById('location').innerHTML = 'You are at the <strong>' + data.location + ('</strong><br>');
+			document.getElementById('location').innerHTML = 'You are at the <strong>' + data.location + '</strong><br>';
 			document.getElementById('role').innerHTML = 'Your role is a ' + data.role;
 		}
 
-		// for (i = 0; i < data.temp_location.length; i++) {
-		// 	document.getElementById('locations').innerHTML += '<div>' + data.temp_location[i] + '</div>';
-		// }
+		for (i = 0; i < data.locations.length; i++) {
+			document.getElementById('locations').innerHTML += '<div class="location_cell">' + data.locations[i] + '</div>';
+		}
 
-		
 		// set a count down time with a total minutes that the user specified when creating the room
 		time = data.time;
 		countDown = time * 60;

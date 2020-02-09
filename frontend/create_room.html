@@ -26,14 +26,30 @@
 
 		<div class="checkbox">
 			<label id="spyfall1label">Spyfall 1 Locations</label>
-			<br/>
+			<br />
 			<label id="spyfall2label">Spyfall 2 Locations</label>
 			<br />
 			<label id="custom1label"><del>Extra Spyfall Pack</del></label>
 			<br />
 			<div id="custom_addition"></div>
 			<br />
-			<label id="matchime_label">Matchtime Minutes: <input id="matchclock" type="number"/></label>
+			<form id="minute_form">
+				<fieldset>
+					<legend style="font-size: 1em;">Matchtime Minutes:</legend>
+					<p>
+						<select id="list">
+							<option value="5">5</option>
+							<option value="6">6</option>
+							<option value="7">7</option>
+							<option value="8">8</option>
+							<option value="9">9</option>
+							<option value="10">10</option>
+							<option value="15">15</option>
+							<option value="20">20</option>
+						</select>
+					</p>
+				</fieldset>
+			</form>
 		</div>
 
 		<br />

@@ -109,11 +109,20 @@
 	},
 	"frat house": {
 		"role1": "hazer",
-		"role2": "the chad",
+		"role2": "Chad",
 		"role3": "frat leader",
 		"role4": "freshman",
 		"role5": "policeman",
 		"role6": "5th year",
 		"role7": "visiting sorority girl"
+	},
+	"pub": {
+		"role1": "bartender",
+		"role2": "janitor",
+		"role3": "dish boy",
+		"role4": "underage kid",
+		"role5": "bar fighter",
+		"role6": "mixoligist",
+		"role7": ""
 	}
 }

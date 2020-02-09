@@ -8,7 +8,6 @@
 		"compression": "^1.7.4",
 		"express": "^4.17.1",
 		"fs": "0.0.1-security",
-		"greenlock-express": "^4.0.3",
 		"helmet": "^3.21.2",
 		"https": "^1.0.0",
 		"node": "^13.7.0",

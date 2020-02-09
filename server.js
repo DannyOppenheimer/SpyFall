@@ -15,25 +15,28 @@ var rooms = {};
 
 const json1 = JSON.parse(fs.readFileSync('./Storage/spyfall_1.json', 'utf8'));
 const json2 = JSON.parse(fs.readFileSync('./Storage/spyfall_2.json', 'utf8'));
-const json3 = JSON.parse(fs.readFileSync('./Storage/custom_1.json', 'utf-8'))
+const json3 = JSON.parse(fs.readFileSync('./Storage/custom_1.json', 'utf-8'));
 
-const https_key_config = https.createServer({
-  key: fs.readFileSync('/etc/letsencrypt/live/spyfall.groups.id/privkey.pem'),
-  cert: fs.readFileSync('/etc/letsencrypt/live/spyfall.groups.id/fullchain.pem')
-}, app);
+const https_key_config = https.createServer(
+	{
+		key: fs.readFileSync('/etc/letsencrypt/live/spyfall.groups.id/privkey.pem'),
+		cert: fs.readFileSync('/etc/letsencrypt/live/spyfall.groups.id/fullchain.pem')
+	},
+	app
+);
 
 const server = https_key_config.listen(443, () => {
-  console.log('spyfall.groups.id is listening on port 443!')
+	console.log('spyfall.groups.id is listening on port 443!');
 });
-
 
 // feeding our app the folder containing all of our frontend pages
 app.use(
 	serve_static('frontend', {
-		extensions: ['html']
+		extensions: ['html'],
+		dotfiles: 'deny', // strictly deny all access to any directory containing a "." in case we want to hide files
+		index: ['index.html']
 	})
 );
-
 
 const io = socket(server);
 
@@ -98,7 +101,11 @@ io.on('connection', socket => {
 	// when a user clicks "start game" this will get run
 	socket.on('start_game', data => {
 		// array to store the locations and roles that are in play
-		let temp_locations = getLocations(JSON.parse(rooms[data.key]['prefs'].spy1on), JSON.parse(rooms[data.key]['prefs'].spy2on), JSON.parse(rooms[data.key]['prefs'].cus1on));
+		let temp_locations = getLocations(
+			JSON.parse(rooms[data.key]['prefs'].spy1on),
+			JSON.parse(rooms[data.key]['prefs'].spy2on),
+			JSON.parse(rooms[data.key]['prefs'].cus1on)
+		);
 
 		let chosen_location = temp_locations[Math.floor(Math.random() * temp_locations.length)];
 
@@ -182,7 +189,7 @@ function keyCreator() {
 }
 
 function objectIsEmpty(obj) {
-	for (var prop in obj) {
+	for (let prop in obj) {
 		if (obj.hasOwnProperty(prop)) return false;
 	}
 	return true;
@@ -230,6 +237,18 @@ function getRoles(location) {
 		}
 	}
 
+	for (let key in json3) {
+		if (key == location) {
+			temp_array.push(json3[key].role1);
+			temp_array.push(json3[key].role2);
+			temp_array.push(json3[key].role3);
+			temp_array.push(json3[key].role4);
+			temp_array.push(json3[key].role5);
+			temp_array.push(json3[key].role6);
+			temp_array.push(json3[key].role7);
+		}
+	}
+
 	return [].concat.apply([], temp_array);
 }
 
@@ -256,4 +275,3 @@ setInterval(() => {
 		}
 	}
 }, 100);
-

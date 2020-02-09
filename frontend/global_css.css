@@ -1,9 +1,22 @@
-@-ms-viewport{
-    width: device-width;
-    height: device-height;
-    
+@-ms-viewport {
+	width: device-width;
+	height: device-height;
 }
 
 *:focus {
-    outline: none;
+	outline: none;
+}
+
+*:-moz-focus-inner {
+	border: 0;
+	border-color: transparent;
+}
+
+*:focus {
+	outline: none;
+}
+
+*::-moz-focus-inner {
+	border: 0;
+	border-color: transparent;
 }

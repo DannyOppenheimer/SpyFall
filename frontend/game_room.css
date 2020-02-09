@@ -1,13 +1,13 @@
 body {
 	background-color: #0d0d0d;
-	color: white;
+	color: #fffaea;
 }
 
 #title {
 	margin-top: 10px;
 	text-align: center;
 	font-size: 3em;
-	color: white;
+	color: #fffaea;
 	font-family: 'Josefin Sans', sans-serif;
 }
 
@@ -22,11 +22,11 @@ body {
 	margin-top: 10px;
 	text-align: center;
 	font-size: 1em;
-	color: white;
+	color: #fffaea;
 	font-family: 'Josefin Sans', sans-serif;
 }
 
-#table_div {
+#player_reference {
 	text-align: center;
 	margin: 0 auto;
 
@@ -39,10 +39,10 @@ body {
 	font-family: 'Josefin Sans', sans-serif;
 }
 
-#table_div div {
+#player_reference div {
 	display: inline-block;
 	border-width: 10vh;
-	border: solid white;
+	border: solid #fffaea;
 	border-radius: 0.8vh;
 
 	margin: 1vh 0 0 2%;
@@ -52,6 +52,36 @@ body {
 	padding-bottom: 2vh;
 
 	width: calc(100% * (1 / 4) - 10px - 1px);
+	vertical-align: middle;
+}
+
+#locations {
+	text-align: center;
+	margin: 0 auto;
+
+	border-color: #fffaea;
+
+	user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+
+	font-family: 'Josefin Sans', sans-serif;
+}
+
+#locations div {
+	display: inline-block;
+	border-width: 10vh;
+	border: solid #fffaea;
+
+	border-radius: 0.8vh;
+
+	margin: 1vh 0 0 2%;
+	flex-grow: 1;
+
+	padding-top: 0.5vh;
+	padding-bottom: 0.5vh;
+
+	width: calc(50% * (1 / 4) - 10px - 1px);
 	vertical-align: middle;
 }
 
@@ -66,9 +96,9 @@ body {
 	border-radius: 0.12em;
 	box-sizing: border-box;
 	cursor: pointer;
-	background-color: white;
-	border-color: white;
-	color: white;
+	background-color: #fffaea;
+	border-color: #fffaea;
+	color: #fffaea;
 	font-size: 1.25em;
 	background-color: #0d0d0d;
 	padding-top: 1vh;
@@ -107,7 +137,7 @@ body {
 		margin-top: 3vh;
 		text-align: center;
 		font-size: 3em;
-		color: white;
+		color: #fffaea;
 		font-family: 'Josefin Sans', sans-serif;
 	}
 
@@ -115,7 +145,7 @@ body {
 		margin-top: 2vh;
 		text-align: center;
 		font-size: 1em;
-		color: white;
+		color: #fffaea;
 		font-family: 'Josefin Sans', sans-serif;
 	}
 
@@ -125,9 +155,9 @@ body {
 		border-radius: 0.12em;
 		box-sizing: border-box;
 		cursor: pointer;
-		background-color: white;
-		border-color: white;
-		color: white;
+		background-color: #fffaea;
+		border-color: #fffaea;
+		color: #fffaea;
 		font-size: 1.5em;
 		background-color: #0d0d0d;
 		padding-top: 2vh;
