@@ -1,3 +1,5 @@
+'use strict';
+
 const express = require('express');
 const app = express();
 const https = require('https');
@@ -93,7 +95,8 @@ io.on('connection', socket => {
 		for (i = 0; i < Object.keys(rooms[data.key]['players']).length; i++) {
 			io.to(Object.keys(rooms[data.key]['players'])[i]).emit('load_players', {
 				player_sockets: Object.keys(rooms[data.key]['players']),
-				player_names: Object.values(rooms[data.key]['players'])
+				player_names: Object.values(rooms[data.key]['players']),
+				gamestate: rooms[data.key]['prefs'].gamestate
 			});
 		}
 	});
@@ -101,11 +104,7 @@ io.on('connection', socket => {
 	// when a user clicks "start game" this will get run
 	socket.on('start_game', data => {
 		// array to store the locations and roles that are in play
-		let temp_locations = getLocations(
-			JSON.parse(rooms[data.key]['prefs'].spy1on),
-			JSON.parse(rooms[data.key]['prefs'].spy2on),
-			JSON.parse(rooms[data.key]['prefs'].cus1on)
-		);
+		let temp_locations = getLocations(rooms[data.key]['prefs'].spy1on, rooms[data.key]['prefs'].spy2on, rooms[data.key]['prefs'].cus1on);
 
 		let chosen_location = temp_locations[Math.floor(Math.random() * temp_locations.length)];
 

@@ -42,7 +42,7 @@ body {
 #player_reference div {
 	display: inline-block;
 	border-width: 10vh;
-	border: solid #fffaea;
+	border: solid;
 	border-radius: 0.8vh;
 
 	margin: 1vh 0 0 2%;
@@ -52,6 +52,7 @@ body {
 	padding-bottom: 2vh;
 
 	width: calc(100% * (1 / 4) - 10px - 1px);
+
 	vertical-align: middle;
 }
 
@@ -68,10 +69,30 @@ body {
 	font-family: 'Josefin Sans', sans-serif;
 }
 
+#player_title {
+	text-align: center;
+	margin: 0 auto;
+	font-weight: bold;
+	font-size: 2em;
+
+	border-color: #fffaea;
+
+	user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+
+	font-family: 'Josefin Sans', sans-serif;
+}
+
+#location_reference {
+	font-size: 2em;
+	font-weight: bold;
+}
+
 #locations div {
 	display: inline-block;
 	border-width: 10vh;
-	border: solid #fffaea;
+	border: solid;
 
 	border-radius: 0.8vh;
 
@@ -82,6 +103,8 @@ body {
 	padding-bottom: 0.5vh;
 
 	width: calc(50% * (1 / 4) - 10px - 1px);
+
+	min-width: 100px;
 	vertical-align: middle;
 }
 
@@ -104,6 +127,7 @@ body {
 	padding-top: 1vh;
 	padding-bottom: 1vh;
 	width: 8vw;
+	min-width: 100px;
 	font-family: 'Josefin Sans', sans-serif;
 	transition: all 0.2s;
 }

@@ -14,7 +14,7 @@ body {
 	color: #fffaea;
 	font-family: 'Josefin Sans', sans-serif;
 	margin: 0 auto;
-	width: 100%;
+
 	text-align: center;
 }
 
@@ -41,7 +41,7 @@ body {
 #custom1label {
 	transition: color 0.1s linear;
 	user-select: none;
-	font-size: 3em;
+	font-size: 2.4em;
 }
 
 #custom1label:hover {
@@ -49,12 +49,14 @@ body {
 }
 
 .checkbox #minute_form {
-	margin: 0 auto;
-	width: 40vw;
+	text-align: center;
+
 	padding-left: 1vw;
 	padding-right: 1vw;
 	padding-top: 1vh;
 	padding-bottom: 1vh;
+
+	display: inline-block;
 
 	font-family: 'Josefin Sans', sans-serif;
 }
@@ -143,6 +145,10 @@ br {
 		text-align: center;
 	}
 
+	.checkbox #minute_form {
+		font-size: 0.6em;
+	}
+
 	#spyfall1label {
 		font-size: 0.9em;
 	}
@@ -160,33 +166,11 @@ br {
 	}
 
 	#custom1label {
-		font-size: 0.55em;
+		font-size: 0.6em;
 	}
 
 	#custom1label:hover {
 		color: #fffaea;
-	}
-
-	#matchime_label {
-		font-size: 0.9em;
-	}
-
-	.checkbox #matchclock {
-		background-color: #fffaea;
-
-		margin: 0 auto;
-		display: block;
-
-		padding-top: 0.5vh;
-		padding-bottom: 0.5vh;
-
-		width: 50vw;
-
-		border: none;
-		border-radius: 0.05em;
-
-		font-family: 'Josefin Sans', sans-serif;
-		font-size: 0.9em;
 	}
 
 	#create_room_button {

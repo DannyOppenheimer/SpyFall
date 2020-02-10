@@ -10,10 +10,13 @@
 	var time_cell = document.getElementById('time');
 	var countDown = 0;
 
+	var gamestate;
+
 	document.getElementById('title').innerHTML = 'Room Key: ' + room_key;
 	document.getElementById('locations').style.display = 'none';
 	document.getElementById('location_reference').style.display = 'none';
 	document.getElementById('hide_bar').style.display = 'none';
+	document.getElementById('player_title').innerHTML = 'Joined Players:';
 
 	socket_link.on('connect', () => {
 		socket_link.emit('load_players', {
@@ -39,16 +42,35 @@
 
 	socket_link.on('load_players', data => {
 		document.getElementById('player_reference').innerHTML = '';
+
 		for (i = 0; i < data.player_names.length; i++) {
-			document.getElementById('player_reference').innerHTML += '<div>' + data.player_names[i].name.split('%20').join(' ');
-			+'</div>';
+			let new_div = document.createElement('DIV');
+			new_div.innerHTML = data.player_names[i].name.split('%20').join(' ');
+			new_div.className = 'location_cell';
+			new_div.style.borderColor = '#fffaea';
+			new_div.addEventListener('click', () => {
+				if (gamestate == 'up') {
+					if (new_div.style.textDecoration == 'line-through') {
+						new_div.style.color = 'white';
+						new_div.style.borderColor = '#fffaea';
+						new_div.style.textDecoration = 'none';
+					} else {
+						new_div.style.color = 'gray';
+						new_div.style.borderColor = 'gray';
+						new_div.style.textDecoration = 'line-through';
+					}
+				}
+			});
+			document.getElementById('player_reference').appendChild(new_div);
 		}
 	});
 
 	socket_link.on('start_game', data => {
 		document.getElementById('locations').style.display = 'block';
+		document.getElementById('locations').innerHTML = '';
 		document.getElementById('location_reference').style.display = 'block';
 		document.getElementById('hide_bar').style.display = 'block';
+		document.getElementById('player_title').innerHTML = 'Player Reference:';
 
 		if (data.role == 'spy') {
 			document.getElementById('spy_message').innerHTML = 'You are the <strong>Spy</strong>!<br>';
@@ -60,7 +82,22 @@
 		}
 
 		for (i = 0; i < data.locations.length; i++) {
-			document.getElementById('locations').innerHTML += '<div class="location_cell">' + data.locations[i] + '</div>';
+			let new_div = document.createElement('DIV');
+			new_div.innerHTML = data.locations[i];
+			new_div.className = 'location_cell';
+			new_div.style.borderColor = '#fffaea';
+			new_div.addEventListener('click', () => {
+				if (new_div.style.textDecoration == 'line-through') {
+					new_div.style.color = 'white';
+					new_div.style.borderColor = '#fffaea';
+					new_div.style.textDecoration = 'none';
+				} else {
+					new_div.style.color = 'gray';
+					new_div.style.borderColor = 'gray';
+					new_div.style.textDecoration = 'line-through';
+				}
+			});
+			document.getElementById('locations').appendChild(new_div);
 		}
 
 		// set a count down time with a total minutes that the user specified when creating the room
@@ -78,6 +115,14 @@
 		document.getElementById('locations').style.display = 'none';
 		document.getElementById('location_reference').style.display = 'none';
 		document.getElementById('hide_bar').style.display = 'none';
+		document.getElementById('player_title').innerHTML = 'Joined Players:';
+
+		let players = document.getElementById('player_reference').childNodes;
+		for (i = 0; i < players.length; i++) {
+			players[i].style.color = 'white';
+			players[i].style.borderColor = '#fffaea';
+			players[i].style.textDecoration = 'none';
+		}
 	});
 
 	socket_link.on('no_key_error', () => {
@@ -90,6 +135,7 @@
 	});
 
 	socket_link.on('event_tick', data => {
+		gamestate = data.room_up;
 		if (data.room_up == 'down') return;
 
 		let min = Math.floor((countDown % 3600) / 60);
