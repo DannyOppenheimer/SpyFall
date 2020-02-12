@@ -1,19 +1,14 @@
 (() => {
 	var socket_link = io.connect('https://spyfall.groups.id:443/');
 
-	var page_info = location.search.substring(1).split('&');
-
-	var room_key = page_info[0];
-	var name = page_info[1];
+	var room_key = location.search.substring(1).split('&')[0];
+	var name = location.search.substring(1).split('&')[1];
 
 	var time = 0;
 	var time_cell = document.getElementById('time');
 	var countDown = 0;
 
-	var gamestate;
-
 	document.getElementById('title').innerHTML = 'Room Key: ' + room_key;
-	document.getElementById('locations').style.display = 'none';
 	document.getElementById('location_reference').style.display = 'none';
 	document.getElementById('hide_bar').style.display = 'none';
 	document.getElementById('player_title').innerHTML = 'Joined Players:';
@@ -42,32 +37,39 @@
 
 	socket_link.on('load_players', data => {
 		document.getElementById('player_reference').innerHTML = '';
+		let table = document.createElement('TABLE');
 
-		for (i = 0; i < data.player_names.length; i++) {
-			let new_div = document.createElement('DIV');
-			new_div.innerHTML = data.player_names[i].name.split('%20').join(' ');
-			new_div.className = 'location_cell';
-			new_div.style.borderColor = '#fffaea';
-			new_div.addEventListener('click', () => {
-				if (gamestate == 'up') {
-					if (new_div.style.textDecoration == 'line-through') {
-						new_div.style.color = 'white';
-						new_div.style.borderColor = '#fffaea';
-						new_div.style.textDecoration = 'none';
-					} else {
-						new_div.style.color = 'gray';
-						new_div.style.borderColor = 'gray';
-						new_div.style.textDecoration = 'line-through';
-					}
+		let columns = 3;
+		let count = 0;
+		let row = table.insertRow();
+
+		for (let i of data.player_names) {
+			let new_cell = row.insertCell();
+			new_cell.innerHTML = i;
+			new_cell.className = 'player_cell';
+			new_cell.style.borderColor = '#fffaea';
+			new_cell.addEventListener('click', () => {
+				if (new_cell.style.textDecoration == 'line-through') {
+					new_cell.style.color = 'white';
+					new_cell.style.borderColor = '#fffaea';
+					new_cell.style.textDecoration = 'none';
+				} else {
+					new_cell.style.color = 'gray';
+					new_cell.style.borderColor = 'gray';
+					new_cell.style.textDecoration = 'line-through';
 				}
 			});
-			document.getElementById('player_reference').appendChild(new_div);
+
+			++count;
+			if (count % columns == 0) {
+				row = table.insertRow();
+			}
 		}
+
+		document.getElementById('player_reference').appendChild(table);
 	});
 
 	socket_link.on('start_game', data => {
-		document.getElementById('locations').style.display = 'block';
-		document.getElementById('locations').innerHTML = '';
 		document.getElementById('location_reference').style.display = 'block';
 		document.getElementById('hide_bar').style.display = 'block';
 		document.getElementById('player_title').innerHTML = 'Player Reference:';
@@ -81,23 +83,34 @@
 			document.getElementById('role').innerHTML = 'Your role is a ' + data.role;
 		}
 
-		for (i = 0; i < data.locations.length; i++) {
-			let new_div = document.createElement('DIV');
-			new_div.innerHTML = data.locations[i];
-			new_div.className = 'location_cell';
-			new_div.style.borderColor = '#fffaea';
-			new_div.addEventListener('click', () => {
-				if (new_div.style.textDecoration == 'line-through') {
-					new_div.style.color = 'white';
-					new_div.style.borderColor = '#fffaea';
-					new_div.style.textDecoration = 'none';
+		//loop to add locations
+
+		let columns = 3;
+		let count = 0;
+		let table = document.getElementById('location_table');
+		let row = table.insertRow();
+
+		for (let i of data.locations) {
+			let new_cell = row.insertCell();
+			new_cell.innerHTML = i;
+			new_cell.className = 'location_cell';
+			new_cell.style.borderColor = '#fffaea';
+			new_cell.addEventListener('click', () => {
+				if (new_cell.style.textDecoration == 'line-through') {
+					new_cell.style.color = 'white';
+					new_cell.style.borderColor = '#fffaea';
+					new_cell.style.textDecoration = 'none';
 				} else {
-					new_div.style.color = 'gray';
-					new_div.style.borderColor = 'gray';
-					new_div.style.textDecoration = 'line-through';
+					new_cell.style.color = 'gray';
+					new_cell.style.borderColor = 'gray';
+					new_cell.style.textDecoration = 'line-through';
 				}
 			});
-			document.getElementById('locations').appendChild(new_div);
+
+			++count;
+			if (count % columns == 0) {
+				row = table.insertRow();
+			}
 		}
 
 		// set a count down time with a total minutes that the user specified when creating the room
@@ -112,16 +125,16 @@
 		document.getElementById('location').innerHTML = '';
 		document.getElementById('role').innerHTML = '';
 
-		document.getElementById('locations').style.display = 'none';
 		document.getElementById('location_reference').style.display = 'none';
 		document.getElementById('hide_bar').style.display = 'none';
 		document.getElementById('player_title').innerHTML = 'Joined Players:';
+		document.getElementById('location_table').innerHTML = '';
 
 		let players = document.getElementById('player_reference').childNodes;
-		for (i = 0; i < players.length; i++) {
-			players[i].style.color = 'white';
-			players[i].style.borderColor = '#fffaea';
-			players[i].style.textDecoration = 'none';
+		for (i of players) {
+			i.style.color = 'white';
+			i.style.borderColor = '#fffaea';
+			i.style.textDecoration = 'none';
 		}
 	});
 
@@ -142,7 +155,8 @@
 		let sec = Math.floor((countDown % 3600) % 60);
 
 		if (min + sec <= 0) {
-			socket_link.emit('game_stop', room_key);
+			//socket_link.emit('game_stop', room_key);
+			time_cell.innerHTML = 'Times up!';
 			clock.clearInterval(0);
 		}
 

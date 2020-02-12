@@ -56,17 +56,33 @@ body {
 	vertical-align: middle;
 }
 
-#locations {
+#location_table {
 	text-align: center;
 	margin: 0 auto;
+	table-layout: fixed;
 
-	border-color: #fffaea;
+	border-collapse: separate;
+	word-break: keep-all;
 
 	user-select: none;
 	-webkit-user-select: none;
 	-ms-user-select: none;
 
 	font-family: 'Josefin Sans', sans-serif;
+}
+
+#location_table td {
+	border: solid #fffaea;
+	border-spacing: 5em;
+	border-radius: 0.8vh;
+
+	padding-left: 1vw;
+	padding-right: 1vw;
+	padding-top: 0.4vh;
+	padding-bottom: 0.4vh;
+
+	text-align: center;
+	vertical-align: middle;
 }
 
 #player_title {
@@ -87,25 +103,6 @@ body {
 #location_reference {
 	font-size: 2em;
 	font-weight: bold;
-}
-
-#locations div {
-	display: inline-block;
-	border-width: 10vh;
-	border: solid;
-
-	border-radius: 0.8vh;
-
-	margin: 1vh 0 0 2%;
-	flex-grow: 1;
-
-	padding-top: 0.5vh;
-	padding-bottom: 0.5vh;
-
-	width: calc(50% * (1 / 4) - 10px - 1px);
-
-	min-width: 100px;
-	vertical-align: middle;
 }
 
 .container {
@@ -178,17 +175,14 @@ body {
 		margin: 0 0.3em 0.3em 0;
 		border-radius: 0.12em;
 		box-sizing: border-box;
-		cursor: pointer;
-		background-color: #fffaea;
-		border-color: #fffaea;
-		color: #fffaea;
 		font-size: 1.5em;
-		background-color: #0d0d0d;
 		padding-top: 2vh;
 		padding-bottom: 2vh;
 		width: 35vw;
-		font-family: 'Josefin Sans', sans-serif;
-		transition: all 0.2s;
+	}
+
+	#location_table td {
+		height: 5vh;
 	}
 
 	.subtitle #spy_message {

@@ -1,0 +1,11 @@
+{
+    "Ubuntu": {
+        "connections": 3
+    },
+    "Android 10": {
+        "connections": 0
+    },
+    "Win64": {
+        "connections": 0
+    }
+}

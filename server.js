@@ -1,5 +1,3 @@
-'use strict';
-
 const express = require('express');
 const app = express();
 const https = require('https');
@@ -18,6 +16,7 @@ var rooms = {};
 const json1 = JSON.parse(fs.readFileSync('./Storage/spyfall_1.json', 'utf8'));
 const json2 = JSON.parse(fs.readFileSync('./Storage/spyfall_2.json', 'utf8'));
 const json3 = JSON.parse(fs.readFileSync('./Storage/custom_1.json', 'utf-8'));
+const users_json = JSON.parse(fs.readFileSync('./Storage/users.json', 'utf-8'));
 
 const https_key_config = https.createServer(
 	{
@@ -43,7 +42,20 @@ app.use(
 const io = socket(server);
 
 io.on('connection', socket => {
-	console.log('New connection from socket ' + socket.id);
+	console.log(
+		'New ' +
+			(socket.handshake.secure ? 'secure' : 'insecure') +
+			' connection from socket ' +
+			socket.id +
+			' on' +
+			socket.handshake['headers']['user-agent'].split(';')[1] +
+			' in the ' +
+			socket.handshake['headers']['referer'].split('/')[3].split('?')[0]
+	);
+
+	if (socket.handshake['headers']['referer'].split('/')[3].split('?')[0] == 'game_room') {
+		logUser(socket.handshake['headers']['user-agent'].split(';')[1].trim());
+	}
 
 	// When a user clicks the 'create' button on the website, this will run
 	socket.on('create', data => {
@@ -88,12 +100,11 @@ io.on('connection', socket => {
 		}
 
 		// put the players socket and name into the room
-		rooms[data.key]['players'][data.source_socket] = {};
-		rooms[data.key]['players'][data.source_socket].name = data.name;
+		rooms[data.key]['players'][data.source_socket] = data.name;
 
 		// reload the players with the updated information
-		for (i = 0; i < Object.keys(rooms[data.key]['players']).length; i++) {
-			io.to(Object.keys(rooms[data.key]['players'])[i]).emit('load_players', {
+		for (let e of Object.keys(rooms[data.key]['players'])) {
+			io.to(e).emit('load_players', {
 				player_sockets: Object.keys(rooms[data.key]['players']),
 				player_names: Object.values(rooms[data.key]['players']),
 				gamestate: rooms[data.key]['prefs'].gamestate
@@ -138,8 +149,8 @@ io.on('connection', socket => {
 	socket.on('game_stop', data => {
 		rooms[data]['prefs'].gamestate = 'down';
 
-		for (i = 0; i < Object.keys(rooms[data]['players']).length; i++) {
-			io.to(Object.keys(rooms[data]['players'])[i]).emit('game_stop', data);
+		for (let i of Object.keys(rooms[data]['players'])) {
+			io.to(i).emit('game_stop', data);
 		}
 	});
 
@@ -151,8 +162,8 @@ io.on('connection', socket => {
 				// then delete them from that room....
 				delete rooms[key]['players'][socket.id];
 				// and update the list of players for everyone else in the room.
-				for (i = 0; i < Object.keys(rooms[key]['players']).length; i++) {
-					io.to(Object.keys(rooms[key]['players'])[i]).emit('load_players', {
+				for (let i of Object.keys(rooms[key]['players'])) {
+					io.to(i).emit('load_players', {
 						player_sockets: Object.keys(rooms[key]['players']),
 						player_names: Object.values(rooms[key]['players'])
 					});
@@ -264,13 +275,27 @@ setInterval(() => {
 		last_sec = second;
 		++uptime;
 		for (let key in rooms) {
-			for (i = 0; i < Object.keys(rooms[key]['players']).length; i++) {
-				io.to(Object.keys(rooms[key]['players'])[i]).emit('event_tick', {
+			for (let e of Object.keys(rooms[key]['players'])) {
+				io.to(e).emit('event_tick', {
 					uptime: uptime,
-					to_socket: Object.keys(rooms[key]['players'])[i],
+					to_socket: e,
 					room_up: rooms[key]['prefs'].gamestate
 				});
 			}
 		}
 	}
 }, 100);
+
+async function logUser(user_system) {
+	if (!users_json) users_json = {};
+
+	if (!users_json[user_system]) {
+		users_json[user_system] = { connections: 1 };
+	} else {
+		users_json[user_system].connections = users_json[user_system].connections + 1;
+	}
+
+	fs.writeFile('Storage/users.json', JSON.stringify(users_json, null, 4), err => {
+		if (err) console.error(err);
+	});
+}
