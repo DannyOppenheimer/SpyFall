@@ -2,6 +2,8 @@
 
 ## This repository is the code for the popular group-style game SpyFall. You will be able to create, join, and play SpyFall in seperate game rooms with a 5 letter key.
 
+this badboy is fucking done lmao -jonathan 2/16/20
+
 Note: The website is not hosted under Github pages. Rather, it is port forwarded under port 80.
 
 How this Node app is hosted on Verizon:
