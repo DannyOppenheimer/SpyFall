@@ -85,6 +85,37 @@ body {
 	vertical-align: middle;
 }
 
+#player_reference table {
+	text-align: center;
+	margin: 0 auto;
+	table-layout: fixed;
+
+	border-collapse: separate;
+	word-break: keep-all;
+
+	user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+
+	font-family: 'Josefin Sans', sans-serif;
+}
+
+#player_reference td {
+	border: solid #fffaea;
+	border-spacing: 5em;
+	border-radius: 0.8vh;
+
+	padding-left: 1vw;
+	padding-right: 1vw;
+	padding-top: 0.4vh;
+	padding-bottom: 0.4vh;
+
+	min-width: 150px;
+
+	text-align: center;
+	vertical-align: middle;
+}
+
 #player_title {
 	text-align: center;
 	margin: 0 auto;

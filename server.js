@@ -50,7 +50,12 @@ io.on('connection', socket => {
 			' on' +
 			socket.handshake['headers']['user-agent'].split(';')[1] +
 			' in the ' +
-			socket.handshake['headers']['referer'].split('/')[3].split('?')[0]
+			socket.handshake['headers']['referer']
+				.split('/')[3]
+				.split('?')[0]
+				.split('_')
+				.join(' ') +
+			' page.'
 	);
 
 	if (socket.handshake['headers']['referer'].split('/')[3].split('?')[0] == 'game_room') {

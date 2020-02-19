@@ -7,6 +7,7 @@
 	var time = 0;
 	var time_cell = document.getElementById('time');
 	var countDown = 0;
+	var gameup = false;
 
 	document.getElementById('title').innerHTML = 'Room Key: ' + room_key;
 	document.getElementById('location_reference').style.display = 'none';
@@ -49,14 +50,16 @@
 			new_cell.className = 'player_cell';
 			new_cell.style.borderColor = '#fffaea';
 			new_cell.addEventListener('click', () => {
-				if (new_cell.style.textDecoration == 'line-through') {
-					new_cell.style.color = 'white';
-					new_cell.style.borderColor = '#fffaea';
-					new_cell.style.textDecoration = 'none';
-				} else {
-					new_cell.style.color = 'gray';
-					new_cell.style.borderColor = 'gray';
-					new_cell.style.textDecoration = 'line-through';
+				if (gameup) {
+					if (new_cell.style.textDecoration == 'line-through') {
+						new_cell.style.color = 'white';
+						new_cell.style.borderColor = '#fffaea';
+						new_cell.style.textDecoration = 'none';
+					} else {
+						new_cell.style.color = 'gray';
+						new_cell.style.borderColor = 'gray';
+						new_cell.style.textDecoration = 'line-through';
+					}
 				}
 			});
 
@@ -148,8 +151,11 @@
 	});
 
 	socket_link.on('event_tick', data => {
-		gamestate = data.room_up;
-		if (data.room_up == 'down') return;
+		if (data.room_up == 'up') {
+			gameup = true;
+		} else {
+			return (gameup = false);
+		}
 
 		let min = Math.floor((countDown % 3600) / 60);
 		let sec = Math.floor((countDown % 3600) % 60);

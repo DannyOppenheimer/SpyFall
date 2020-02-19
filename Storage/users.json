@@ -1,11 +1,17 @@
 {
     "Ubuntu": {
-        "connections": 3
+        "connections": 72
     },
     "Android 10": {
         "connections": 0
     },
     "Win64": {
         "connections": 0
+    },
+    "Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.106 Safari/537.36": {
+        "connections": 6
+    },
+    "Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.130 Safari/537.36": {
+        "connections": 3
     }
 }
