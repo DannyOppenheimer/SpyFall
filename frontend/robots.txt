@@ -1,4 +1,5 @@
 User-agent: *
 Disallow:
-
+User-agent: Googlebot
+Disallow:
 Sitemap: https://spyfall.groups.id/sitemap.xml

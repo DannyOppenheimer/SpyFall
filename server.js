@@ -39,7 +39,7 @@ app.use(
 	})
 );
 
-const io = socket(server);
+const io = socket(server, { cookie: false });
 
 io.on('connection', socket => {
 	console.log(
