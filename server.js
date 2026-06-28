@@ -26,7 +26,7 @@ server.listen(PORT, () => {
 
 // feeding our app the folder containing all of our frontend pages
 app.use(
-	serve_static('frontend', {
+	serve_static('docs', {
 		extensions: ['html'],
 		dotfiles: 'deny',
 		index: ['index.html']
