@@ -33,7 +33,13 @@ app.use(
 	})
 );
 
-const io = socket(server, { cookie: false });
+const io = socket(server, {
+	cookie: false,
+	cors: {
+		origin: 'https://spyfall.dannyoppenheimer.com',
+		methods: ['GET', 'POST']
+	}
+});
 
 io.on('connection', socket => {
 	console.log('New connection from socket ' + socket.id);
