@@ -1,5 +1,5 @@
 (() => {
-	var socket_link = io();
+	var socket_link = io('https://spyfall-production-5f2b.up.railway.app');
 
 	var room_key = location.search.substring(1).split('&')[0];
 	var name = location.search.substring(1).split('&')[1];

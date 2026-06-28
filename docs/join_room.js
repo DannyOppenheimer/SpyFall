@@ -1,5 +1,5 @@
 (() => {
-	var socket_link = io();
+	var socket_link = io('https://spyfall-production-5f2b.up.railway.app');
 
 	var name = location.search.substring(1);
 

@@ -1,20 +1,54 @@
-# SpyFall Website
+# SpyFall
 
-## This repository is the code for the popular group-style game SpyFall. You will be able to create, join, and play SpyFall in seperate game rooms with a 5 letter key.
+A web-based implementation of the popular social deduction game [Spyfall](https://en.wikipedia.org/wiki/Spyfall_(card_game)). Players join shared game rooms using a 5-letter code. One player is secretly assigned as the Spy — everyone else knows the location. The Spy must figure out the location before being voted out.
 
-Note: The website is not hosted under Github pages. Rather, it is port forwarded under port 80.
+**Live at [spyfall.dannyoppenheimer.com](https://spyfall.dannyoppenheimer.com)**
 
-How this Node app is hosted on Verizon:
+---
 
-> 1. Go to your default gateway, (most commonly 192.168.1.1) like you would access any other URL
-> 2. You should be greeted by a page with configuration settings on in, after you type in your password
->    1. If you see the option: "Port Forwarding, click on it and continue with step 3"
->    2. If not, you can navigate to the Firewall settings and access port forwarding settings from there.
-> 3. In the drop down menu, select the computer that you would like to port forward to.
-> 4. Your router might have presets for things like conventional ICMP, HTTP, and HTTPS, but if not type in the "desination" port on your computer with TCP.
-> 5. Save/Apple changes.
-> 6. You should be able to access your website through your public, or a set up static, IP address on the port you configured above.
+## Features
 
-### If you have any issues, suggestions, or other inquiries please leave a suggestion in the Issues section of this repo.
+- Create or join game rooms with a 5-letter room code
+- Supports Spyfall 1 locations, Spyfall 2 locations, and a custom extra pack
+- Real-time multiplayer via WebSockets
+- Configurable match timer (5–20 minutes)
+- Location and player reference sheets in-game
 
-### - Danny.
+## Tech Stack
+
+| Layer | Technology |
+|---|---|
+| Backend | Node.js, Express |
+| Real-time | Socket.IO v2 |
+| Frontend | Vanilla HTML, CSS, JavaScript |
+| Backend hosting | [Railway](https://railway.app) |
+| Frontend hosting | GitHub Pages |
+| Domain | Cloudflare |
+
+## Architecture
+
+The project uses a split deployment:
+
+- **Frontend** — static files served via GitHub Pages from the `/docs` directory, available at `spyfall.dannyoppenheimer.com`
+- **Backend** — Node.js/Socket.IO server hosted on Railway at `spyfall-production-5f2b.up.railway.app`, handles all game logic and real-time communication
+
+## Running Locally
+
+**Prerequisites:** Node.js
+
+```bash
+git clone https://github.com/DannyOppenheimer/SpyFall.git
+cd SpyFall
+npm install
+npm start
+```
+
+The server starts on port 3000 by default. Open `http://localhost:3000` in your browser.
+
+Note: when running locally the frontend JS files point to the production Railway backend. To use a local backend, update the `io(...)` URL in `docs/create_room.js`, `docs/join_room.js`, and `docs/game_room.js` to `http://localhost:3000`.
+
+## Issues & Suggestions
+
+Open an issue in the [Issues tab](https://github.com/DannyOppenheimer/SpyFall/issues).
+
+— Danny
