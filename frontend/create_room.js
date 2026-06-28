@@ -1,6 +1,6 @@
 (() => {
 	// Connect to the backend server
-	var socket_link = io.connect('https://spyfall.groups.id:443/');
+	var socket_link = io();
 
 	var name = location.search.substring(1);
 

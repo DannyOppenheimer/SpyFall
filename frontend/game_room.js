@@ -1,5 +1,5 @@
 (() => {
-	var socket_link = io.connect('https://spyfall.groups.id:443/');
+	var socket_link = io();
 
 	var room_key = location.search.substring(1).split('&')[0];
 	var name = location.search.substring(1).split('&')[1];
