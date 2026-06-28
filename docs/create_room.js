@@ -2,84 +2,71 @@
 	// Connect to the backend server
 	var socket_link = io('https://spyfall-production-5f2b.up.railway.app');
 
-	var name = location.search.substring(1);
+	var params = new URLSearchParams(location.search);
+	var name = params.get('name') || '';
 
 	socket_link.on('connect', () => {
 		document.getElementById('create_room_button').addEventListener('click', () => {
-			let match_minutes = getMatchMinutes();
-			// When the user clicks the Create buttons, emit their preferences to the backend server
+			// When the user clicks the Create button, emit their preferences to the backend server
 			socket_link.emit('create', {
-				source_socket: socket_link.id,
-				spyfall1on: playSpyfall1(),
-				spyfall2on: playSpyfall2(),
-				custom1on: playCustom1(),
-				time: match_minutes,
+				spyfall1on: isPackOn('spyfall1label'),
+				spyfall2on: isPackOn('spyfall2label'),
+				custom1on: isPackOn('custom1label'),
+				time: getMatchMinutes(),
 				name: name
 			});
 		});
 	});
 
-	// When the server sends back its response, go to the next page
+	// When the server sends back its response, go to the game room (carrying the owner token)
 	socket_link.on('create', back_data => {
-		window.location = 'game_room?' + back_data.key + '&' + name;
+		let query = new URLSearchParams({
+			key: back_data.key,
+			name: name,
+			token: back_data.token
+		});
+		window.location = 'game_room?' + query.toString();
 	});
 
-	// Add a listener to allow crossing off of both SpyFall 1 and 2 Locations
-	document.getElementById('spyfall1label').addEventListener('click', () => {
-		if (document.getElementById('spyfall1label').innerHTML == 'Spyfall 1 Locations') {
-			document.getElementById('spyfall1label').innerHTML = '<del>Spyfall 1 Locations</del>';
-		} else {
-			document.getElementById('spyfall1label').innerHTML = 'Spyfall 1 Locations';
-		}
+	socket_link.on('server_busy', () => {
+		alert('The server is busy right now. Please try again in a moment.');
 	});
 
-	document.getElementById('spyfall2label').addEventListener('click', () => {
-		if (document.getElementById('spyfall2label').innerHTML == 'Spyfall 2 Locations') {
-			document.getElementById('spyfall2label').innerHTML = '<del>Spyfall 2 Locations</del>';
-		} else {
-			document.getElementById('spyfall2label').innerHTML = 'Spyfall 2 Locations';
-		}
-	});
-
-	document.getElementById('custom1label').addEventListener('click', () => {
-		if (document.getElementById('custom1label').innerHTML == 'Extra Spyfall Pack') {
-			document.getElementById('custom1label').innerHTML = '<del>Extra Spyfall Pack</del>';
-		} else {
-			document.getElementById('custom1label').innerHTML = 'Extra Spyfall Pack';
-		}
-	});
+	// Set up the three location-pack toggles. State is tracked on a data attribute,
+	// not by string-matching innerHTML, so display markup can change freely.
+	setupToggle('spyfall1label', 'Spyfall 1 Locations', true);
+	setupToggle('spyfall2label', 'Spyfall 2 Locations', true);
+	setupToggle('custom1label', 'Extra Spyfall Pack', false);
 
 	document.getElementById('back').addEventListener('click', () => {
 		window.location = '/';
 	});
 
-	function playSpyfall1() {
-		if (document.getElementById('spyfall1label').innerHTML == 'Spyfall 1 Locations') {
-			return true;
+	function setupToggle(id, labelText, defaultOn) {
+		let el = document.getElementById(id);
+		el.dataset.on = defaultOn ? 'true' : 'false';
+		renderToggle(el, labelText);
+		el.addEventListener('click', () => {
+			el.dataset.on = el.dataset.on === 'true' ? 'false' : 'true';
+			renderToggle(el, labelText);
+		});
+	}
+
+	function renderToggle(el, labelText) {
+		if (el.dataset.on === 'true') {
+			el.textContent = labelText;
 		} else {
-			return false;
+			el.innerHTML = '<del></del>';
+			el.querySelector('del').textContent = labelText;
 		}
 	}
 
-	function playSpyfall2() {
-		if (document.getElementById('spyfall2label').innerHTML == 'Spyfall 2 Locations') {
-			return true;
-		} else {
-			return false;
-		}
-	}
-
-	function playCustom1() {
-		if (document.getElementById('custom1label').innerHTML == 'Extra Spyfall Pack') {
-			return true;
-		} else {
-			return false;
-		}
+	function isPackOn(id) {
+		return document.getElementById(id).dataset.on === 'true';
 	}
 
 	function getMatchMinutes() {
 		let list = document.getElementById('list');
-		let time_num = parseInt(list.options[list.selectedIndex].value);
-		return time_num;
+		return parseInt(list.options[list.selectedIndex].value, 10);
 	}
 })();

@@ -10,6 +10,7 @@ app.use(compression());
 
 const socket = require('socket.io');
 const fs = require('fs');
+const crypto = require('crypto');
 
 var rooms = {};
 
@@ -41,148 +42,244 @@ const io = socket(server, {
 	}
 });
 
+// ---- Limits / config ----
+const MAX_ROOMS = 5000; // hard cap to prevent memory-exhaustion abuse
+const CREATE_COOLDOWN_MS = 1000; // minimum time between 'create' events per socket
+const ROOM_IDLE_TIMEOUT_MS = 2 * 60 * 60 * 1000; // purge rooms inactive for > 2h
+const ALLOWED_TIMES = [5, 6, 7, 8, 9, 10, 15, 20];
+
 io.on('connection', socket => {
 	console.log('New connection from socket ' + socket.id);
+	socket.last_create = 0;
 
 	// When a user clicks the 'create' button on the website, this will run
 	socket.on('create', data => {
-		let key_to_send = keyCreator();
+		try {
+			data = data || {};
 
-		// set up the preferences of the room based on the create room screen choices
-		rooms[key_to_send]['prefs'] = {};
-		rooms[key_to_send]['players'] = {};
-		rooms[key_to_send]['prefs'].spy1on = data.spyfall1on;
-		rooms[key_to_send]['prefs'].spy2on = data.spyfall2on;
-		rooms[key_to_send]['prefs'].cus1on = data.custom1on;
-		rooms[key_to_send]['prefs'].matchtime = data.time;
-		rooms[key_to_send]['prefs'].owner = data.name;
-		rooms[key_to_send]['prefs'].gamestate = 'down';
+			// Rate-limit room creation per socket
+			const now = Date.now();
+			if (now - socket.last_create < CREATE_COOLDOWN_MS) return;
+			socket.last_create = now;
 
-		// emit the created key back to the frontend
-		io.to(data.source_socket).emit('create', {
-			back_data: data,
-			key: key_to_send
-		});
+			if (Object.keys(rooms).length >= MAX_ROOMS) {
+				return io.to(socket.id).emit('server_busy');
+			}
+
+			let key_to_send = keyCreator();
+			if (!key_to_send) return io.to(socket.id).emit('server_busy');
+
+			// Secret token that proves room ownership across page loads / refreshes
+			const owner_token = crypto.randomBytes(16).toString('hex');
+
+			// set up the preferences of the room based on the create room screen choices
+			rooms[key_to_send].prefs = {
+				spy1on: !!data.spyfall1on,
+				spy2on: !!data.spyfall2on,
+				cus1on: !!data.custom1on,
+				matchtime: sanitizeTime(data.time),
+				owner: typeof data.name === 'string' ? data.name.slice(0, 25) : '',
+				ownerToken: owner_token,
+				ownerSocket: null,
+				gamestate: 'down'
+			};
+			rooms[key_to_send].players = {};
+			rooms[key_to_send].lastActivity = now;
+
+			// emit the created key and owner token back to the creator
+			io.to(socket.id).emit('create', {
+				back_data: data,
+				key: key_to_send,
+				token: owner_token
+			});
+		} catch (err) {
+			console.error('create handler error:', err);
+		}
 	});
 
 	// When a user clicks the 'join' button on the website, this will run
 	socket.on('join', data => {
-		// if the room doesn't exist...
-		if (!rooms[data.join_key]) {
-			return io.to(data.source_socket).emit('no_key_error', data.join_key);
-		} else {
-			io.to(data.source_socket).emit('join', {
-				back_data: data,
-				key: data.join_key
-			});
+		try {
+			const key = data && typeof data.join_key === 'string' ? data.join_key.toLowerCase() : '';
+			// if the room doesn't exist...
+			if (!rooms[key]) {
+				return io.to(socket.id).emit('no_key_error', key);
+			}
+			io.to(socket.id).emit('join', { back_data: data, key: key });
+		} catch (err) {
+			console.error('join handler error:', err);
 		}
 	});
 
 	// when a player enters the game_room, this will run
 	socket.on('load_players', data => {
-		// If the room they are trying to load doesnt exist
-		if (!rooms[data.key]) {
-			io.to(data.source_socket).emit('no_key_error', data.key);
-			return;
-		}
+		try {
+			const key = data && typeof data.key === 'string' ? data.key : '';
+			// If the room they are trying to load doesnt exist
+			if (!rooms[key]) {
+				return io.to(socket.id).emit('no_key_error', key);
+			}
 
-		// put the players socket and name into the room
-		rooms[data.key]['players'][data.source_socket] = data.name;
+			const room = rooms[key];
 
-		// reload the players with the updated information
-		for (let e of Object.keys(rooms[data.key]['players'])) {
-			io.to(e).emit('load_players', {
-				player_sockets: Object.keys(rooms[data.key]['players']),
-				player_names: Object.values(rooms[data.key]['players']),
-				gamestate: rooms[data.key]['prefs'].gamestate
-			});
+			// Claim ownership only if the correct secret token is presented
+			if (data.token && room.prefs.ownerToken && data.token === room.prefs.ownerToken) {
+				room.prefs.ownerSocket = socket.id;
+			}
+
+			// put the players socket and name into the room
+			const name = typeof data.name === 'string' && data.name.trim() ? data.name.slice(0, 25) : 'Anonymous';
+			room.players[socket.id] = name;
+			room.lastActivity = Date.now();
+
+			// join the socket.io room so we can broadcast to everyone at once
+			socket.join(key);
+			socket.roomKey = key;
+
+			// If a round is already in progress, this player has to wait for the next one
+			if (room.prefs.gamestate === 'up') {
+				io.to(socket.id).emit('round_in_progress');
+			}
+
+			broadcastPlayers(key);
+		} catch (err) {
+			console.error('load_players handler error:', err);
 		}
 	});
 
 	// when a user clicks "start game" this will get run
 	socket.on('start_game', data => {
-		// array to store the locations and roles that are in play
-		let temp_locations = getLocations(rooms[data.key]['prefs'].spy1on, rooms[data.key]['prefs'].spy2on, rooms[data.key]['prefs'].cus1on);
+		try {
+			const key = data && typeof data.key === 'string' ? data.key : '';
+			const room = rooms[key];
+			if (!room) return;
 
-		let chosen_location = temp_locations[Math.floor(Math.random() * temp_locations.length)];
-
-		let temp_roles = getRoles(chosen_location);
-
-		rooms[data.key]['prefs'].gamestate = 'up';
-
-		// choose a spy from the numer of sockets connected to the room
-		let spy_num = Math.floor(Math.random() * Object.keys(rooms[data.key]['players']).length);
-		for (i = 0; i < Object.keys(rooms[data.key]['players']).length; i++) {
-			if (i == spy_num) {
-				// if the current for loop is on the person chosen to be the spy
-				io.to(Object.keys(rooms[data.key]['players'])[i]).emit('start_game', {
-					location: chosen_location,
-					role: 'spy',
-					time: rooms[data.key]['prefs'].matchtime,
-					locations: temp_locations
-				});
-			} else {
-				// else, choose a random role from the chosen location
-				io.to(Object.keys(rooms[data.key]['players'])[i]).emit('start_game', {
-					location: chosen_location,
-					role: temp_roles[Math.floor(Math.random() * temp_roles.length)],
-					time: rooms[data.key]['prefs'].matchtime,
-					locations: temp_locations
-				});
+			// Only the room owner may start the game
+			if (socket.id !== room.prefs.ownerSocket) {
+				return io.to(socket.id).emit('not_owner');
 			}
+
+			// array to store the locations and roles that are in play
+			let temp_locations = getLocations(room.prefs.spy1on, room.prefs.spy2on, room.prefs.cus1on);
+			if (temp_locations.length === 0) {
+				return io.to(socket.id).emit('start_error', 'Select at least one location pack before starting.');
+			}
+
+			let chosen_location = temp_locations[Math.floor(Math.random() * temp_locations.length)];
+
+			// shuffle the roles so each player gets a distinct one (dealt without replacement)
+			let roles = shuffle(getRoles(chosen_location));
+
+			room.prefs.gamestate = 'up';
+			room.lastActivity = Date.now();
+
+			const playerIds = Object.keys(room.players);
+
+			// choose a spy from the players connected to the room
+			let spy_num = Math.floor(Math.random() * playerIds.length);
+
+			let roleIndex = 0;
+			for (let i = 0; i < playerIds.length; i++) {
+				let payload;
+				if (i === spy_num) {
+					payload = {
+						location: chosen_location,
+						role: 'spy',
+						time: room.prefs.matchtime,
+						locations: temp_locations
+					};
+				} else {
+					// hand out the next unused role (wrap around if there are more players than roles)
+					const role = roles.length ? roles[roleIndex % roles.length] : 'villager';
+					roleIndex++;
+					payload = {
+						location: chosen_location,
+						role: role,
+						time: room.prefs.matchtime,
+						locations: temp_locations
+					};
+				}
+				io.to(playerIds[i]).emit('start_game', payload);
+			}
+		} catch (err) {
+			console.error('start_game handler error:', err);
 		}
 	});
 
 	socket.on('game_stop', data => {
-		rooms[data]['prefs'].gamestate = 'down';
+		try {
+			const key = typeof data === 'string' ? data : data && data.key;
+			const room = rooms[key];
+			if (!room) return;
 
-		for (let i of Object.keys(rooms[data]['players'])) {
-			io.to(i).emit('game_stop', data);
+			// Only the room owner may stop the game
+			if (socket.id !== room.prefs.ownerSocket) {
+				return io.to(socket.id).emit('not_owner');
+			}
+
+			room.prefs.gamestate = 'down';
+			room.lastActivity = Date.now();
+			io.to(key).emit('game_stop', key);
+		} catch (err) {
+			console.error('game_stop handler error:', err);
 		}
 	});
 
 	// ran whenever a socket disconnects
 	socket.on('disconnect', () => {
-		for (let key in rooms) {
-			// if that player is connected to a valid room....
-			if (rooms[key]['players'][socket.id]) {
-				// then delete them from that room....
-				delete rooms[key]['players'][socket.id];
-				// and update the list of players for everyone else in the room.
-				for (let i of Object.keys(rooms[key]['players'])) {
-					io.to(i).emit('load_players', {
-						player_sockets: Object.keys(rooms[key]['players']),
-						player_names: Object.values(rooms[key]['players'])
-					});
-				}
+		try {
+			const key = socket.roomKey;
+			if (!key || !rooms[key]) return;
+
+			// remove them from that room
+			delete rooms[key].players[socket.id];
+
+			// release ownership if the owner left
+			if (rooms[key].prefs && rooms[key].prefs.ownerSocket === socket.id) {
+				rooms[key].prefs.ownerSocket = null;
 			}
-		}
-		for (let key in rooms) {
-			if (objectIsEmpty(rooms[key]['players'])) {
+
+			// purge empty rooms immediately, otherwise update everyone else
+			if (objectIsEmpty(rooms[key].players)) {
+				delete rooms[key];
+			} else {
+				broadcastPlayers(key);
 			}
+		} catch (err) {
+			console.error('disconnect handler error:', err);
 		}
 	});
 });
 
+// Broadcast the current player list (and ownership / game state) to a whole room at once
+function broadcastPlayers(key) {
+	const room = rooms[key];
+	if (!room) return;
+	io.to(key).emit('load_players', {
+		player_sockets: Object.keys(room.players),
+		player_names: Object.values(room.players),
+		gamestate: room.prefs.gamestate,
+		owner_socket: room.prefs.ownerSocket
+	});
+}
+
 // Function to create a unique five letter key.
 function keyCreator() {
-	let alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+	const alphabet = 'abcdefghijklmnopqrstuvwxyz';
 
-	let temp_key =
-		alphabet[Math.floor(Math.random() * 25)] +
-		alphabet[Math.floor(Math.random() * 25)] +
-		alphabet[Math.floor(Math.random() * 25)] +
-		alphabet[Math.floor(Math.random() * 25)] +
-		alphabet[Math.floor(Math.random() * 25)];
-
-	if (rooms[temp_key]) {
-		// if the key already exists, we got some nice recursion
-		keyCreator();
-	} else {
-		// otherwise, create this area in the rooms object
-		rooms[temp_key] = {};
-		return temp_key;
+	for (let attempt = 0; attempt < 100; attempt++) {
+		let temp_key = '';
+		for (let i = 0; i < 5; i++) {
+			temp_key += alphabet[Math.floor(Math.random() * alphabet.length)];
+		}
+		if (!rooms[temp_key]) {
+			// reserve this area in the rooms object
+			rooms[temp_key] = {};
+			return temp_key;
+		}
 	}
+	// could not find a free key (extremely unlikely unless near MAX_ROOMS)
+	return null;
 }
 
 function objectIsEmpty(obj) {
@@ -192,83 +289,52 @@ function objectIsEmpty(obj) {
 	return true;
 }
 
+// Restrict the match time to one of the allowed values
+function sanitizeTime(t) {
+	const n = parseInt(t, 10);
+	return ALLOWED_TIMES.includes(n) ? n : 8;
+}
+
+// Fisher-Yates shuffle (returns a new array)
+function shuffle(arr) {
+	const a = arr.slice();
+	for (let i = a.length - 1; i > 0; i--) {
+		const j = Math.floor(Math.random() * (i + 1));
+		[a[i], a[j]] = [a[j], a[i]];
+	}
+	return a;
+}
+
 function getLocations(spy1, spy2, cus1) {
-	let temp_array = [];
-	if (spy1) {
-		temp_array.push(Object.keys(json1));
-	}
-	if (spy2) {
-		temp_array.push(Object.keys(json2));
-	}
-	if (cus1) {
-		temp_array.push(Object.keys(json3));
-	}
-	return [].concat.apply([], temp_array);
+	let locations = [];
+	if (spy1) locations = locations.concat(Object.keys(json1));
+	if (spy2) locations = locations.concat(Object.keys(json2));
+	if (cus1) locations = locations.concat(Object.keys(json3));
+	return locations;
 }
 
 function getRoles(location) {
-	let temp_array = [];
-
-	for (let key in json1) {
-		if (key == location) {
-			temp_array.push(json1[key].role1);
-			temp_array.push(json1[key].role2);
-			temp_array.push(json1[key].role3);
-			temp_array.push(json1[key].role4);
-			temp_array.push(json1[key].role5);
-			temp_array.push(json1[key].role6);
-			temp_array.push(json1[key].role7);
+	for (const dataset of [json1, json2, json3]) {
+		if (dataset[location]) {
+			return Object.values(dataset[location]);
 		}
 	}
-	for (let key in json2) {
-		if (key == location) {
-			temp_array.push(json2[key].role1);
-			temp_array.push(json2[key].role2);
-			temp_array.push(json2[key].role3);
-			temp_array.push(json2[key].role4);
-			temp_array.push(json2[key].role5);
-			temp_array.push(json2[key].role6);
-			temp_array.push(json2[key].role7);
-			temp_array.push(json2[key].role8);
-			temp_array.push(json2[key].role9);
-		}
-	}
-
-	for (let key in json3) {
-		if (key == location) {
-			temp_array.push(json3[key].role1);
-			temp_array.push(json3[key].role2);
-			temp_array.push(json3[key].role3);
-			temp_array.push(json3[key].role4);
-			temp_array.push(json3[key].role5);
-			temp_array.push(json3[key].role6);
-			temp_array.push(json3[key].role7);
-		}
-	}
-
-	return [].concat.apply([], temp_array);
+	return [];
 }
 
-let uptime = 0;
-let last_sec = 0;
-
-// Get second precision down to a tenth of a second
+// Periodically purge stale rooms so the in-memory store can't grow forever.
+// Empty rooms are already removed on disconnect; this catches rooms that were
+// created but abandoned, or left running and idle for a long time.
 setInterval(() => {
-	var today = new Date();
-
-	let second = today.getSeconds();
-
-	if (last_sec != second) {
-		last_sec = second;
-		++uptime;
-		for (let key in rooms) {
-			for (let e of Object.keys(rooms[key]['players'])) {
-				io.to(e).emit('event_tick', {
-					uptime: uptime,
-					to_socket: e,
-					room_up: rooms[key]['prefs'].gamestate
-				});
-			}
+	const now = Date.now();
+	for (const key in rooms) {
+		const room = rooms[key];
+		const idle = room.lastActivity ? now - room.lastActivity : 0;
+		const empty = !room.players || objectIsEmpty(room.players);
+		// long-idle rooms, or empty rooms left untouched for over a minute
+		// (the 1-minute grace avoids deleting a room between create and the owner's page load)
+		if (idle > ROOM_IDLE_TIMEOUT_MS || (empty && idle > 60 * 1000)) {
+			delete rooms[key];
 		}
 	}
-}, 100);
+}, 5 * 60 * 1000);

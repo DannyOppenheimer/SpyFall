@@ -1,20 +1,21 @@
 function createRoom() {
 	if (nameIntegrity()) {
-		window.location = 'create_room?' + document.getElementById('name_field').value;
+		let query = new URLSearchParams({ name: document.getElementById('name_field').value });
+		window.location = 'create_room?' + query.toString();
 	}
 }
 
 function joinRoom() {
 	if (nameIntegrity()) {
-		window.location = 'join_room?' + document.getElementById('name_field').value;
+		let query = new URLSearchParams({ name: document.getElementById('name_field').value });
+		window.location = 'join_room?' + query.toString();
 	}
 }
 
 function enterPress(e) {
 	if (e.keyCode === 13) {
 		e.preventDefault();
-
-		window.location = 'join_room?' + document.getElementById('name_field').value;
+		joinRoom();
 	}
 }
 
@@ -24,28 +25,16 @@ function rules() {
 
 function ageVerification() {
 	if (window.localStorage) {
-		let storage = window.localStorage;
-
 		localStorage.setItem('years13', true);
 	}
 
 	document.getElementById('overlay').style.display = 'none';
 }
 
-function isAllWhiteSpace(string) {
-	if (string.length == string.replace(' ', '').length) {
-		return false;
-	}
-	return true;
-}
-
 function nameIntegrity() {
 	let name_field = document.getElementById('name_field');
-	if (name_field.value == '' || name_field.value.replace(/\s/g, '').length == '') {
+	if (name_field.value == '' || name_field.value.replace(/\s/g, '').length == 0) {
 		document.getElementById('error_message').innerHTML = 'Your name cannot be all spaces!';
-		return false;
-	} else if (name_field.value.includes('%20')) {
-		document.getElementById('error_message').innerHTML = 'Your name cannot contain the character "%20"! (we use this as a space in data transport)';
 		return false;
 	} else if (
 		name_field.value.match(

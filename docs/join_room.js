@@ -1,7 +1,8 @@
 (() => {
 	var socket_link = io('https://spyfall-production-5f2b.up.railway.app');
 
-	var name = location.search.substring(1);
+	var params = new URLSearchParams(location.search);
+	var name = params.get('name') || '';
 
 	document.getElementById('back').addEventListener('click', () => {
 		window.location = '/';
@@ -10,17 +11,17 @@
 	socket_link.on('connect', () => {
 		document.getElementById('join_room_button').addEventListener('click', () => {
 			socket_link.emit('join', {
-				source_socket: socket_link.id,
-				join_key: document.getElementById('key_enter').value.toLowerCase()
+				join_key: document.getElementById('key_enter').value.toLowerCase().trim()
 			});
 		});
 	});
 
 	socket_link.on('join', data => {
-		window.location = 'game_room?' + data.key + '&' + name;
+		let query = new URLSearchParams({ key: data.key, name: name });
+		window.location = 'game_room?' + query.toString();
 	});
 
 	socket_link.on('no_key_error', data => {
-		document.getElementById('no_key_err').innerHTML = '<br>The room "' + data + '" does not exist!';
+		document.getElementById('no_key_err').textContent = 'The room "' + data + '" does not exist!';
 	});
 })();
