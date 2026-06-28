@@ -5,7 +5,7 @@ on:
     branches:
       - master
     paths:
-      - 'frontend/**'
+      - 'docs/**'
       - '.github/workflows/deploy.yml'
   workflow_dispatch:
 
@@ -34,7 +34,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: 'frontend'
+          path: 'docs'
 
       - name: Deploy to GitHub Pages
         id: deployment

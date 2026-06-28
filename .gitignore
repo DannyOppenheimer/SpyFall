@@ -3,3 +3,5 @@ saved_for_later
 .well-known
 .well-known/acme-challenge
 .DS_Store
+# stale/unused analytics data — never read by the server
+Storage/users.json
