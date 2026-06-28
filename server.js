@@ -1,6 +1,6 @@
 const express = require('express');
+const http = require('http');
 const app = express();
-const https = require('https');
 
 const helmet = require('helmet');
 const serve_static = require('serve-static');
@@ -16,25 +16,19 @@ var rooms = {};
 const json1 = JSON.parse(fs.readFileSync('./Storage/spyfall_1.json', 'utf8'));
 const json2 = JSON.parse(fs.readFileSync('./Storage/spyfall_2.json', 'utf8'));
 const json3 = JSON.parse(fs.readFileSync('./Storage/custom_1.json', 'utf-8'));
-const users_json = JSON.parse(fs.readFileSync('./Storage/users.json', 'utf-8'));
 
-const https_key_config = https.createServer(
-	{
-		key: fs.readFileSync('/etc/letsencrypt/live/spyfall.groups.id/privkey.pem'),
-		cert: fs.readFileSync('/etc/letsencrypt/live/spyfall.groups.id/fullchain.pem')
-	},
-	app
-);
+const server = http.createServer(app);
+const PORT = process.env.PORT || 3000;
 
-const server = https_key_config.listen(443, () => {
-	console.log('spyfall.groups.id is listening on port 443!');
+server.listen(PORT, () => {
+	console.log(`Server listening on port ${PORT}`);
 });
 
 // feeding our app the folder containing all of our frontend pages
 app.use(
 	serve_static('frontend', {
 		extensions: ['html'],
-		dotfiles: 'deny', // strictly deny all access to any directory containing a "." in case we want to hide files
+		dotfiles: 'deny',
 		index: ['index.html']
 	})
 );
@@ -42,25 +36,7 @@ app.use(
 const io = socket(server, { cookie: false });
 
 io.on('connection', socket => {
-	console.log(
-		'New ' +
-			(socket.handshake.secure ? 'secure' : 'insecure') +
-			' connection from socket ' +
-			socket.id +
-			' on' +
-			socket.handshake['headers']['user-agent'].split(';')[1] +
-			' in the ' +
-			socket.handshake['headers']['referer']
-				.split('/')[3]
-				.split('?')[0]
-				.split('_')
-				.join(' ') +
-			' page.'
-	);
-
-	if (socket.handshake['headers']['referer'].split('/')[3].split('?')[0] == 'game_room') {
-		logUser(socket.handshake['headers']['user-agent'].split(';')[1].trim());
-	}
+	console.log('New connection from socket ' + socket.id);
 
 	// When a user clicks the 'create' button on the website, this will run
 	socket.on('create', data => {
@@ -290,17 +266,3 @@ setInterval(() => {
 		}
 	}
 }, 100);
-
-async function logUser(user_system) {
-	if (!users_json) users_json = {};
-
-	if (!users_json[user_system]) {
-		users_json[user_system] = { connections: 1 };
-	} else {
-		users_json[user_system].connections = users_json[user_system].connections + 1;
-	}
-
-	fs.writeFile('Storage/users.json', JSON.stringify(users_json, null, 4), err => {
-		if (err) console.error(err);
-	});
-}

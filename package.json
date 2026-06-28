@@ -7,10 +7,7 @@
 		"bufferutil": "^4.0.1",
 		"compression": "^1.7.4",
 		"express": "^4.17.1",
-		"fs": "0.0.1-security",
 		"helmet": "^3.21.2",
-		"https": "^1.0.0",
-		"node": "^13.7.0",
 		"serve-static": "^1.14.1",
 		"socket.io": "^2.3.0",
 		"utf-8-validate": "^5.0.2"
