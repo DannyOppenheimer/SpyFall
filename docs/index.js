@@ -20,7 +20,7 @@ function enterPress(e) {
 }
 
 function rules() {
-	window.location = 'rules';
+	window.location = 'about.html';
 }
 
 function ageVerification() {
