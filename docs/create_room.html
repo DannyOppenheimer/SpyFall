@@ -1,59 +1,87 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 	<head>
-		<meta charset="utf-8" lang="en" />
+		<meta charset="utf-8" />
+		<meta name="description" content="Create a new SpyFall game room. Set your location pack and match timer, then invite your friends to join using the room code." />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<meta name="keywords" content="SpyFall,SpyFall 1, SpyFall 2" />
+		<meta name="keywords" content="create spyfall room, start spyfall game, spyfall location pack, game settings" />
 		<meta name="author" content="Danny Oppenheimer" />
 		<meta name="google-site-verification" content="5QeZihxewmHstlIDiKAnSg65UERNIXkJN8227_qpAIk" />
+		<meta property="og:title" content="Create a SpyFall Game Room" />
+		<meta property="og:description" content="Create a new SpyFall game room and invite friends to play." />
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content="https://spyfall.dannyoppenheimer.com/create_room.html" />
+		<meta name="twitter:card" content="summary" />
+		<meta name="twitter:title" content="Create a SpyFall Game Room" />
+		<meta name="twitter:description" content="Create a new SpyFall game room and invite friends to play." />
 
-		<title>SpyFall</title>
-		<link rel="icon" href="Spy.png" type="image/gif" sizes="16x16" alt="spy_icon" />
+		<title>Create SpyFall Game Room — Set Locations & Timer</title>
+		<link rel="icon" href="Spy.png" type="image/png" sizes="16x16" />
 
 		<link href="https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap" rel="stylesheet" />
 		<link rel="stylesheet" type="text/css" href="create_room.css" />
 		<script src="https://spyfall-production-5f2b.up.railway.app/socket.io/socket.io.js"></script>
 
-		<link rel="canonical" href="https://spyfall.dannyoppenheimer.com/create_room" />
+		<link rel="canonical" href="https://spyfall.dannyoppenheimer.com/create_room.html" />
+
+		<script type="application/ld+json">
+		{
+		  "@context": "https://schema.org",
+		  "@type": "WebPage",
+		  "name": "Create SpyFall Game Room",
+		  "description": "Create a new multiplayer SpyFall game room",
+		  "url": "https://spyfall.dannyoppenheimer.com/create_room.html"
+		}
+		</script>
+
+		<script src="create_room.js" defer></script>
 	</head>
 
 	<body>
-		<script src="create_room.js" defer></script>
+		<header>
+			<button id="back" type="button" value="Back">Back</button>
+		</header>
 
-		<input id="back" type="button" value="Back" />
-		<div class="title">
-			<h1>Create Room</h1>
-		</div>
+		<main>
+			<div class="title">
+				<h1>Create Game Room</h1>
+			</div>
 
-		<div class="checkbox">
-			<label id="spyfall1label">Spyfall 1 Locations</label>
-			<br />
-			<label id="spyfall2label">Spyfall 2 Locations</label>
-			<br />
-			<label id="custom1label"><del>Extra Spyfall Pack</del></label>
-			<br />
-			<div id="custom_addition"></div>
-			<br />
-			<form id="minute_form">
+			<section class="checkbox">
+				<h2>Game Settings</h2>
 				<fieldset>
-					<legend style="font-size: 1em;">Matchtime Minutes:</legend>
-					<p>
-						<select id="list">
-							<option value="5">5</option>
-							<option value="6">6</option>
-							<option value="7">7</option>
-							<option value="8">8</option>
-							<option value="9">9</option>
-							<option value="10">10</option>
-							<option value="15">15</option>
-							<option value="20">20</option>
-						</select>
-					</p>
+					<legend>Location Pack</legend>
+					<label id="spyfall1label"><input type="radio" name="location_pack"> Spyfall 1 Locations</label>
+					<br />
+					<label id="spyfall2label"><input type="radio" name="location_pack"> Spyfall 2 Locations</label>
+					<br />
+					<label id="custom1label"><del>Extra Spyfall Pack</del></label>
+					<br />
+					<div id="custom_addition"></div>
 				</fieldset>
-			</form>
-		</div>
 
-		<br />
-		<button id="create_room_button">Create</button>
+				<br />
+
+				<form id="minute_form">
+					<fieldset>
+						<legend>Match Timer (minutes)</legend>
+						<label for="list">Select duration:</label>
+						<select id="list">
+							<option value="5">5 minutes</option>
+							<option value="6">6 minutes</option>
+							<option value="7">7 minutes</option>
+							<option value="8">8 minutes</option>
+							<option value="9">9 minutes</option>
+							<option value="10">10 minutes</option>
+							<option value="15">15 minutes</option>
+							<option value="20">20 minutes</option>
+						</select>
+					</fieldset>
+				</form>
+			</section>
+
+			<br />
+			<button id="create_room_button" type="button">Create Room</button>
+		</main>
 	</body>
 </html>

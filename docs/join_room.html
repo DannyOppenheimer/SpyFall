@@ -1,33 +1,59 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 	<head>
-		<meta charset="utf-8" lang="en" />
+		<meta charset="utf-8" />
+		<meta name="description" content="Join a SpyFall game room using a 5-letter code. Enter the room code and start playing with your friends." />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<meta name="keywords" content="SpyFall,SpyFall 1, SpyFall 2" />
+		<meta name="keywords" content="join spyfall room, spyfall room code, multiplayer game, play spyfall with friends" />
 		<meta name="author" content="Danny Oppenheimer" />
 		<meta name="google-site-verification" content="5QeZihxewmHstlIDiKAnSg65UERNIXkJN8227_qpAIk" />
+		<meta property="og:title" content="Join a SpyFall Game Room" />
+		<meta property="og:description" content="Join a SpyFall game room using a 5-letter code and play with friends." />
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content="https://spyfall.dannyoppenheimer.com/join_room.html" />
+		<meta name="twitter:card" content="summary" />
+		<meta name="twitter:title" content="Join a SpyFall Game Room" />
+		<meta name="twitter:description" content="Join a SpyFall game room using a 5-letter code and play with friends." />
 
-		<title>SpyFall</title>
-		<link rel="icon" href="Spy.png" type="image/gif" sizes="16x16" alt="spy_icon" />
+		<title>Join SpyFall Game Room — Enter Room Code</title>
+		<link rel="icon" href="Spy.png" type="image/png" sizes="16x16" />
 
 		<link href="https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap" rel="stylesheet" />
 		<link rel="stylesheet" type="text/css" href="join_room.css" />
 		<script src="https://spyfall-production-5f2b.up.railway.app/socket.io/socket.io.js"></script>
 
-		<link rel="canonical" href="https://spyfall.dannyoppenheimer.com/join_room" />
+		<link rel="canonical" href="https://spyfall.dannyoppenheimer.com/join_room.html" />
+
+		<script type="application/ld+json">
+		{
+		  "@context": "https://schema.org",
+		  "@type": "WebPage",
+		  "name": "Join SpyFall Game Room",
+		  "description": "Join an existing multiplayer SpyFall game room using a room code",
+		  "url": "https://spyfall.dannyoppenheimer.com/join_room.html"
+		}
+		</script>
+
+		<script src="join_room.js" defer></script>
 	</head>
 
 	<body>
-		<script src="join_room.js" defer></script>
+		<header>
+			<button id="back" type="button" value="Back">Back</button>
+		</header>
 
-		<input id="back" type="button" value="Back" />
-		<div class="title">
-			<h1>Join Room</h1>
-		</div>
+		<main>
+			<div class="title">
+				<h1>Join Game Room</h1>
+			</div>
 
-		<input id="key_enter" type="text" placeholder="Type the 5 letter code." maxlength="5" pattern="[a-z]" />
-		<div id="no_key_err"></div>
-		<br />
-		<button id="join_room_button">Join</button>
+			<form>
+				<label for="key_enter">Enter the 5-letter room code:</label>
+				<input id="key_enter" type="text" placeholder="Type the 5 letter code." maxlength="5" pattern="[a-z]" aria-label="Room code" />
+				<div id="no_key_err" role="alert"></div>
+				<br />
+				<button id="join_room_button" type="button">Join Room</button>
+			</form>
+		</main>
 	</body>
 </html>

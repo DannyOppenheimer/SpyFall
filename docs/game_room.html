@@ -1,68 +1,89 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 	<head>
-		<meta charset="utf-8" lang="en" />
+		<meta charset="utf-8" />
+		<meta name="description" content="SpyFall game in progress. Play the social deduction game, identify the spy, and vote to determine the winner." />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<meta name="keywords" content="SpyFall,SpyFall 1, SpyFall 2" />
+		<meta name="keywords" content="spyfall game, playing spyfall, spy identification, social deduction, multiplayer game" />
 		<meta name="author" content="Danny Oppenheimer" />
 		<meta name="google-site-verification" content="5QeZihxewmHstlIDiKAnSg65UERNIXkJN8227_qpAIk" />
+		<meta property="og:title" content="SpyFall — Game In Progress" />
+		<meta property="og:description" content="Playing SpyFall online. A social deduction game where you must identify the spy." />
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content="https://spyfall.dannyoppenheimer.com/game_room.html" />
+		<meta name="twitter:card" content="summary" />
+		<meta name="twitter:title" content="SpyFall — Game In Progress" />
+		<meta name="twitter:description" content="Playing SpyFall online. A social deduction game where you must identify the spy." />
 
-		<title>SpyFall</title>
+		<title>SpyFall Game Room — Identify the Spy</title>
 
-		<link rel="icon" href="Spy.png" type="image/gif" sizes="16x16" alt="spy_icon" />
+		<link rel="icon" href="Spy.png" type="image/png" sizes="16x16" />
 		<link href="https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap" rel="stylesheet" />
 		<link rel="stylesheet" type="text/css" href="game_room.css" />
 
 		<script src="https://spyfall-production-5f2b.up.railway.app/socket.io/socket.io.js"></script>
 
-		<link rel="canonical" href="https://spyfall.dannyoppenheimer.com/game_room" />
+		<link rel="canonical" href="https://spyfall.dannyoppenheimer.com/game_room.html" />
+
+		<script type="application/ld+json">
+		{
+		  "@context": "https://schema.org",
+		  "@type": "WebPage",
+		  "name": "SpyFall Game Room",
+		  "description": "Active SpyFall game room where players play a social deduction game",
+		  "url": "https://spyfall.dannyoppenheimer.com/game_room.html"
+		}
+		</script>
+
+		<script src="game_room.js" defer></script>
 	</head>
 
 	<body>
-		<script src="game_room.js" defer></script>
-		<div id="title">If you can read this javascript is turned off in your browser.</div>
-		<div class="bar"></div>
-		<div id="game_content">
-			<div class="subtitle" id="time">Waiting for game to start...</div>
-
+		<main>
+			<div id="title">If you can read this, JavaScript is turned off in your browser. Please enable it to play SpyFall.</div>
 			<div class="bar"></div>
+			<div id="game_content">
+				<div class="subtitle" id="time" role="status">Waiting for game to start...</div>
 
-			<div class="subtitle" id="spy_message"></div>
-			<div class="subtitle" id="location"></div>
-			<div class="subtitle" id="role"></div>
+				<div class="bar"></div>
 
-			<div class="bar" id="hide_bar"></div>
+				<div class="subtitle" id="spy_message"></div>
+				<div class="subtitle" id="location"></div>
+				<div class="subtitle" id="role"></div>
 
-			<br />
-			<p id="player_title">Joined Players:</p>
+				<div class="bar" id="hide_bar"></div>
 
-			<table id="player_table" cellspacing="20em"></table>
+				<br />
+				<h2 id="player_title">Joined Players:</h2>
 
-			<div class="subtitle" id="player_reference"></div>
-			<br id="hide_break" />
+				<table id="player_table" cellspacing="20em"></table>
 
-			<div class="bar"></div>
+				<div class="subtitle" id="player_reference"></div>
+				<br id="hide_break" />
 
-			<div class="subtitle">
-				<h1 id="location_reference">Location Reference:</h1>
-				<div class="indentifier"></div>
-				<table id="location_table" cellspacing="20em"></table>
+				<div class="bar"></div>
+
+				<section class="subtitle">
+					<h2 id="location_reference">Location Reference:</h2>
+					<div class="indentifier"></div>
+					<table id="location_table" cellspacing="20em"></table>
+				</section>
+				<br />
+				<div class="container">
+					<button class="button" id="game_start" type="button">Start Game</button>
+					<button class="button" id="game_stop" type="button">End Game and Vote</button>
+					<button class="button" id="home" type="button">Home</button>
+				</div>
 			</div>
-			<br />
-			<div class="container">
-				<button class="button" id="game_start">Start Game</button>
-				<button class="button" id="game_stop">End Game and Vote</button>
-				<button class="button" id="home">Home</button>
-			</div>
-		</div>
 
-		<div id="vote_panel" style="display:none">
-			<h2 id="vote_title">Vote for the Spy</h2>
-			<div id="vote_player_list"></div>
-			<div id="vote_summary"></div>
-			<div id="reveal_container" style="display:none">
-				<button class="button" id="reveal_btn">Reveal</button>
-			</div>
-		</div>
+			<section id="vote_panel" style="display:none">
+				<h2 id="vote_title">Vote for the Spy</h2>
+				<div id="vote_player_list"></div>
+				<div id="vote_summary"></div>
+				<div id="reveal_container" style="display:none">
+					<button class="button" id="reveal_btn" type="button">Reveal</button>
+				</div>
+			</section>
+		</main>
 	</body>
 </html>

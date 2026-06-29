@@ -1,48 +1,86 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <meta charset="utf-8" lang="en">
-    <meta name="description" content="Play SpyFall online, anytime. Uses SpyFall 1 and 2 Locations." />
+    <meta charset="utf-8">
+    <meta name="description" content="Play SpyFall online free with friends. Real-time multiplayer social deduction game with Spyfall 1 and 2 locations. Create or join a room and start playing now." />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="keywords" content="SpyFall,SpyFall 1, SpyFall 2" />
+    <meta name="keywords" content="spyfall, online spyfall game, social deduction game, party game, multiplayer game, spyfall 1, spyfall 2, location guessing game" />
     <meta name="author" content="Danny Oppenheimer" />
     <meta name="google-site-verification" content="5QeZihxewmHstlIDiKAnSg65UERNIXkJN8227_qpAIk" />
-    
-    <title>SpyFall</title>
+    <meta property="og:title" content="SpyFall Online — Free Multiplayer Social Deduction Game" />
+    <meta property="og:description" content="Play SpyFall online free with friends. Real-time multiplayer social deduction game. Create or join a room and start playing now." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://spyfall.dannyoppenheimer.com" />
+    <meta property="og:image" content="https://spyfall.dannyoppenheimer.com/Spy.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="SpyFall Online — Free Multiplayer Social Deduction Game" />
+    <meta name="twitter:description" content="Play SpyFall online free with friends. Real-time multiplayer social deduction game. Create or join a room and start playing now." />
+    <meta name="twitter:image" content="https://spyfall.dannyoppenheimer.com/Spy.png" />
 
-    <link rel="icon" href="Spy.png" type="image/gif" sizes="16x16" alt="spy_icon">
+    <title>SpyFall Online — Free Multiplayer Social Deduction Game</title>
+
+    <link rel="icon" href="Spy.png" type="image/png" sizes="16x16">
     <link href="https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="index.css">
     <link rel="stylesheet" type="text/css" href="global_css.css">
 
-<script src="index.js"></script>
-
     <link rel="canonical" href="https://spyfall.dannyoppenheimer.com" />
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Game",
+      "name": "SpyFall Online",
+      "description": "A free online multiplayer social deduction game where one player is secretly the spy and must figure out the location while others try to identify them.",
+      "url": "https://spyfall.dannyoppenheimer.com",
+      "image": "https://spyfall.dannyoppenheimer.com/Spy.png",
+      "gameServer": "https://spyfall-production-5f2b.up.railway.app",
+      "author": {
+        "@type": "Person",
+        "name": "Danny Oppenheimer"
+      },
+      "applicationCategory": "GameApplication",
+      "playMode": "MultiPlayer",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    }
+    </script>
+
+    <script src="index.js"></script>
 </head>
 
 <body>
-    
-    <div class="container">
-        <input id="button_rules" type="button" value="How To Play" onclick="rules()">
+    <header>
+        <nav>
+            <button id="button_rules" type="button" value="How To Play" onclick="rules()">How To Play</button>
+        </nav>
+    </header>
 
-        <div class="title">
-            <h1>Spyfall</h1>
-        </div>
+    <main>
+        <div class="container">
+            <div class="title">
+                <h1>SpyFall</h1>
+            </div>
 
-        <br>
-        <div class="buttons">
-            <input type="text" id="name_field" placeholder="Please enter your name." maxlength="25" onkeypress="enterPress(event)">
-            <p id="error_message"></p>
-            
-            <input type="button" id="create_room_button" value="Create Room" onclick="createRoom()">
             <br>
-            <input type="button" id="join_room_button" value="Join Room" onclick="joinRoom()">
+            <div class="buttons">
+                <input type="text" id="name_field" placeholder="Please enter your name." maxlength="25" onkeypress="enterPress(event)">
+                <p id="error_message"></p>
+
+                <button type="button" id="create_room_button" onclick="createRoom()">Create Room</button>
+                <br>
+                <button type="button" id="join_room_button" onclick="joinRoom()">Join Room</button>
+            </div>
         </div>
-    </div>
-    <div class="footer">
-        <label><p id="footer_text">Source code:</p> <a href="https://github.com/DannyOppenheimer/SpyFall" target="_blank"><img id="git_image" src="git_image.png" alt="Github Gogo"></label>
-    </div>
+    </main>
+
+    <footer>
+        <p id="footer_text">Source code: <a href="https://github.com/DannyOppenheimer/SpyFall" target="_blank" rel="noopener noreferrer"><img id="git_image" src="git_image.png" alt="GitHub repository"></a></p>
+    </footer>
 
 </body>
 
