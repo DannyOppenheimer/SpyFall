@@ -5,7 +5,14 @@ const app = express();
 const helmet = require('helmet');
 const serve_static = require('serve-static');
 const compression = require('compression');
-app.use(helmet());
+app.use(helmet({
+	contentSecurityPolicy: {
+		directives: {
+			...helmet.contentSecurityPolicy.getDefaultDirectives(),
+			"script-src": ["'self'", "https://cdnjs.cloudflare.com"]
+		}
+	}
+}));
 app.use(compression());
 
 const socket = require('socket.io');
@@ -30,7 +37,7 @@ app.use(
 	serve_static('docs', {
 		extensions: ['html'],
 		dotfiles: 'deny',
-		index: ['index.html']
+		index: 'index.html'
 	})
 );
 
@@ -256,15 +263,26 @@ io.on('connection', socket => {
 				if (count > maxVotes) { maxVotes = count; mostVotedId = id; }
 			}
 
-			const spyName = room.prefs.spyName || 'Unknown';
-			const mostVotedName = mostVotedId ? (room.players[mostVotedId] || 'Unknown') : 'Nobody';
-			const correct = mostVotedId !== null && mostVotedId === room.prefs.spySocketId;
-
 			const voteBreakdown = {};
 			for (const [id, count] of Object.entries(voteCounts)) {
 				const playerName = room.players[id] || 'Unknown';
 				voteBreakdown[playerName] = count;
 			}
+
+			// Detect a tie among the top vote-getters and trigger a re-vote
+			if (maxVotes > 0) {
+				const tiedIds = Object.keys(voteCounts).filter(id => voteCounts[id] === maxVotes);
+				if (tiedIds.length > 1) {
+					room.votes = {};
+					const tiedPlayers = tiedIds.map(id => ({ socketId: id, name: room.players[id] || 'Unknown' }));
+					io.to(key).emit('revote', { players: tiedPlayers, previousBreakdown: voteBreakdown });
+					return;
+				}
+			}
+
+			const spyName = room.prefs.spyName || 'Unknown';
+			const mostVotedName = mostVotedId ? (room.players[mostVotedId] || 'Unknown') : 'Nobody';
+			const correct = mostVotedId !== null && mostVotedId === room.prefs.spySocketId;
 
 			room.prefs.gamestate = 'down';
 			room.lastActivity = Date.now();

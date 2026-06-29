@@ -196,13 +196,10 @@
 		document.getElementById('role').textContent = '';
 	});
 
-	socket_link.on('open_vote', data => {
+	function populateVoteList(players) {
 		votePlayerList.innerHTML = '';
-		voteSummary.innerHTML = '';
-		voteSummary.style.display = 'none';
 		votePlayerList.style.display = '';
-
-		for (let player of data.players) {
+		for (let player of players) {
 			if (player.socketId === socket_link.id) continue; // don't show yourself
 			let btn = document.createElement('button');
 			btn.className = 'vote_player_btn';
@@ -215,7 +212,37 @@
 			});
 			votePlayerList.appendChild(btn);
 		}
+	}
 
+	socket_link.on('open_vote', data => {
+		document.getElementById('vote_title').textContent = 'Vote for the Spy';
+		voteSummary.innerHTML = '';
+		voteSummary.style.display = 'none';
+		populateVoteList(data.players);
+		revealContainer.style.display = isOwner ? '' : 'none';
+		votePanel.style.display = '';
+	});
+
+	socket_link.on('revote', data => {
+		document.getElementById('vote_title').textContent = 'Tie! Re-vote';
+
+		// Show the previous round's breakdown above the new vote list
+		voteSummary.innerHTML = '';
+		if (data.previousBreakdown && Object.keys(data.previousBreakdown).length > 0) {
+			let note = document.createElement('p');
+			note.className = 'vote_breakdown_title';
+			note.textContent = 'Previous votes:';
+			voteSummary.appendChild(note);
+			for (let [pname, count] of Object.entries(data.previousBreakdown)) {
+				let line = document.createElement('p');
+				line.className = 'vote_breakdown_line';
+				line.textContent = pname + ': ' + count + ' vote' + (count !== 1 ? 's' : '');
+				voteSummary.appendChild(line);
+			}
+		}
+		voteSummary.style.display = '';
+
+		populateVoteList(data.players);
 		revealContainer.style.display = isOwner ? '' : 'none';
 		votePanel.style.display = '';
 	});
