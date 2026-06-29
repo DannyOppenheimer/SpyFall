@@ -42,6 +42,26 @@ body {
 	float: right;
 }
 
+#faq-link {
+	position: sticky;
+	top: 0.25vh;
+	margin-right: 0.15vw;
+	margin-top: 0.5vh;
+	border: none;
+	background-color: #fffaea;
+	padding-top: 1.25vh;
+	padding-right: 1vw;
+	padding-left: 1vw;
+	padding-bottom: 1.25vh;
+	display: block;
+	width: 10vw;
+	border-style: none;
+	text-decoration: none;
+	font-family: 'Josefin Sans', sans-serif;
+	border-radius: 0.25em;
+	float: right;
+}
+
 #text {
 	margin-left: 2.5vw;
 	margin-right: 2.5vw;
@@ -55,27 +75,6 @@ body {
 #text h1 {
 	font-size: 5em;
 	text-decoration: none;
-}
-
-footer {
-	color: #fffaea;
-	text-align: center;
-	width: 99%;
-	position: absolute;
-	bottom: 1vh;
-	font-family: 'Josefin Sans', sans-serif;
-	overflow-x: hidden;
-	font-size: 1em;
-}
-
-#git_image {
-	height: 2vh;
-	width: 2vh;
-	vertical-align: middle;
-}
-
-#footer_text {
-	display: inline-block;
 }
 
 @media only screen and (max-device-width: 480px) {
