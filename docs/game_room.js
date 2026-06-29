@@ -14,6 +14,10 @@
 	var time_cell = document.getElementById('time');
 	var startBtn = document.getElementById('game_start');
 	var stopBtn = document.getElementById('game_stop');
+	var votePanel = document.getElementById('vote_panel');
+	var voteSummary = document.getElementById('vote_summary');
+	var votePlayerList = document.getElementById('vote_player_list');
+	var revealContainer = document.getElementById('reveal_container');
 
 	document.getElementById('title').textContent = 'Room Key: ' + room_key;
 	document.getElementById('location_reference').style.display = 'none';
@@ -23,6 +27,16 @@
 	// Owner-only controls stay hidden until the server confirms we own the room
 	startBtn.style.display = 'none';
 	stopBtn.style.display = 'none';
+
+	function updateOwnerButtons() {
+		if (!isOwner) {
+			startBtn.style.display = 'none';
+			stopBtn.style.display = 'none';
+			return;
+		}
+		startBtn.style.display = gameup ? 'none' : '';
+		stopBtn.style.display = gameup ? '' : 'none';
+	}
 
 	socket_link.on('connect', () => {
 		socket_link.emit('load_players', {
@@ -37,11 +51,15 @@
 	});
 
 	stopBtn.addEventListener('click', () => {
-		socket_link.emit('game_stop', { key: room_key });
+		socket_link.emit('open_vote', { key: room_key });
 	});
 
 	document.getElementById('home').addEventListener('click', () => {
 		window.location = '/';
+	});
+
+	document.getElementById('reveal_btn').addEventListener('click', () => {
+		socket_link.emit('reveal_vote', { key: room_key });
 	});
 
 	function stopTimer() {
@@ -82,8 +100,7 @@
 	socket_link.on('load_players', data => {
 		gameup = data.gamestate == 'up';
 		isOwner = !!data.owner_socket && data.owner_socket === socket_link.id;
-		startBtn.style.display = isOwner ? '' : 'none';
-		stopBtn.style.display = isOwner ? '' : 'none';
+		updateOwnerButtons();
 
 		let container = document.getElementById('player_reference');
 		container.textContent = '';
@@ -111,6 +128,16 @@
 
 	socket_link.on('start_game', data => {
 		gameup = true;
+		updateOwnerButtons();
+
+		// Close vote panel if it was open from a previous round
+		votePanel.style.display = 'none';
+		votePlayerList.innerHTML = '';
+		votePlayerList.style.display = '';
+		voteSummary.innerHTML = '';
+		voteSummary.style.display = 'none';
+		revealContainer.style.display = 'none';
+
 		document.getElementById('location_reference').style.display = 'block';
 		document.getElementById('hide_bar').style.display = 'block';
 		document.getElementById('player_title').textContent = 'Player Reference:';
@@ -130,8 +157,6 @@
 			location_el.querySelector('strong').textContent = data.location;
 			role_el.textContent = 'Your role is a ' + data.role;
 		}
-
-		//loop to add locations
 
 		let columns = 3;
 		let count = 0;
@@ -171,8 +196,79 @@
 		document.getElementById('role').textContent = '';
 	});
 
+	socket_link.on('open_vote', data => {
+		votePlayerList.innerHTML = '';
+		voteSummary.innerHTML = '';
+		voteSummary.style.display = 'none';
+		votePlayerList.style.display = '';
+
+		for (let player of data.players) {
+			if (player.socketId === socket_link.id) continue; // don't show yourself
+			let btn = document.createElement('button');
+			btn.className = 'vote_player_btn';
+			btn.textContent = player.name;
+			btn.dataset.socketId = player.socketId;
+			btn.addEventListener('click', () => {
+				votePlayerList.querySelectorAll('.vote_player_btn').forEach(b => b.classList.remove('selected'));
+				btn.classList.add('selected');
+				socket_link.emit('submit_vote', { votedSocketId: player.socketId });
+			});
+			votePlayerList.appendChild(btn);
+		}
+
+		revealContainer.style.display = isOwner ? '' : 'none';
+		votePanel.style.display = '';
+	});
+
+	socket_link.on('reveal_result', data => {
+		votePlayerList.style.display = 'none';
+		revealContainer.style.display = 'none';
+
+		voteSummary.innerHTML = '';
+
+		let spyLine = document.createElement('p');
+		spyLine.innerHTML = 'The spy was: <strong></strong>';
+		spyLine.querySelector('strong').textContent = data.spyName;
+		voteSummary.appendChild(spyLine);
+
+		let votedLine = document.createElement('p');
+		votedLine.innerHTML = 'Players voted for: <strong></strong>';
+		votedLine.querySelector('strong').textContent = data.mostVotedName;
+		voteSummary.appendChild(votedLine);
+
+		let resultLine = document.createElement('p');
+		resultLine.className = data.correct ? 'vote_correct' : 'vote_incorrect';
+		resultLine.textContent = data.correct ? 'Players win! The spy was caught!' : 'Spy wins! Wrong vote!';
+		voteSummary.appendChild(resultLine);
+
+		if (data.voteBreakdown && Object.keys(data.voteBreakdown).length > 0) {
+			let breakdownTitle = document.createElement('p');
+			breakdownTitle.className = 'vote_breakdown_title';
+			breakdownTitle.textContent = 'Vote breakdown:';
+			voteSummary.appendChild(breakdownTitle);
+			for (let [pname, count] of Object.entries(data.voteBreakdown)) {
+				let line = document.createElement('p');
+				line.className = 'vote_breakdown_line';
+				let nameSpan = document.createElement('span');
+				nameSpan.textContent = pname + ': ';
+				let countSpan = document.createElement('span');
+				countSpan.textContent = count + ' vote' + (count !== 1 ? 's' : '');
+				line.appendChild(nameSpan);
+				line.appendChild(countSpan);
+				voteSummary.appendChild(line);
+			}
+		}
+
+		voteSummary.style.display = '';
+
+		// Game is over — update button state for owner
+		gameup = false;
+		updateOwnerButtons();
+	});
+
 	socket_link.on('game_stop', () => {
 		gameup = false;
+		updateOwnerButtons();
 		stopTimer();
 		time_cell.textContent = 'Waiting for game to start...';
 		document.getElementById('location').textContent = '';
@@ -183,6 +279,12 @@
 		document.getElementById('hide_bar').style.display = 'none';
 		document.getElementById('player_title').textContent = 'Joined Players:';
 		document.getElementById('location_table').innerHTML = '';
+
+		votePanel.style.display = 'none';
+		votePlayerList.innerHTML = '';
+		voteSummary.innerHTML = '';
+		voteSummary.style.display = 'none';
+		revealContainer.style.display = 'none';
 
 		// clear any crossed-off players
 		let cells = document.querySelectorAll('#player_reference .player_cell');

@@ -172,11 +172,15 @@ io.on('connection', socket => {
 
 			room.prefs.gamestate = 'up';
 			room.lastActivity = Date.now();
+			room.votes = {};
 
 			const playerIds = Object.keys(room.players);
 
 			// choose a spy from the players connected to the room
 			let spy_num = Math.floor(Math.random() * playerIds.length);
+			room.prefs.spySocketId = playerIds[spy_num];
+			room.prefs.spyName = room.players[playerIds[spy_num]];
+			room.prefs.spyLocation = chosen_location;
 
 			let roleIndex = 0;
 			for (let i = 0; i < playerIds.length; i++) {
@@ -203,6 +207,72 @@ io.on('connection', socket => {
 			}
 		} catch (err) {
 			console.error('start_game handler error:', err);
+		}
+	});
+
+	socket.on('open_vote', data => {
+		try {
+			const key = data && typeof data.key === 'string' ? data.key : '';
+			const room = rooms[key];
+			if (!room) return;
+			if (socket.id !== room.prefs.ownerSocket) return io.to(socket.id).emit('not_owner');
+			if (room.prefs.gamestate !== 'up') return;
+
+			const players = Object.entries(room.players).map(([id, name]) => ({ socketId: id, name }));
+			io.to(key).emit('open_vote', { players });
+		} catch (err) {
+			console.error('open_vote handler error:', err);
+		}
+	});
+
+	socket.on('submit_vote', data => {
+		try {
+			const key = socket.roomKey;
+			const room = rooms[key];
+			if (!room || room.prefs.gamestate !== 'up') return;
+			const votedId = typeof data.votedSocketId === 'string' ? data.votedSocketId : '';
+			if (!room.players[votedId]) return;
+			room.votes[socket.id] = votedId;
+		} catch (err) {
+			console.error('submit_vote handler error:', err);
+		}
+	});
+
+	socket.on('reveal_vote', data => {
+		try {
+			const key = data && typeof data.key === 'string' ? data.key : '';
+			const room = rooms[key];
+			if (!room) return;
+			if (socket.id !== room.prefs.ownerSocket) return io.to(socket.id).emit('not_owner');
+
+			const voteCounts = {};
+			for (const votedId of Object.values(room.votes || {})) {
+				voteCounts[votedId] = (voteCounts[votedId] || 0) + 1;
+			}
+
+			let maxVotes = 0;
+			let mostVotedId = null;
+			for (const [id, count] of Object.entries(voteCounts)) {
+				if (count > maxVotes) { maxVotes = count; mostVotedId = id; }
+			}
+
+			const spyName = room.prefs.spyName || 'Unknown';
+			const mostVotedName = mostVotedId ? (room.players[mostVotedId] || 'Unknown') : 'Nobody';
+			const correct = mostVotedId !== null && mostVotedId === room.prefs.spySocketId;
+
+			const voteBreakdown = {};
+			for (const [id, count] of Object.entries(voteCounts)) {
+				const playerName = room.players[id] || 'Unknown';
+				voteBreakdown[playerName] = count;
+			}
+
+			room.prefs.gamestate = 'down';
+			room.lastActivity = Date.now();
+
+			io.to(key).emit('reveal_result', { spyName, mostVotedName, correct, voteBreakdown });
+			broadcastPlayers(key);
+		} catch (err) {
+			console.error('reveal_vote handler error:', err);
 		}
 	});
 
