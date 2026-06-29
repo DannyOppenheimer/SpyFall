@@ -19,6 +19,27 @@ body {
 	text-decoration: none;
 	font-family: 'Josefin Sans', sans-serif;
 	border-radius: 0.25em;
+	float: left;
+}
+
+#faq {
+	position: sticky;
+	top: 0.25vh;
+	margin-right: 0.15vw;
+	margin-top: 0.5vh;
+	border: none;
+	background-color: #fffaea;
+	padding-top: 1.25vh;
+	padding-right: 1vw;
+	padding-left: 1vw;
+	padding-bottom: 1.25vh;
+	display: block;
+	width: 8vw;
+	border-style: none;
+	text-decoration: none;
+	font-family: 'Josefin Sans', sans-serif;
+	border-radius: 0.25em;
+	float: right;
 }
 
 #text {
@@ -34,6 +55,27 @@ body {
 #text h1 {
 	font-size: 5em;
 	text-decoration: none;
+}
+
+footer {
+	color: #fffaea;
+	text-align: center;
+	width: 99%;
+	position: absolute;
+	bottom: 1vh;
+	font-family: 'Josefin Sans', sans-serif;
+	overflow-x: hidden;
+	font-size: 1em;
+}
+
+#git_image {
+	height: 2vh;
+	width: 2vh;
+	vertical-align: middle;
+}
+
+#footer_text {
+	display: inline-block;
 }
 
 @media only screen and (max-device-width: 480px) {
@@ -52,6 +94,44 @@ body {
 	}
 
 	#back {
+		margin: auto;
+		margin-top: 0.5vh;
+		position: relative;
+		border: none;
+		background-color: #fffaea;
+		padding-top: 2vh;
+		padding-right: 2vw;
+		padding-left: 2vw;
+		padding-bottom: 2vh;
+		display: block;
+		width: 90vw;
+		border-style: none;
+		text-decoration: none;
+		font-family: 'Josefin Sans', sans-serif;
+		border-radius: 0.25em;
+		font-size: 2em;
+	}
+
+	#faq {
+		margin: auto;
+		margin-top: 0.5vh;
+		position: relative;
+		border: none;
+		background-color: #fffaea;
+		padding-top: 2vh;
+		padding-right: 2vw;
+		padding-left: 2vw;
+		padding-bottom: 2vh;
+		display: block;
+		width: 90vw;
+		border-style: none;
+		text-decoration: none;
+		font-family: 'Josefin Sans', sans-serif;
+		border-radius: 0.25em;
+		font-size: 2em;
+	}
+
+	#faq-link {
 		margin: auto;
 		margin-top: 0.5vh;
 		position: relative;
