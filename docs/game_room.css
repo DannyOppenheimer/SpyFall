@@ -1,5 +1,14 @@
-body {
+html, body {
 	background-color: #0d0d0d;
+	margin: 0;
+	padding: 0;
+}
+
+body, header, nav, main, .title, h1, h2, h3, div {
+	background-color: #0d0d0d;
+}
+
+body {
 	color: #fffaea;
 }
 
