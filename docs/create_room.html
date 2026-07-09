@@ -1,7 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" style="background-color: #0d0d0d">
 	<head>
 		<meta charset="utf-8" />
+		<meta name="color-scheme" content="dark" />
+		<meta name="theme-color" content="#0d0d0d" />
 		<meta name="description" content="Create a new SpyFall game room. Set your location pack and match timer, then invite your friends to join using the room code." />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta name="keywords" content="create spyfall room, start spyfall game, spyfall location pack, game settings" />
@@ -18,16 +20,26 @@
 		<title>Create SpyFall Game Room — Set Locations & Timer</title>
 
 		<style>
-			body {
+			html, body {
 				background-color: #0d0d0d;
+				margin: 0;
+				padding: 0;
+			}
+			body, header, nav, main, .title, h1, h2, h3, div {
+				background-color: #0d0d0d;
+			}
+			input, button, select, textarea {
+				color-scheme: light;
 			}
 		</style>
 
 		<link rel="icon" href="Spy.png" type="image/png" sizes="16x16" />
 
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link href="https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap" rel="stylesheet" />
 		<link rel="stylesheet" type="text/css" href="create_room.css" />
-		<script src="https://spyfall-production-5f2b.up.railway.app/socket.io/socket.io.js"></script>
+		<script src="https://spyfall-production-5f2b.up.railway.app/socket.io/socket.io.js" defer></script>
 
 		<link rel="canonical" href="https://spyfall.dannyoppenheimer.com/create_room.html" />
 

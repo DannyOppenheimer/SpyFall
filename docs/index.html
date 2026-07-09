@@ -1,8 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" style="background-color: #0d0d0d">
 
 <head>
     <meta charset="utf-8">
+    <meta name="color-scheme" content="dark">
+    <meta name="theme-color" content="#0d0d0d">
     <meta name="description" content="Play SpyFall online free with friends. Real-time multiplayer social deduction game with Spyfall 1 and 2 locations. Create or join a room and start playing now." />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="keywords" content="spyfall, online spyfall game, social deduction game, party game, multiplayer game, spyfall 1, spyfall 2, location guessing game" />
@@ -21,12 +23,22 @@
     <title>SpyFall Online — Free Multiplayer Social Deduction Game</title>
 
     <style>
-        body {
+        html, body {
             background-color: #0d0d0d;
+            margin: 0;
+            padding: 0;
+        }
+        body, header, nav, main, .container, .title, h1, h2, h3, div {
+            background-color: #0d0d0d;
+        }
+        input, button, select, textarea {
+            color-scheme: light;
         }
     </style>
 
     <link rel="icon" href="Spy.png" type="image/png" sizes="16x16">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="index.css">
     <link rel="stylesheet" type="text/css" href="global_css.css">
@@ -56,7 +68,7 @@
     }
     </script>
 
-    <script src="index.js"></script>
+    <script src="index.js" defer></script>
 </head>
 
 <body>
