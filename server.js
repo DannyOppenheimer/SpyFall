@@ -9,7 +9,8 @@ app.use(helmet({
 	contentSecurityPolicy: {
 		directives: {
 			...helmet.contentSecurityPolicy.getDefaultDirectives(),
-			"script-src": ["'self'", "https://spyfall-production-5f2b.up.railway.app"]
+			"script-src": ["'self'", "https://spyfall-production-5f2b.up.railway.app"],
+			"connect-src": ["'self'", "https://spyfall-production-5f2b.up.railway.app", "wss://spyfall-production-5f2b.up.railway.app"]
 		}
 	}
 }));

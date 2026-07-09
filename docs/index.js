@@ -1,3 +1,10 @@
+document.addEventListener('DOMContentLoaded', function () {
+	document.getElementById('button_rules').addEventListener('click', rules);
+	document.getElementById('create_room_button').addEventListener('click', createRoom);
+	document.getElementById('join_room_button').addEventListener('click', joinRoom);
+	document.getElementById('name_field').addEventListener('keypress', enterPress);
+});
+
 function createRoom() {
 	if (nameIntegrity()) {
 		let query = new URLSearchParams({ name: document.getElementById('name_field').value });
