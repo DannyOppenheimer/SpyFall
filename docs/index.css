@@ -109,12 +109,13 @@ body {
 	font-size: 1em;
 }
 
-.footer {
+footer {
 	color: #fffaea;
 	text-align: center;
-	width: 99%;
+	width: 100%;
 	position: absolute;
-	bottom: 1vh;
+	bottom: 0;
+	left: 0;
 	font-family: 'Josefin Sans', sans-serif;
 	overflow-x: hidden;
 	font-size: 1em;

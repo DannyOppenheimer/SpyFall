@@ -1,5 +1,5 @@
 (() => {
-	var socket_link = io('https://spyfall-production-5f2b.up.railway.app');
+	var socket_link = io(location.hostname === 'localhost' ? location.origin : 'https://spyfall-production-5f2b.up.railway.app');
 
 	var params = new URLSearchParams(location.search);
 	var room_key = params.get('key') || '';
