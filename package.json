@@ -5,7 +5,7 @@
 	"main": "server.js",
 	"dependencies": {
 		"bufferutil": "^4.1.0",
-		"compression": "^1.7.4",
+		"compression": "^1.8.2",
 		"express": "^4.22.2",
 		"helmet": "^8.2.0",
 		"serve-static": "^2.2.1",
